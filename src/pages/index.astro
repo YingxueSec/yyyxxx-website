@@ -200,9 +200,12 @@ import Layout from '../layouts/Layout.astro';
             <div class="pt-4">
               <button 
                 id="joinGroupBtn"
-                class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
-                � 一键加群
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                一键加群
               </button>
               <p class="text-xs text-muted-foreground mt-2">
                 自动识别设备，手机拉起 QQ 应用，电脑打开网页版
@@ -306,12 +309,17 @@ import Layout from '../layouts/Layout.astro';
       // 检测是否为移动设备
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       
-      if (isMobile) {
-        // 移动端：拉起 QQ 应用
-        window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode';
-      } else {
-        // 电脑端：打开网页版
-        window.open('https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info', '_blank');
+      // 弹出确认对话框
+      const confirmed = confirm('即将跳转到 QQ 加群页面，是否继续？\n\n群号：897500387');
+      
+      if (confirmed) {
+        if (isMobile) {
+          // 移动端：拉起 QQ 应用
+          window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode';
+        } else {
+          // 电脑端：打开网页版
+          window.open('https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info', '_blank');
+        }
       }
     });
   }
