@@ -238,11 +238,38 @@ import Layout from '../layouts/Layout.astro';
       <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
         © 2025 映雪安全 YingxueSec. All rights reserved.
       </p>
+      <div class="flex flex-col md:flex-row items-center gap-3 text-xs text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+          </svg>
+          <span>访问：<span id="busuanzi_value_site_pv">-</span></span>
+        </div>
+        <div class="hidden md:block text-muted-foreground/50">·</div>
+        <div class="flex items-center gap-2">
+          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span>访客：<span id="busuanzi_value_site_uv">-</span></span>
+        </div>
+        <div class="hidden md:block text-muted-foreground/50">·</div>
+        <div class="flex items-center gap-2">
+          <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>运行：<span id="runtime_days">0</span> 天</span>
+        </div>
+      </div>
     </div>
   </footer>
 </Layout>
 
+<!-- 不蒜子统计 -->
+<script is:inline async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 <script>
+  // 平滑滚动
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
@@ -255,4 +282,20 @@ import Layout from '../layouts/Layout.astro';
       }
     });
   });
+
+  // 计算运行时间（从 2025-01-01 开始）
+  function updateRuntime() {
+    const startDate = new Date('2025-01-01T00:00:00');
+    const now = new Date();
+    const diff = now.getTime() - startDate.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const runtimeElement = document.getElementById('runtime_days');
+    if (runtimeElement) {
+      runtimeElement.textContent = String(days);
+    }
+  }
+  
+  updateRuntime();
+  // 每天更新一次
+  setInterval(updateRuntime, 1000 * 60 * 60 * 24);
 </script>
