@@ -198,17 +198,19 @@ import Layout from '../layouts/Layout.astro';
 
             <!-- 一键加群按钮 -->
             <div class="pt-4">
-              <button 
-                id="joinGroupBtn"
+              <a 
+                href="https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info"
+                target="_blank"
+                rel="noopener noreferrer"
                 class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
                 一键加群
-              </button>
+              </a>
               <p class="text-xs text-muted-foreground mt-2">
-                自动识别设备，手机拉起 QQ 应用，电脑打开网页版
+                点击后将打开 QQ 加群页面，自动识别设备并拉起应用
               </p>
             </div>
           </div>
@@ -301,31 +303,4 @@ import Layout from '../layouts/Layout.astro';
   updateRuntime();
   // 每天更新一次
   setInterval(updateRuntime, 1000 * 60 * 60 * 24);
-
-  // 智能加群按钮
-  const joinGroupBtn = document.getElementById('joinGroupBtn');
-  if (joinGroupBtn) {
-    joinGroupBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // 检测是否为移动设备
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      if (isMobile) {
-        // 移动端：直接尝试拉起 QQ 应用，浏览器会自动弹出原生提示
-        window.location.href = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode';
-      } else {
-        // 电脑端：尝试拉起 QQ，如果失败则打开网页版
-        const qqUrl = 'tencent://groupwpa/?subcmd=all&param=7B2267726F757055696E223A3839373530303338372C2274696D655374616D70223A313733323033363830307D0A';
-        window.location.href = qqUrl;
-        
-        // 2秒后检测是否成功拉起，如果没有则打开网页版
-        setTimeout(() => {
-          if (!document.hidden) {
-            window.open('https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info', '_blank');
-          }
-        }, 2000);
-      }
-    });
-  }
 </script>
