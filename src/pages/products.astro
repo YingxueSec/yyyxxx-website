@@ -212,10 +212,18 @@ import Layout from '../layouts/Layout.astro';
               </ul>
             </div>
             
-            <div class="flex items-center gap-4 pt-2">
-              <span class="text-sm text-muted-foreground">
-                📦 即将开放下载
-              </span>
+            <div class="flex flex-col gap-3 pt-2">
+              <a 
+                href="https://c.wss.cc/f/ii5ewezrffo" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-10 items-center justify-center rounded-md bg-gradient-to-r from-orange-500 to-red-500 px-6 text-sm font-medium text-white shadow transition-all hover:from-orange-600 hover:to-red-600 hover:shadow-lg w-fit"
+              >
+                📦 立即下载
+              </a>
+              <p class="text-xs text-muted-foreground">
+                🔒 下载密码请加入 QQ 交流群（<strong>897500387</strong>）获取
+              </p>
             </div>
           </div>
         </div>
@@ -227,18 +235,45 @@ import Layout from '../layouts/Layout.astro';
   <!-- 引导区域 -->
   <section class="container mx-auto px-6 pb-24">
     <div class="mx-auto max-w-4xl">
-      <div class="relative overflow-hidden rounded-lg border bg-gradient-to-r from-primary/10 to-purple-500/10 p-8">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex-1 space-y-2">
-            <h3 class="text-2xl font-bold">👥 加入我们的技术交流群</h3>
+      <div class="relative overflow-hidden rounded-lg border bg-gradient-to-r from-primary/10 via-purple-500/10 to-pink-500/10 p-8">
+        <!-- 装饰性背景 -->
+        <div class="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-primary/5 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-4 -ml-4 h-32 w-32 rounded-full bg-purple-500/5 blur-3xl"></div>
+        
+        <div class="relative flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex-1 space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="text-3xl">🎁</span>
+              <h3 class="text-2xl font-bold">加入技术交流群，解锁更多福利</h3>
+            </div>
             <p class="text-muted-foreground">
-              与安全从业者交流技术、分享经验、获取产品支持和最新动态
+              与安全从业者交流技术、分享实战经验、获取产品下载密码、享受优惠活动
             </p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+                🔒 产品下载密码
+              </span>
+              <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500 ring-1 ring-inset ring-blue-500/20">
+                🎯 技术支持
+              </span>
+              <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">
+                🎉 优惠活动
+              </span>
+              <span class="inline-flex items-center rounded-full bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-500 ring-1 ring-inset ring-orange-500/20">
+                💡 实战经验
+              </span>
+            </div>
           </div>
-          <div class="flex gap-3">
-            <a href="/#contact" class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
-              查看联系方式
+          <div class="flex flex-col gap-3">
+            <a 
+              href="/#contact" 
+              class="inline-flex h-11 items-center justify-center rounded-md bg-gradient-to-r from-primary to-purple-600 px-8 text-sm font-medium text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            >
+              👉 立即加入
             </a>
+            <p class="text-xs text-center text-muted-foreground">
+              群号：897500387
+            </p>
           </div>
         </div>
       </div>
