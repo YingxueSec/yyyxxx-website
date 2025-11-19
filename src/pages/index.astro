@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="映雪安全 YingxueSec - 专业网络安全服务" description="映雪安全提供专业的网络安全服务，包括渗透测试、安全咨询、应急响应等">
+  <!-- 导航栏 -->
+  <nav class="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+          </svg>
+          <span class="text-2xl font-bold text-foreground">映雪安全</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-muted-foreground hover:text-foreground transition-colors">首页</a>
+          <a href="#services" class="text-muted-foreground hover:text-foreground transition-colors">服务</a>
+          <a href="#about" class="text-muted-foreground hover:text-foreground transition-colors">关于</a>
+          <a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors">联系</a>
+          <button class="px-6 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors">
+            立即咨询
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-32 pb-20 px-4">
+    <div class="container mx-auto">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block mb-4 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium">
+          🛡️ 专业网络安全服务
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+          守护数字世界的安全
+        </h1>
+        <p class="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
+          映雪安全（YingxueSec）致力于为企业提供全方位的网络安全解决方案<br/>
+          让您的业务在数字时代安全无忧
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button class="px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105 font-semibold text-lg">
+            免费咨询
+          </button>
+          <button class="px-8 py-4 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-all font-semibold text-lg">
+            了解更多
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特色服务 -->
+  <section id="services" class="py-20 px-4 bg-muted/30">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">核心服务</h2>
+        <p class="text-xl text-muted-foreground">专业团队，全方位保障您的网络安全</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 服务卡片 1 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">渗透测试</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            模拟真实攻击场景，全面评估系统安全性，发现潜在漏洞，提供专业修复建议
+          </p>
+        </div>
+
+        <!-- 服务卡片 2 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">安全咨询</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            提供专业的安全架构设计、合规性评估、安全策略制定等咨询服务
+          </p>
+        </div>
+
+        <!-- 服务卡片 3 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">应急响应</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            7x24小时应急响应服务，快速处理安全事件，最小化业务影响
+          </p>
+        </div>
+
+        <!-- 服务卡片 4 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">代码审计</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            深度代码安全审计，识别代码层面的安全隐患，提升应用安全性
+          </p>
+        </div>
+
+        <!-- 服务卡片 5 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">安全培训</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            定制化安全意识培训，提升团队整体安全防护能力
+          </p>
+        </div>
+
+        <!-- 服务卡片 6 -->
+        <div class="group p-8 bg-card rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg">
+          <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">安全运营</h3>
+          <p class="text-muted-foreground leading-relaxed">
+            持续安全监控、威胁情报分析、安全事件管理等运营服务
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于我们 -->
+  <section id="about" class="py-20 px-4">
+    <div class="container mx-auto">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">关于映雪安全</h2>
+          <p class="text-xl text-muted-foreground">专业、专注、值得信赖</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="text-center p-6">
+            <div class="text-5xl font-bold text-primary mb-2">10+</div>
+            <div class="text-muted-foreground">年行业经验</div>
+          </div>
+          <div class="text-center p-6">
+            <div class="text-5xl font-bold text-primary mb-2">500+</div>
+            <div class="text-muted-foreground">服务客户</div>
+          </div>
+          <div class="text-center p-6">
+            <div class="text-5xl font-bold text-primary mb-2">99.9%</div>
+            <div class="text-muted-foreground">客户满意度</div>
+          </div>
+        </div>
+
+        <div class="bg-card rounded-xl border border-border p-8 md:p-12">
+          <h3 class="text-2xl font-bold mb-6">我们的优势</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">专业团队</h4>
+                <p class="text-muted-foreground">由资深安全专家组成，拥有丰富的实战经验和深厚的技术积累</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">全方位服务</h4>
+                <p class="text-muted-foreground">提供从咨询、评估到实施、运营的全生命周期安全服务</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">快速响应</h4>
+                <p class="text-muted-foreground">7x24小时应急响应机制，确保在第一时间处理安全事件</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我们 -->
+  <section id="contact" class="py-20 px-4 bg-muted/30">
+    <div class="container mx-auto">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">联系我们</h2>
+        <p class="text-xl text-muted-foreground mb-12">
+          有任何安全问题或需求？我们随时为您提供专业咨询
+        </p>
+        
+        <div class="bg-card rounded-xl border border-border p-8 md:p-12">
+          <div class="space-y-6">
+            <div class="flex items-center justify-center space-x-4">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <a href="mailto:contact@yyyxxx.cc" class="text-lg hover:text-primary transition-colors">
+                contact@yyyxxx.cc
+              </a>
+            </div>
+            <div class="flex items-center justify-center space-x-4">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+              </svg>
+              <span class="text-lg">https://yyyxxx.cc</span>
+            </div>
+          </div>
+          
+          <div class="mt-8">
+            <button class="w-full md:w-auto px-12 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all transform hover:scale-105 font-semibold text-lg">
+              立即咨询
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-border">
+    <div class="container mx-auto">
+      <div class="text-center text-muted-foreground">
+        <p class="mb-2">© 2025 映雪安全 YingxueSec. All rights reserved.</p>
+        <p class="text-sm">守护数字世界的安全</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // 平滑滚动
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>

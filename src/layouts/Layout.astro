@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -20,7 +22,3 @@ const { title, description = "映雪安全 - 专业的网络安全服务提供�
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @import "../styles/global.css";
-</style>
