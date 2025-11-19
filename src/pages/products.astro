@@ -39,11 +39,6 @@ import Layout from '../layouts/Layout.astro';
       <p class="max-w-[750px] text-lg text-muted-foreground">
         专注于开发实用、高效的网络安全工具，帮助安全研究人员和团队提升工作效率
       </p>
-      
-      <div class="mt-8 flex flex-col items-center gap-4">
-        <p class="text-sm text-muted-foreground">加入我们的技术交流群</p>
-        <img src="/qq-group.jpg" alt="QQ 交流群" class="w-48 h-48 rounded-lg border border-border" />
-      </div>
     </div>
   </section>
 
@@ -55,9 +50,7 @@ import Layout from '../layouts/Layout.astro';
       <div class="group relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur transition-all hover:shadow-lg">
         <div class="grid gap-6 p-8 md:grid-cols-[200px_1fr]">
           <div class="flex items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6">
-            <svg class="h-24 w-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
+            <img src="/jackproxy-icon.png" alt="JackProxy" class="h-24 w-24 rounded-lg" />
           </div>
           
           <div class="space-y-4">
@@ -228,6 +221,46 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- 交流群区域 -->
+  <section class="container mx-auto px-6 pb-24">
+    <div class="mx-auto max-w-4xl">
+      <div class="relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur p-8">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1 space-y-4">
+            <h3 class="text-2xl font-bold">👥 加入技术交流群</h3>
+            <p class="text-muted-foreground">
+              欢迎渗透测试、攻防对抗、SRC猎人从业者及爱好者加入我们的 QQ 交流群，一起分享技术、交流经验、讨论安全话题。
+            </p>
+            <ul class="space-y-2 text-sm text-muted-foreground">
+              <li class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                产品使用交流与技术支持
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                安全技术分享与讨论
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                最新产品动态与优惠活动
+              </li>
+            </ul>
+          </div>
+          <div class="flex flex-col items-center gap-3">
+            <img src="/qq-group.jpg" alt="QQ 交流群" class="w-64 h-64 rounded-lg border-2 border-border shadow-lg" />
+            <p class="text-xs text-muted-foreground">扫码加入 QQ 交流群</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
