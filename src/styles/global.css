@@ -80,6 +80,7 @@
       linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
     background-size: 4rem 4rem;
+    background-position: center center;
   }
   
   /* 光晕效果 */
