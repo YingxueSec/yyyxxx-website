@@ -197,15 +197,25 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <!-- 一键加群按钮 -->
-            <div class="pt-4">
-              <a 
-                href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode" 
-                class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-              >
-                📱 一键加群（手机QQ）
-              </a>
-              <p class="text-xs text-muted-foreground mt-2">
-                点击后将拉起手机 QQ 应用
+            <div class="pt-4 space-y-3">
+              <div class="flex flex-col sm:flex-row gap-2">
+                <a 
+                  href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode" 
+                  class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                >
+                  📱 手机加群
+                </a>
+                <a 
+                  href="https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-11 items-center justify-center rounded-md border border-primary bg-background px-6 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-primary/10"
+                >
+                  💻 电脑加群
+                </a>
+              </div>
+              <p class="text-xs text-muted-foreground">
+                手机端将拉起 QQ 应用，电脑端将打开网页版加群
               </p>
             </div>
           </div>
