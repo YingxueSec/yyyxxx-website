@@ -199,9 +199,7 @@ import Layout from '../layouts/Layout.astro';
             <!-- 一键加群按钮 -->
             <div class="pt-4">
               <a 
-                href="https://qun.qq.com/universal-share/share?ac=1&authKey=ttksIG4o%2BbaQfT04PI%2BNQ6H07p123RFZaz43GyTVZd8KkWVjhpAfSE5dKLr%2FRm0e&busi_data=eyJncm91cENvZGUiOiI4OTc1MDAzODciLCJ0b2tlbiI6Ik41OHpYN3JvUnpiT2xMbGNrK3hlaFQ3YmN1Tk4vM2JiK085M0g2RjZXTFI0aTJYNjFqNTc2NzluTjExanlGbjciLCJ1aW4iOiIxOTU2MzYyMDY1In0%3D&data=dlaOSsX8jRUbFsxoWHDfw6HQlvZAK3zH61Ua9MC4F28Kf6PeaVT6Snz90FkpvR9yYvREuRwjXmp29feR-sGRPw&svctype=4&tempid=h5_group_info"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode"
                 class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +208,7 @@ import Layout from '../layouts/Layout.astro';
                 一键加群
               </a>
               <p class="text-xs text-muted-foreground mt-2">
-                点击后将打开 QQ 加群页面，自动识别设备并拉起应用
+                点击后浏览器将提示"要打开 QQ 吗？"，确认即可加群
               </p>
             </div>
           </div>
