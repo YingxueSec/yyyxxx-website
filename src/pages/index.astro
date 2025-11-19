@@ -133,7 +133,7 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- 联系我们 -->
   <section id="contact" class="container mx-auto py-24 sm:py-32 px-6">
-    <div class="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+    <div class="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center mb-16">
       <h2 class="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">联系我们</h2>
       <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
         有任何安全问题或需求？我们随时为您提供专业咨询
@@ -141,16 +141,94 @@ import Layout from '../layouts/Layout.astro';
       
       <div class="flex flex-col gap-4 mt-8">
         <a href="mailto:jack@yyyxxx.cc" class="text-lg hover:text-foreground/80 transition-colors">
-          jack@yyyxxx.cc
+          📧 jack@yyyxxx.cc
         </a>
         <a href="https://yyyxxx.cc" class="text-lg hover:text-foreground/80 transition-colors">
-          https://yyyxxx.cc
+          🌐 https://yyyxxx.cc
         </a>
       </div>
       
       <a href="mailto:jack@yyyxxx.cc" class="mt-8 inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
         立即咨询
       </a>
+    </div>
+
+    <!-- QQ 交流群 -->
+    <div class="mx-auto max-w-5xl">
+      <div class="relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur">
+        <div class="grid gap-8 p-8 md:grid-cols-2">
+          <!-- 左侧：交流群介绍 -->
+          <div class="space-y-6">
+            <div class="space-y-3">
+              <h3 class="text-2xl font-bold">👥 加入技术交流群</h3>
+              <p class="text-muted-foreground">
+                欢迎渗透测试、攻防对抗、SRC猎人从业者及爱好者加入我们的 QQ 交流群，一起分享技术、交流经验、讨论安全话题。
+              </p>
+            </div>
+            
+            <div class="space-y-3">
+              <h4 class="font-semibold">群内福利</h4>
+              <ul class="space-y-2 text-sm text-muted-foreground">
+                <li class="flex items-start gap-2">
+                  <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>产品使用交流与技术支持</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>安全技术分享与讨论</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>最新产品动态与优惠活动</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg class="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>实战经验与案例分享</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- 一键加群按钮 -->
+            <div class="pt-4">
+              <a 
+                href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=785296821&card_type=group&source=qrcode" 
+                class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+              >
+                📱 一键加群（手机QQ）
+              </a>
+              <p class="text-xs text-muted-foreground mt-2">
+                点击后将拉起手机 QQ 应用
+              </p>
+            </div>
+          </div>
+
+          <!-- 右侧：QQ 群二维码 -->
+          <div class="flex flex-col items-center justify-center gap-4">
+            <div class="relative">
+              <img 
+                src="/qq-group.jpg" 
+                alt="QQ 交流群" 
+                class="w-72 h-72 rounded-lg border-2 border-border shadow-xl" 
+              />
+              <div class="absolute -top-3 -right-3 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                扫码加入
+              </div>
+            </div>
+            <div class="text-center space-y-1">
+              <p class="text-sm font-medium">扫码加入 QQ 交流群</p>
+              <p class="text-xs text-muted-foreground">群号：785296821</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -166,9 +244,9 @@ import Layout from '../layouts/Layout.astro';
 
 <script>
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+    anchor.addEventListener('click', (e) => {
       e.preventDefault();
-      const href = this.getAttribute('href');
+      const href = anchor.getAttribute('href');
       if (href) {
         const target = document.querySelector(href);
         if (target) {
