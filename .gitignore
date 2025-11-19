@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # jetbrains setting folders
 .idea/
+
+# content directory (private product docs)
+content/

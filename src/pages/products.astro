@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="产品 - 映雪安全" description="映雪安全团队开发的安全工具和产品">
+  <!-- 网格背景 -->
+  <div class="fixed inset-0 -z-10 grid-bg opacity-50"></div>
+  
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container mx-auto flex h-14 max-w-screen-2xl items-center px-6">
+      <div class="mr-4 flex">
+        <a class="mr-6 flex items-center space-x-2" href="/">
+          <img src="/logo.png" alt="映雪安全" class="h-8 w-8" />
+          <span class="font-bold">映雪安全</span>
+        </a>
+      </div>
+      <nav class="flex flex-1 items-center justify-end space-x-6 text-sm font-medium">
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/">首页</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground" href="/products">产品</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/updates">更新</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 页面标题 -->
+  <section class="container mx-auto relative px-6 py-16">
+    <div class="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center">
+      <div class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium">
+        <span class="mr-2">🛠️</span>
+        <span>专业安全工具</span>
+      </div>
+      
+      <h1 class="text-4xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
+        我们的产品
+      </h1>
+      
+      <p class="max-w-[750px] text-lg text-muted-foreground">
+        专注于开发实用、高效的网络安全工具，帮助安全研究人员和团队提升工作效率
+      </p>
+      
+      <div class="mt-8 flex flex-col items-center gap-4">
+        <p class="text-sm text-muted-foreground">加入我们的技术交流群</p>
+        <img src="/qq-group.jpg" alt="QQ 交流群" class="w-48 h-48 rounded-lg border border-border" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品列表 -->
+  <section class="container mx-auto px-6 pb-24">
+    <div class="mx-auto max-w-6xl space-y-12">
+      
+      <!-- JackProxy -->
+      <div class="group relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur transition-all hover:shadow-lg">
+        <div class="grid gap-6 p-8 md:grid-cols-[200px_1fr]">
+          <div class="flex items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-6">
+            <svg class="h-24 w-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-2xl font-bold">JackProxy</h3>
+                <div class="mt-2 flex items-center gap-2">
+                  <span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+                    v2.0
+                  </span>
+                  <span class="inline-flex items-center rounded-md bg-purple-500/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">
+                    稳定版
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <p class="text-muted-foreground">
+              专业轮转代理池管理工具，50万+代理IP服务，为渗透测试、攻防对抗、SRC挖掘提供稳定高效的代理解决方案
+            </p>
+            
+            <div class="space-y-2">
+              <h4 class="font-semibold">核心特性</h4>
+              <ul class="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  智能代理轮换
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  实时状态监控
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  一键操作体验
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  美观沉浸式UI
+                </li>
+              </ul>
+            </div>
+            
+            <div class="flex items-center gap-4 pt-2">
+              <a href="https://www.bilibili.com/video/BV1gJ7DzWE9f" target="_blank" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                🎬 演示视频
+              </a>
+              <a href="https://mp.weixin.qq.com/s/0x_RqvYGs5v5aUn6r0qW3w" target="_blank" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                📖 详细介绍
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SnowLight -->
+      <div class="group relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur transition-all hover:shadow-lg">
+        <div class="grid gap-6 p-8 md:grid-cols-[200px_1fr]">
+          <div class="flex items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/10 to-blue-500/10 p-6">
+            <svg class="h-24 w-24 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-2xl font-bold">SnowLight</h3>
+                <div class="mt-2 flex items-center gap-2">
+                  <span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-500 ring-1 ring-inset ring-blue-500/20">
+                    开发中
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <p class="text-muted-foreground">
+              即将推出的新一代安全工具，敬请期待...
+            </p>
+            
+            <div class="space-y-2">
+              <h4 class="font-semibold">计划特性</h4>
+              <ul class="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  敬请期待
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yingxue AiSQL -->
+      <div class="group relative overflow-hidden rounded-lg border bg-background/50 backdrop-blur transition-all hover:shadow-lg">
+        <div class="grid gap-6 p-8 md:grid-cols-[200px_1fr]">
+          <div class="flex items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/10 to-red-500/10 p-6">
+            <svg class="h-24 w-24 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-start justify-between">
+              <div>
+                <h3 class="text-2xl font-bold">Yingxue AiSQL</h3>
+                <div class="mt-2 flex items-center gap-2">
+                  <span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+                    v1.0
+                  </span>
+                  <span class="inline-flex items-center rounded-md bg-purple-500/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">
+                    稳定版
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            <p class="text-muted-foreground">
+              AI 驱动的 SQL 注入自动化检测与利用工具，集成传统漏洞检测技术与 AI 智能利用能力
+            </p>
+            
+            <div class="space-y-2">
+              <h4 class="font-semibold">核心特性</h4>
+              <ul class="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  AI 智能利用
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  全流程自动化
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  多种注入类型
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  现代化 Web 界面
+                </li>
+              </ul>
+            </div>
+            
+            <div class="flex items-center gap-4 pt-2">
+              <span class="text-sm text-muted-foreground">
+                📦 即将开放下载
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t py-6 md:py-0">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-6">
+      <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        © 2025 映雪安全 YingxueSec. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+</script>

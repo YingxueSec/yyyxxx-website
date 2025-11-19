@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="更新日志 - 映雪安全" description="映雪安全团队产品更新和开发进度">
+  <!-- 网格背景 -->
+  <div class="fixed inset-0 -z-10 grid-bg opacity-50"></div>
+  
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container mx-auto flex h-14 max-w-screen-2xl items-center px-6">
+      <div class="mr-4 flex">
+        <a class="mr-6 flex items-center space-x-2" href="/">
+          <img src="/logo.png" alt="映雪安全" class="h-8 w-8" />
+          <span class="font-bold">映雪安全</span>
+        </a>
+      </div>
+      <nav class="flex flex-1 items-center justify-end space-x-6 text-sm font-medium">
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/">首页</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/products">产品</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground" href="/updates">更新</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="#contact">联系</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 页面标题 -->
+  <section class="container mx-auto relative px-6 py-16">
+    <div class="mx-auto flex max-w-[980px] flex-col items-center gap-4 text-center">
+      <div class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium">
+        <span class="mr-2">📝</span>
+        <span>开发动态</span>
+      </div>
+      
+      <h1 class="text-4xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
+        更新日志
+      </h1>
+      
+      <p class="max-w-[750px] text-lg text-muted-foreground">
+        记录我们的开发进度、新功能发布和重要更新
+      </p>
+    </div>
+  </section>
+
+  <!-- 时间线 -->
+  <section class="container mx-auto px-6 pb-24">
+    <div class="mx-auto max-w-3xl">
+      
+      <!-- 更新条目 1 -->
+      <div class="relative pl-8 pb-12 border-l-2 border-border/40">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-4 w-4 items-center justify-center">
+          <div class="h-4 w-4 rounded-full border-2 border-primary bg-background"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <time class="text-sm text-muted-foreground">2025-11-19</time>
+            <span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+              v1.2.0
+            </span>
+          </div>
+          
+          <h3 class="text-xl font-bold">产品名称 1 - 重大更新</h3>
+          
+          <div class="space-y-2 text-muted-foreground">
+            <p class="font-semibold text-foreground">✨ 新功能</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>添加了新的扫描引擎，性能提升 50%</li>
+              <li>支持自定义规则配置</li>
+              <li>新增可视化报告导出功能</li>
+            </ul>
+            
+            <p class="font-semibold text-foreground pt-2">🐛 修复</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>修复了在某些环境下的崩溃问题</li>
+              <li>优化了内存使用</li>
+            </ul>
+            
+            <p class="font-semibold text-foreground pt-2">📚 文档</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>更新了使用文档和 API 说明</li>
+            </ul>
+          </div>
+          
+          <div class="flex gap-2 pt-2">
+            <a href="#" class="text-sm text-primary hover:underline">查看详情 →</a>
+            <span class="text-muted-foreground">|</span>
+            <a href="#" class="text-sm text-muted-foreground hover:text-foreground">下载</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更新条目 2 -->
+      <div class="relative pl-8 pb-12 border-l-2 border-border/40">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-4 w-4 items-center justify-center">
+          <div class="h-4 w-4 rounded-full border-2 border-border bg-background"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <time class="text-sm text-muted-foreground">2025-11-15</time>
+            <span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-500 ring-1 ring-inset ring-blue-500/20">
+              开发进度
+            </span>
+          </div>
+          
+          <h3 class="text-xl font-bold">本周开发进度更新</h3>
+          
+          <div class="space-y-2 text-muted-foreground">
+            <p>本周主要工作：</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>完成了新版本核心功能开发</li>
+              <li>进行了大量测试和优化</li>
+              <li>准备下周发布 beta 版本</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更新条目 3 -->
+      <div class="relative pl-8 pb-12 border-l-2 border-border/40">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-4 w-4 items-center justify-center">
+          <div class="h-4 w-4 rounded-full border-2 border-border bg-background"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <time class="text-sm text-muted-foreground">2025-11-10</time>
+            <span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">
+              v1.1.0
+            </span>
+          </div>
+          
+          <h3 class="text-xl font-bold">产品名称 2 - 功能增强</h3>
+          
+          <div class="space-y-2 text-muted-foreground">
+            <p class="font-semibold text-foreground">✨ 新功能</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>增加了批量处理功能</li>
+              <li>支持多线程扫描</li>
+            </ul>
+            
+            <p class="font-semibold text-foreground pt-2">🔧 改进</p>
+            <ul class="list-disc list-inside space-y-1 ml-4">
+              <li>优化了用户界面</li>
+              <li>提升了整体性能</li>
+            </ul>
+          </div>
+          
+          <div class="flex gap-2 pt-2">
+            <a href="#" class="text-sm text-primary hover:underline">查看详情 →</a>
+            <span class="text-muted-foreground">|</span>
+            <a href="#" class="text-sm text-muted-foreground hover:text-foreground">下载</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更新条目 4 -->
+      <div class="relative pl-8 pb-12 border-l-2 border-border/40">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-4 w-4 items-center justify-center">
+          <div class="h-4 w-4 rounded-full border-2 border-border bg-background"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <time class="text-sm text-muted-foreground">2025-11-01</time>
+            <span class="inline-flex items-center rounded-md bg-purple-500/10 px-2 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">
+              公告
+            </span>
+          </div>
+          
+          <h3 class="text-xl font-bold">映雪安全团队成立</h3>
+          
+          <div class="space-y-2 text-muted-foreground">
+            <p>
+              我们很高兴地宣布映雪安全团队正式成立！我们致力于开发高质量的网络安全工具，
+              帮助安全研究人员和企业更好地保护数字资产。
+            </p>
+            <p>
+              未来我们将持续推出更多实用的安全产品，敬请期待！
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 结束标记 -->
+      <div class="relative pl-8">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-4 w-4 items-center justify-center">
+          <div class="h-4 w-4 rounded-full border-2 border-border bg-muted"></div>
+        </div>
+        <p class="text-sm text-muted-foreground">更多更新即将到来...</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t py-6 md:py-0">
+    <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-6">
+      <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        © 2025 映雪安全 YingxueSec. All rights reserved.
+      </p>
+    </div>
+  </footer>
+</Layout>

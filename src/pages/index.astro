@@ -16,8 +16,9 @@ import Layout from '../layouts/Layout.astro';
         </a>
       </div>
       <nav class="flex flex-1 items-center justify-end space-x-6 text-sm font-medium">
-        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="#services">服务</a>
-        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="#about">关于</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground" href="/">首页</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/products">产品</a>
+        <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="/updates">更新</a>
         <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="#contact">联系</a>
       </nav>
     </div>
@@ -27,123 +28,105 @@ import Layout from '../layouts/Layout.astro';
   <section class="container mx-auto relative px-6">
     <div class="mx-auto flex max-w-[980px] flex-col items-center gap-4 py-24 md:py-32 lg:py-40">
       <div class="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium">
-        <span class="mr-2">🎯</span>
-        <span>专业网络安全服务</span>
+        <span class="mr-2">🛡️</span>
+        <span>专业安全工具团队</span>
       </div>
       
       <h1 class="text-center text-4xl font-bold leading-tight tracking-tighter md:text-6xl lg:text-7xl lg:leading-[1.1]">
-        守护数字世界<br/>
-        <span class="gradient-text">的安全</span>
+        打造实用的<br/>
+        <span class="gradient-text">安全工具</span>
       </h1>
       
       <p class="max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl">
-        映雪安全致力于为企业提供全方位的网络安全解决方案，让您的业务在数字时代安全无忧
+        映雪安全是一个专注于网络安全工具开发的团队，我们致力于创造高效、易用的安全产品，为渗透测试、攻防对抗、SRC挖掘等场景提供专业解决方案
       </p>
       
       <div class="flex gap-4">
-        <a href="#contact" class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
-          立即咨询
+        <a href="/products" class="inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
+          查看产品
         </a>
-        <a href="#services" class="inline-flex h-11 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
-          了解更多
+        <a href="/updates" class="inline-flex h-11 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
+          最新动态
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 服务展示 -->
-  <section id="services" class="container mx-auto py-24 sm:py-32 px-6">
+  <!-- 产品展示 -->
+  <section id="products" class="container mx-auto py-24 sm:py-32 px-6">
     <div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-      <h2 class="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">核心服务</h2>
+      <h2 class="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">我们的产品</h2>
       <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-        专业团队，全方位保障您的网络安全
+        专注于开发实用、高效的网络安全工具
       </p>
     </div>
     
     <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3 mt-16">
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-        <h3 class="font-bold text-xl mb-2">渗透测试</h3>
-        <p class="text-sm text-muted-foreground">模拟真实攻击场景，全面评估系统安全性</p>
-      </div>
-
-      <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-          </svg>
-        </div>
-        <h3 class="font-bold text-xl mb-2">安全咨询</h3>
-        <p class="text-sm text-muted-foreground">专业的安全架构设计与合规性评估</p>
-      </div>
-
-      <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+          <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-xl mb-2">应急响应</h3>
-        <p class="text-sm text-muted-foreground">7x24小时应急响应服务</p>
+        <h3 class="font-bold text-xl mb-2">JackProxy</h3>
+        <p class="text-sm text-muted-foreground">专业轮转代理池管理，50万+代理IP服务</p>
+        <div class="mt-4">
+          <span class="inline-flex items-center rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500">v2.0</span>
+        </div>
       </div>
 
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 mb-4">
+          <svg class="h-6 w-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-xl mb-2">代码审计</h3>
-        <p class="text-sm text-muted-foreground">深度代码安全审计</p>
+        <h3 class="font-bold text-xl mb-2">SnowLight</h3>
+        <p class="text-sm text-muted-foreground">新一代安全工具，敬请期待</p>
+        <div class="mt-4">
+          <span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-500">开发中</span>
+        </div>
       </div>
 
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500/20 to-red-500/20 mb-4">
+          <svg class="h-6 w-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
         </div>
-        <h3 class="font-bold text-xl mb-2">安全培训</h3>
-        <p class="text-sm text-muted-foreground">定制化安全意识培训</p>
-      </div>
-
-      <div class="relative overflow-hidden rounded-lg border bg-background p-6 hover:shadow-md transition-shadow">
-        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-muted mb-4">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-          </svg>
+        <h3 class="font-bold text-xl mb-2">Yingxue AiSQL</h3>
+        <p class="text-sm text-muted-foreground">AI 驱动的 SQL 注入检测与利用工具</p>
+        <div class="mt-4">
+          <span class="inline-flex items-center rounded-md bg-purple-500/10 px-2 py-1 text-xs font-medium text-purple-500">v1.0</span>
         </div>
-        <h3 class="font-bold text-xl mb-2">安全运营</h3>
-        <p class="text-sm text-muted-foreground">持续安全监控与威胁情报分析</p>
       </div>
     </div>
   </section>
 
-  <!-- 关于我们 -->
+  <!-- 关于团队 -->
   <section id="about" class="container mx-auto py-24 sm:py-32 px-6">
     <div class="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-      <h2 class="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">关于映雪安全</h2>
+      <h2 class="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">关于我们</h2>
       <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-        专业、专注、值得信赖
+        一个充满热情的安全工具开发团队
       </p>
     </div>
     
     <div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-3 mt-16">
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 text-center">
-        <div class="text-4xl font-bold mb-2">10+</div>
-        <p class="text-sm text-muted-foreground">年行业经验</p>
+        <div class="text-4xl mb-2">🚀</div>
+        <div class="text-2xl font-bold mb-2">实用优先</div>
+        <p class="text-sm text-muted-foreground">专注于解决实际问题，打造真正好用的工具</p>
       </div>
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 text-center">
-        <div class="text-4xl font-bold mb-2">500+</div>
-        <p class="text-sm text-muted-foreground">服务客户</p>
+        <div class="text-4xl mb-2">⚡</div>
+        <div class="text-2xl font-bold mb-2">持续创新</div>
+        <p class="text-sm text-muted-foreground">不断探索新技术，打造更好的安全工具</p>
       </div>
       <div class="relative overflow-hidden rounded-lg border bg-background p-6 text-center">
-        <div class="text-4xl font-bold mb-2">99.9%</div>
-        <p class="text-sm text-muted-foreground">客户满意度</p>
+        <div class="text-4xl mb-2">🤝</div>
+        <div class="text-2xl font-bold mb-2">社区驱动</div>
+        <p class="text-sm text-muted-foreground">倾听用户反馈，与社区共同成长</p>
       </div>
     </div>
   </section>
