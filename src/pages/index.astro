@@ -198,8 +198,11 @@ import Layout from '../layouts/Layout.astro';
 
             <!-- 一键加群按钮 -->
             <div class="pt-4">
-              <a 
-                href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode"
+              <a
+                id="joinGroupBtn"
+                href="https://qm.qq.com/q/HASkWRLpw6"
+                target="_blank"
+                rel="noopener"
                 class="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +211,7 @@ import Layout from '../layouts/Layout.astro';
                 一键加群
               </a>
               <p class="text-xs text-muted-foreground mt-2">
-                点击后浏览器将提示"要打开 QQ 吗？"，确认即可加群
+                电脑端将在新标签页打开 QQ 官方加群页面，手机端直接拉起 QQ
               </p>
             </div>
           </div>
@@ -271,7 +274,7 @@ import Layout from '../layouts/Layout.astro';
 <!-- 不蒜子统计 -->
 <script is:inline async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<script>
+<script is:inline>
   // 平滑滚动
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
@@ -301,4 +304,21 @@ import Layout from '../layouts/Layout.astro';
   updateRuntime();
   // 每天更新一次
   setInterval(updateRuntime, 1000 * 60 * 60 * 24);
+
+  // 一键加群（保持当前页，不整页跳转）
+  (function(){
+    const btn = document.getElementById('joinGroupBtn');
+    if (!btn) return;
+    const mobileDeepLink = 'mqqapi://card/show_pslcard?src_type=internal&version=1&uin=897500387&card_type=group&source=qrcode';
+    const qqUniversal = 'https://qm.qq.com/q/HASkWRLpw6';
+    btn.addEventListener('click', function(e){
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        // 移动端：拦截并直接拉起 QQ 应用
+        e.preventDefault();
+        window.location.href = mobileDeepLink;
+      }
+      // 桌面端：不拦截，保持 <a target="_blank"> 默认在新标签页打开
+    });
+  })();
 </script>
