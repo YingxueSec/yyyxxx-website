@@ -44,7 +44,7 @@ const products = [
       { text: '16种钓鱼教学资料', color: 'teal' }
     ],
     gradient: { from: 'red', to: 'pink' },
-    icon: { type: 'svg', svg: '<svg class="h-20 w-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>' },
+    icon: { type: 'video', src: '/antivirus-icon.mp4' },
     actions: [{ text: '🎬 效果演示', href: 'https://www.bilibili.com/video/BV1dM17Y8EXc', external: true }]
   },
   {
@@ -117,6 +117,8 @@ const products = [
             <div class="flex items-center justify-center">
               {product.icon.type === 'image' ? (
                 <img src={product.icon.src} alt={product.title} class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105" />
+              ) : product.icon.type === 'video' ? (
+                <video src={product.icon.src} autoplay loop muted playsinline class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105 object-cover" />
               ) : (
                 <div class={`h-40 w-40 rounded-2xl bg-gradient-to-br from-${product.gradient.from}-500 to-${product.gradient.to}-500 shadow-xl flex items-center justify-center transition-transform group-hover:scale-105`}>
                   <Fragment set:html={product.icon.svg} />
