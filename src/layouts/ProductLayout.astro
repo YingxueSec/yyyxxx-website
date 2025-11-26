@@ -1,0 +1,61 @@
+---
+import Layout from './Layout.astro';
+import GradientBackground from '../components/GradientBackground.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import WechatVideoFallback from '../components/WechatVideoFallback.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  color1?: string;
+  color2?: string;
+}
+
+const { title, description, color1 = 'blue', color2 = 'purple' } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <GradientBackground color1={color1} color2={color2} />
+  
+  <Navbar currentPage="products">
+    <ThemeToggle slot="theme-toggle" />
+  </Navbar>
+
+  <!-- 产品头部 -->
+  <section class="container mx-auto px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- 返回链接 -->
+      <a href="/products" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        返回产品列表
+      </a>
+      
+      <slot name="header" />
+    </div>
+  </section>
+
+  <slot />
+
+  <!-- CTA -->
+  <slot name="cta">
+    <section class="py-16">
+      <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-4">立即咨询</h2>
+          <p class="text-muted-foreground mb-8">加入技术交流群，获取更多产品信息和优惠</p>
+          <a href="/#contact" class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+            联系我们
+          </a>
+        </div>
+      </div>
+    </section>
+  </slot>
+
+  <Footer backLink={{ href: "/products", text: "← 返回产品列表" }} />
+</Layout>
+
+<WechatVideoFallback />
