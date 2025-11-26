@@ -1,0 +1,61 @@
+---
+interface Props {
+  showStats?: boolean;
+  backLink?: { href: string; text: string };
+}
+
+const { showStats = true, backLink } = Astro.props;
+---
+
+<footer class="border-t border-border/50 bg-background">
+  <div class="container mx-auto px-6 lg:px-8 py-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="/logo.png" alt="映雪安全" class="h-6 w-6" />
+        <span class="text-sm text-muted-foreground">© 2025 YingxueSec. All rights reserved.</span>
+      </div>
+      
+      {backLink ? (
+        <a href={backLink.href} class="text-sm text-muted-foreground hover:text-foreground">
+          {backLink.text}
+        </a>
+      ) : showStats ? (
+        <div class="flex items-center gap-6 text-sm text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+            <span id="busuanzi_container_site_pv">访问 <span id="busuanzi_value_site_pv"></span></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <span id="busuanzi_container_site_uv">访客 <span id="busuanzi_value_site_uv"></span></span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span id="site-runtime"></span>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  </div>
+</footer>
+
+{showStats && !backLink && (
+  <script is:inline>
+    function updateRuntime() {
+      const startDate = new Date('2025-11-20');
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById('site-runtime').textContent = `运行 ${days} 天`;
+    }
+    updateRuntime();
+    setInterval(updateRuntime, 60000);
+  </script>
+)}

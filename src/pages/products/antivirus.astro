@@ -1,0 +1,280 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+---
+
+<Layout title="专业免杀服务 - 一线攻防实战经验" description="专业的反杀软对抗服务，一马通杀国内所有主流杀软">
+  <!-- 精致网格背景 -->
+  <div class="fixed inset-0 -z-10 grid-bg opacity-40 dark:opacity-30"></div>
+  
+  <!-- 高端渐变背景 -->
+  <div class="fixed inset-0 -z-10 overflow-hidden hidden dark:block">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-red-600/20 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-[100px]"></div>
+  </div>
+  <div class="fixed inset-0 -z-10 overflow-hidden dark:hidden">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-red-400/15 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-pink-400/10 rounded-full blur-[100px]"></div>
+  </div>
+  
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/98 dark:bg-background/95 backdrop-blur-xl">
+    <div class="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-8 lg:px-12">
+      <a class="flex items-center space-x-3 group" href="/">
+        <img src="/logo.png" alt="映雪安全" class="h-8 w-8" />
+        <span class="font-semibold text-lg tracking-tight">映雪安全</span>
+      </a>
+      <nav class="flex items-center space-x-8 text-sm">
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/">首页</a>
+        <a class="text-foreground font-medium" href="/products">产品</a>
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/updates">更新</a>
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/#contact">联系</a>
+        <div class="w-px h-5 bg-border/50"></div>
+        <ThemeToggle />
+      </nav>
+    </div>
+  </header>
+
+  <!-- 产品头部 -->
+  <section class="container mx-auto px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- 返回链接 -->
+      <a href="/products" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        返回产品列表
+      </a>
+      
+      <!-- 产品信息 -->
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-shrink-0">
+          <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-red-500/10 to-pink-500/10 border border-red-500/20 flex items-center justify-center">
+            <svg class="h-20 w-20 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+            <h1 class="text-3xl font-bold">专业免杀服务</h1>
+            <span class="inline-flex items-center rounded-full bg-red-500/10 px-3 py-1 text-xs font-medium text-red-500 ring-1 ring-inset ring-red-500/20">定制服务</span>
+            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">实战验证</span>
+          </div>
+          <p class="text-lg text-muted-foreground mb-6">
+            一线大厂攻防实战经验总结，专业的反杀软对抗服务。一马通杀国内所有主流杀软，采用白加黑技术，经过大量实战验证。
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.bilibili.com/video/BV1dM17Y8EXc" target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+              观看效果演示
+            </a>
+            <a href="/#contact" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+              咨询详情
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支持的杀软 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">支持的安全软件</h2>
+        <p class="text-muted-foreground mb-6">全面兼容以下主流安全软件（均可测试）：</p>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">360安全卫士</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">腾讯电脑管家</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">火绒安全</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">Windows Defender</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">金山毒霸</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">天融信EDR（云）</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
+              <svg class="h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <span class="font-medium">亿格云</span>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10">
+              <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="font-medium">其他国内主流杀软</span>
+          </div>
+        </div>
+        <div class="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+          <p class="text-sm text-muted-foreground">
+            <strong class="text-foreground">国际杀软支持：</strong>ESET、卡巴斯基等国外杀软同样支持，实战中较少遇到，如有需求可单独咨询。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服务特性 -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">服务特性</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-500/10 mb-4">
+              <svg class="h-6 w-6 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">全自动权限维持</h3>
+            <p class="text-muted-foreground text-sm">上线系统自动完成所有维权操作，无需二次操作，全程无需手动干预，操作简单高效。支持360、火绒等本地杀软，兼容云端EDR系统。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-pink-500/10 mb-4">
+              <svg class="h-6 w-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">反微步沙箱检测</h3>
+            <p class="text-muted-foreground text-sm">内置反微步沙箱功能，可绕过微步等主流沙箱检测，确保木马在蓝队环境下稳定存活，国内蓝队常用检测手段全覆盖。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-500/10 mb-4">
+              <svg class="h-6 w-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">白加黑技术方案</h3>
+            <p class="text-muted-foreground text-sm">所有方案均采用白加黑技术，这是目前最稳定、最主流的免杀方案，经过大量实战验证，确保效果稳定可靠。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-500/10 mb-4">
+              <svg class="h-6 w-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">16种钓鱼教学资料</h3>
+            <p class="text-muted-foreground text-sm">配套视频教程 + PDF资料，纯实战经验总结（非AI生成内容），帮助快速上手，直接进入实战阶段。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 效果展示 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">效果展示</h2>
+        <div class="bg-card rounded-xl border border-border/50 p-6">
+          <p class="text-muted-foreground mb-4">2024年的木马至今不杀！（全自动维权演示）</p>
+          <a href="https://www.bilibili.com/video/BV1dM17Y8EXc" target="_blank" class="inline-flex items-center gap-2 text-primary hover:underline">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+            </svg>
+            在 Bilibili 观看演示视频
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服务方案 -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">服务方案</h2>
+        <p class="text-muted-foreground mb-8">所有方案均采用白加黑技术，这是目前最稳定、最主流的免杀方案。方案选定后再谈具体细则，节约双方时间。</p>
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="bg-card rounded-xl border border-border/50 p-6 text-center">
+            <h3 class="text-lg font-semibold mb-2">方案一</h3>
+            <p class="text-2xl font-bold text-primary mb-2">基础免杀</p>
+            <p class="text-muted-foreground text-sm">免杀服务</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6 text-center">
+            <h3 class="text-lg font-semibold mb-2">方案二</h3>
+            <p class="text-2xl font-bold text-primary mb-2">免杀 + 反沙箱</p>
+            <p class="text-muted-foreground text-sm">免杀 + 反微步沙箱</p>
+          </div>
+          <div class="bg-card rounded-xl border border-primary/50 p-6 text-center relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">推荐</div>
+            <h3 class="text-lg font-semibold mb-2">方案三</h3>
+            <p class="text-2xl font-bold text-primary mb-2">全功能套餐</p>
+            <p class="text-muted-foreground text-sm">免杀 + 反沙箱 + 全自动维权</p>
+          </div>
+        </div>
+        <p class="text-center text-muted-foreground mt-6 text-sm">具体价格请联系咨询</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">立即咨询</h2>
+        <p class="text-muted-foreground mb-8">加入技术交流群，获取更多服务详情和优惠信息</p>
+        <a href="/#contact" class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+          联系我们
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border/50 bg-background">
+    <div class="container mx-auto px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="映雪安全" class="h-6 w-6" />
+          <span class="text-sm text-muted-foreground">© 2025 YingxueSec. All rights reserved.</span>
+        </div>
+        <a href="/products" class="text-sm text-muted-foreground hover:text-foreground">← 返回产品列表</a>
+      </div>
+    </div>
+  </footer>
+</Layout>

@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
+---
+
+<Layout title="JackProxy - 专业代理池管理工具" description="50万+代理IP服务，智能轮换，实时监控">
+  <!-- 精致网格背景 -->
+  <div class="fixed inset-0 -z-10 grid-bg opacity-40 dark:opacity-30"></div>
+  
+  <!-- 高端渐变背景 -->
+  <div class="fixed inset-0 -z-10 overflow-hidden hidden dark:block">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[100px]"></div>
+  </div>
+  <div class="fixed inset-0 -z-10 overflow-hidden dark:hidden">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-400/15 rounded-full blur-[120px]"></div>
+    <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-[100px]"></div>
+  </div>
+  
+  <!-- 导航栏 -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/98 dark:bg-background/95 backdrop-blur-xl">
+    <div class="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-8 lg:px-12">
+      <a class="flex items-center space-x-3 group" href="/">
+        <img src="/logo.png" alt="映雪安全" class="h-8 w-8" />
+        <span class="font-semibold text-lg tracking-tight">映雪安全</span>
+      </a>
+      <nav class="flex items-center space-x-8 text-sm">
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/">首页</a>
+        <a class="text-foreground font-medium" href="/products">产品</a>
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/updates">更新</a>
+        <a class="text-muted-foreground hover:text-foreground transition-colors" href="/#contact">联系</a>
+        <div class="w-px h-5 bg-border/50"></div>
+        <ThemeToggle />
+      </nav>
+    </div>
+  </header>
+
+  <!-- 产品头部 -->
+  <section class="container mx-auto px-6 lg:px-8 py-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- 返回链接 -->
+      <a href="/products" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+        返回产品列表
+      </a>
+      
+      <!-- 产品信息 -->
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-shrink-0">
+          <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 flex items-center justify-center">
+            <img src="/jackproxy-icon.png" alt="JackProxy" class="w-24 h-24 rounded-xl" />
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-3">
+            <h1 class="text-3xl font-bold">JackProxy</h1>
+            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">v2.0</span>
+            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">稳定版</span>
+          </div>
+          <p class="text-lg text-muted-foreground mb-6">
+            专业轮转代理池管理工具，50万+代理IP服务，为渗透测试、攻防对抗、SRC挖掘提供稳定高效的代理解决方案
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://www.bilibili.com/video/BV1gJ7DzWE9f" target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+              观看演示
+            </a>
+            <a href="https://mp.weixin.qq.com/s/0x_RqvYGs5v5aUn6r0qW3w" target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+              详细介绍
+            </a>
+            <a href="/#contact" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+              咨询购买
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 功能特性 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">核心特性</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10 mb-4">
+              <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">智能代理轮换</h3>
+            <p class="text-muted-foreground text-sm">自动轮换代理IP，避免被目标网站封禁，保证扫描和测试的连续性</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500/10 mb-4">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">实时状态监控</h3>
+            <p class="text-muted-foreground text-sm">实时监控代理池状态，自动剔除失效代理，确保代理可用性</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-500/10 mb-4">
+              <svg class="h-6 w-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">一键操作体验</h3>
+            <p class="text-muted-foreground text-sm">简洁的操作界面，一键启动代理服务，无需复杂配置</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 mb-4">
+              <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">美观沉浸式UI</h3>
+            <p class="text-muted-foreground text-sm">现代化界面设计，支持深色模式，提供舒适的使用体验</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品亮点 -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">产品亮点</h2>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">1</div>
+            <div>
+              <h3 class="font-semibold mb-1">50万+高质量代理IP</h3>
+              <p class="text-muted-foreground text-sm">覆盖全国各地的高质量代理资源，满足各种渗透测试场景需求</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">2</div>
+            <div>
+              <h3 class="font-semibold mb-1">智能轮换策略</h3>
+              <p class="text-muted-foreground text-sm">支持按时间、按请求次数等多种轮换策略，灵活应对不同场景</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">3</div>
+            <div>
+              <h3 class="font-semibold mb-1">多协议支持</h3>
+              <p class="text-muted-foreground text-sm">支持 HTTP/HTTPS/SOCKS5 等多种代理协议，兼容各类安全工具</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">4</div>
+            <div>
+              <h3 class="font-semibold mb-1">稳定可靠</h3>
+              <p class="text-muted-foreground text-sm">经过大量实战验证，稳定运行，是渗透测试和SRC挖掘的得力助手</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适用场景 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">适用场景</h2>
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="bg-card rounded-xl border border-border/50 p-5 text-center">
+            <div class="text-3xl mb-3">🔍</div>
+            <h3 class="font-semibold mb-1">渗透测试</h3>
+            <p class="text-muted-foreground text-sm">隐藏真实IP，避免被封禁</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 text-center">
+            <div class="text-3xl mb-3">🎯</div>
+            <h3 class="font-semibold mb-1">SRC挖掘</h3>
+            <p class="text-muted-foreground text-sm">大规模扫描，提高效率</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-5 text-center">
+            <div class="text-3xl mb-3">⚔️</div>
+            <h3 class="font-semibold mb-1">攻防对抗</h3>
+            <p class="text-muted-foreground text-sm">红队行动，隐蔽攻击</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">立即体验 JackProxy</h2>
+        <p class="text-muted-foreground mb-8">加入技术交流群，获取更多产品信息和优惠</p>
+        <a href="/#contact" class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+          联系我们
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border/50 bg-background">
+    <div class="container mx-auto px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img src="/logo.png" alt="映雪安全" class="h-6 w-6" />
+          <span class="text-sm text-muted-foreground">© 2025 YingxueSec. All rights reserved.</span>
+        </div>
+        <a href="/products" class="text-sm text-muted-foreground hover:text-foreground">← 返回产品列表</a>
+      </div>
+    </div>
+  </footer>
+</Layout>

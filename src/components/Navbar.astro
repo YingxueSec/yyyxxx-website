@@ -1,0 +1,42 @@
+---
+interface Props {
+  currentPage?: 'home' | 'products' | 'updates' | 'contact';
+}
+
+const { currentPage = 'home' } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/98 dark:bg-background/95 backdrop-blur-xl">
+  <div class="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-8 lg:px-12">
+    <a class="flex items-center space-x-3 group" href="/">
+      <img src="/logo.png" alt="映雪安全" class="h-8 w-8" />
+      <span class="font-semibold text-lg tracking-tight">映雪安全</span>
+    </a>
+    <nav class="flex items-center space-x-8 text-sm">
+      <a 
+        class:list={[
+          "transition-colors",
+          currentPage === 'home' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]} 
+        href="/"
+      >首页</a>
+      <a 
+        class:list={[
+          "transition-colors",
+          currentPage === 'products' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]} 
+        href="/products"
+      >产品</a>
+      <a 
+        class:list={[
+          "transition-colors",
+          currentPage === 'updates' ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+        ]} 
+        href="/updates"
+      >更新</a>
+      <a class="text-muted-foreground hover:text-foreground transition-colors" href="/#contact">联系</a>
+      <div class="w-px h-5 bg-border/50"></div>
+      <slot name="theme-toggle" />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,100 @@
+---
+// 主题切换组件
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="relative flex h-9 w-9 items-center justify-center rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm text-foreground/70 hover:text-foreground hover:bg-accent hover:border-primary/30 transition-all duration-300"
+  aria-label="切换主题"
+>
+  <!-- 太阳图标 (浅色模式显示) -->
+  <svg
+    id="sun-icon"
+    class="h-5 w-5 transition-all duration-300"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+    ></path>
+  </svg>
+  <!-- 月亮图标 (深色模式显示) -->
+  <svg
+    id="moon-icon"
+    class="absolute h-5 w-5 transition-all duration-300"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+    ></path>
+  </svg>
+</button>
+
+<script is:inline>
+  // 主题切换逻辑
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    
+    // 获取当前主题
+    function getTheme() {
+      // 优先从 localStorage 获取
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      // 否则根据系统偏好
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    }
+    
+    // 应用主题
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        sunIcon.style.opacity = '0';
+        sunIcon.style.transform = 'rotate(-90deg) scale(0)';
+        moonIcon.style.opacity = '1';
+        moonIcon.style.transform = 'rotate(0) scale(1)';
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.style.opacity = '1';
+        sunIcon.style.transform = 'rotate(0) scale(1)';
+        moonIcon.style.opacity = '0';
+        moonIcon.style.transform = 'rotate(90deg) scale(0)';
+      }
+    }
+    
+    // 初始化
+    const currentTheme = getTheme();
+    applyTheme(currentTheme);
+    
+    // 切换主题
+    themeToggle.addEventListener('click', function() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const newTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', newTheme);
+      applyTheme(newTheme);
+    });
+    
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      // 只有在用户没有手动设置主题时才跟随系统
+      if (!localStorage.getItem('theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  })();
+</script>
