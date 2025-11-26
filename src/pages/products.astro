@@ -118,7 +118,7 @@ const products = [
               {product.icon.type === 'image' ? (
                 <img src={product.icon.src} alt={product.title} class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105" />
               ) : product.icon.type === 'video' ? (
-                <video src={product.icon.src} autoplay loop muted playsinline class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105 object-cover" />
+                <video src={product.icon.src} autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105 object-cover product-video" />
               ) : (
                 <div class={`h-40 w-40 rounded-2xl bg-gradient-to-br from-${product.gradient.from}-500 to-${product.gradient.to}-500 shadow-xl flex items-center justify-center transition-transform group-hover:scale-105`}>
                   <Fragment set:html={product.icon.svg} />
@@ -244,3 +244,38 @@ const products = [
 
 <!-- 不蒜子统计 -->
 <script is:inline async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!-- 微信浏览器视频自动播放兼容 -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 检测是否为微信浏览器
+    const isWechat = /MicroMessenger/i.test(navigator.userAgent);
+    
+    // 获取所有产品视频
+    const videos = document.querySelectorAll('.product-video');
+    
+    // 尝试播放所有视频
+    function tryPlayVideos() {
+      videos.forEach(function(video) {
+        if (video.paused) {
+          video.play().catch(function() {
+            // 播放失败时静默处理
+          });
+        }
+      });
+    }
+    
+    // 立即尝试播放
+    tryPlayVideos();
+    
+    // 微信浏览器需要用户交互后才能播放
+    if (isWechat) {
+      // 监听页面任意触摸/点击事件
+      document.addEventListener('touchstart', tryPlayVideos, { once: true });
+      document.addEventListener('click', tryPlayVideos, { once: true });
+      
+      // WeixinJSBridgeReady 事件（微信特有）
+      document.addEventListener('WeixinJSBridgeReady', tryPlayVideos, { once: true });
+    }
+  });
+</script>

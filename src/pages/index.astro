@@ -109,7 +109,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
         <!-- JackProxy -->
         <div class="group relative bg-card rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
           <div class="flex items-center justify-between mb-6">
-            <video src="/jackproxy-icon.mp4" autoplay loop muted playsinline class="h-12 w-12 rounded-lg object-cover"></video>
+            <video src="/jackproxy-icon.mp4" autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" class="h-12 w-12 rounded-lg object-cover product-video"></video>
             <span class="inline-flex items-center rounded-full bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:text-green-400">稳定版</span>
           </div>
           <a href="/products/jackproxy" class="hover:text-primary transition-colors"><h3 class="text-xl font-semibold mb-2">JackProxy</h3></a>
@@ -123,7 +123,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
         <!-- SnowLight -->
         <div class="group relative bg-card rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
           <div class="flex items-center justify-between mb-6">
-            <video src="/snowlight-icon.mp4" autoplay loop muted playsinline class="h-12 w-12 rounded-lg object-cover"></video>
+            <video src="/snowlight-icon.mp4" autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" class="h-12 w-12 rounded-lg object-cover product-video"></video>
             <span class="inline-flex items-center rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-600 dark:text-amber-400">开发中</span>
           </div>
           <a href="/products/snowlight" class="hover:text-primary transition-colors"><h3 class="text-xl font-semibold mb-2">SnowLight</h3></a>
@@ -137,7 +137,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
         <!-- Yingxue AiSQL -->
         <div class="group relative bg-card rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
           <div class="flex items-center justify-between mb-6">
-            <video src="/aisql-icon.mp4" autoplay loop muted playsinline class="h-12 w-12 rounded-lg object-cover"></video>
+            <video src="/aisql-icon.mp4" autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" class="h-12 w-12 rounded-lg object-cover product-video"></video>
             <span class="inline-flex items-center rounded-full bg-green-500/10 px-2.5 py-1 text-xs font-medium text-green-600 dark:text-green-400">稳定版</span>
           </div>
           <a href="/products/aisql" class="hover:text-primary transition-colors"><h3 class="text-xl font-semibold mb-2">Yingxue AiSQL</h3></a>
@@ -402,4 +402,28 @@ import ThemeToggle from '../components/ThemeToggle.astro';
       // 桌面端：不拦截，保持 <a target="_blank"> 默认在新标签页打开
     });
   })();
+</script>
+
+<!-- 微信浏览器视频自动播放兼容 -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const isWechat = /MicroMessenger/i.test(navigator.userAgent);
+    const videos = document.querySelectorAll('.product-video');
+    
+    function tryPlayVideos() {
+      videos.forEach(function(video) {
+        if (video.paused) {
+          video.play().catch(function() {});
+        }
+      });
+    }
+    
+    tryPlayVideos();
+    
+    if (isWechat) {
+      document.addEventListener('touchstart', tryPlayVideos, { once: true });
+      document.addEventListener('click', tryPlayVideos, { once: true });
+      document.addEventListener('WeixinJSBridgeReady', tryPlayVideos, { once: true });
+    }
+  });
 </script>
