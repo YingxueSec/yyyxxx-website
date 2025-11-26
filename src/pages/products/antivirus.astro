@@ -274,3 +274,18 @@ import ThemeToggle from '../../components/ThemeToggle.astro';
     </div>
   </footer>
 </Layout>
+
+<!-- 微信浏览器显示图片替代视频 -->
+<script is:inline>
+  (function() {
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      document.querySelectorAll('.product-video').forEach(function(video) {
+        var img = document.createElement('img');
+        img.src = video.src.replace('.mp4', '.jpg');
+        img.alt = 'icon';
+        img.className = video.className.replace('product-video', '');
+        video.parentNode.replaceChild(img, video);
+      });
+    }
+  })();
+</script>

@@ -404,26 +404,17 @@ import ThemeToggle from '../components/ThemeToggle.astro';
   })();
 </script>
 
-<!-- 微信浏览器视频自动播放兼容 -->
+<!-- 微信浏览器显示图片替代视频 -->
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const isWechat = /MicroMessenger/i.test(navigator.userAgent);
-    const videos = document.querySelectorAll('.product-video');
-    
-    function tryPlayVideos() {
-      videos.forEach(function(video) {
-        if (video.paused) {
-          video.play().catch(function() {});
-        }
+  (function() {
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      document.querySelectorAll('.product-video').forEach(function(video) {
+        var img = document.createElement('img');
+        img.src = video.src.replace('.mp4', '.jpg');
+        img.alt = 'icon';
+        img.className = video.className.replace('product-video', '');
+        video.parentNode.replaceChild(img, video);
       });
     }
-    
-    tryPlayVideos();
-    
-    if (isWechat) {
-      document.addEventListener('touchstart', tryPlayVideos, { once: true });
-      document.addEventListener('click', tryPlayVideos, { once: true });
-      document.addEventListener('WeixinJSBridgeReady', tryPlayVideos, { once: true });
-    }
-  });
+  })();
 </script>
