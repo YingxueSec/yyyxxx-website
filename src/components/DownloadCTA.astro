@@ -1,0 +1,36 @@
+---
+import { downloads, type ProductKey } from '../data/downloads';
+
+interface Props {
+  product: ProductKey;
+  label?: string;
+  variant?: 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  showMeta?: boolean;
+  class?: string;
+}
+
+const {
+  product,
+  label = '立即下载',
+  variant = 'primary',
+  size = 'md',
+  showMeta = false,
+  class: className = '',
+} = Astro.props as Props;
+
+const entry = downloads[product];
+
+const sizeClass = size === 'sm' ? 'h-9 px-4 text-sm' : size === 'lg' ? 'h-12 px-8 text-sm' : 'h-10 px-6 text-sm';
+const baseClass = 'inline-flex items-center justify-center rounded-lg transition-colors';
+const variantClass = variant === 'primary'
+  ? 'bg-primary text-primary-foreground hover:bg-primary/90'
+  : 'border border-border bg-background hover:bg-accent';
+const classes = `${baseClass} ${sizeClass} ${variantClass}`;
+---
+<a href={entry.url} target="_blank" class={`${classes} ${className}`}>{label}</a>
+{showMeta && entry && (
+  <p class="text-sm text-muted-foreground mt-3">
+    网盘文件：{entry.filename}，提取码：<span class="text-foreground font-semibold">{entry.code}</span>
+  </p>
+)}

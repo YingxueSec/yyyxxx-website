@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import GradientBackground from '../components/GradientBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import { downloads } from '../data/downloads';
 
 // 产品数据
 const products = [
@@ -75,7 +76,7 @@ const products = [
     featureTitle: '核心特性',
     gradient: { from: 'orange', to: 'red' },
     icon: { type: 'video', src: '/aisql-icon.mp4' },
-    actions: [{ text: '📦 立即下载', href: 'https://c.wss.cc/f/ii5ewezrffo', external: true }]
+    actions: [{ text: '📦 立即下载', href: downloads.aisql.url, external: true }]
   }
 ];
 ---

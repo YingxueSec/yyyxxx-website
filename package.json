@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:downloads": "node scripts/check-download-links.mjs",
+    "prebuild": "node scripts/check-download-links.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.0",

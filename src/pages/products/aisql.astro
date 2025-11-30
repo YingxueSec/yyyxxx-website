@@ -1,5 +1,7 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
+import DownloadCTA from '../../components/DownloadCTA.astro';
+import { downloads } from '../../data/downloads';
 ---
 
 <ProductLayout title="Yingxue AiSQL - AI驱动的SQL注入工具" description="AI驱动的SQL注入自动化检测与利用工具" color1="orange" color2="red">
@@ -18,14 +20,15 @@ import ProductLayout from '../../layouts/ProductLayout.astro';
         AI 驱动的 SQL 注入自动化检测与利用工具，集成传统漏洞检测技术与 AI 智能利用能力，让 SQL 注入检测更智能、更高效。
       </p>
       <div class="flex flex-wrap gap-3">
-        <a href="https://c.wss.cc/f/ii5ewezrffo" target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-          立即下载
-        </a>
+        <DownloadCTA product="aisql" />
         <a href="/#contact" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
           获取密码
         </a>
       </div>
-      <p class="text-sm text-muted-foreground mt-3">下载密码请加入 QQ 交流群（897500387）获取</p>
+      <p class="text-sm text-muted-foreground mt-3">
+        网盘文件：{downloads.aisql.filename}，提取码：<span class="text-foreground font-semibold">{downloads.aisql.code}</span>
+      </p>
+      <p class="text-sm text-muted-foreground">下载密码请加入 QQ 交流群（897500387）获取</p>
     </div>
   </div>
 
@@ -157,10 +160,8 @@ import ProductLayout from '../../layouts/ProductLayout.astro';
               <h3 class="font-semibold mb-2">获取下载密码</h3>
               <p class="text-muted-foreground text-sm mb-4">下载密码请加入 QQ 交流群获取，群内还有更多技术交流和产品支持。</p>
               <div class="flex items-center gap-4">
-                <a href="https://c.wss.cc/f/ii5ewezrffo" target="_blank" class="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                  前往下载
-                </a>
-                <span class="text-sm text-muted-foreground">群号：<strong class="text-foreground">897500387</strong></span>
+                <DownloadCTA product="aisql" label="前往下载" size="sm" />
+                <span class="text-sm text-muted-foreground">网盘提取码：<strong class="text-foreground">{downloads.aisql.code}</strong> ｜ 群号：<strong class="text-foreground">897500387</strong></span>
               </div>
             </div>
           </div>
