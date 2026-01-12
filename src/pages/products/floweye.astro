@@ -1,0 +1,215 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+
+const githubRepo = 'https://github.com/YingxueSec/Floweye-yyyxxx.cc';
+const releasesUrl = `${githubRepo}/releases`;
+---
+
+<ProductLayout title="FlowEye - 智能被动漏洞扫描平台" description="流量之眼：与 Burp Suite 集成的 Web 化被动漏洞扫描平台" color1="blue" color2="purple">
+  <!-- 产品信息 -->
+  <div class="flex flex-col md:flex-row gap-8 items-start" slot="header">
+    <div class="flex-shrink-0">
+      <img src="/floweye-icon.png" alt="FlowEye" class="w-32 h-32 rounded-2xl object-cover shadow-xl" />
+    </div>
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-3 flex-wrap">
+        <h1 class="text-3xl font-bold">FlowEye</h1>
+        <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-500 ring-1 ring-inset ring-green-500/20">v0.1.0</span>
+        <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500 ring-1 ring-inset ring-blue-500/20">开源（MIT）</span>
+        <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-500 ring-1 ring-inset ring-purple-500/20">稳定版</span>
+      </div>
+      <p class="text-lg text-muted-foreground mb-6">
+        流量之眼 - 智能被动漏洞扫描平台。与 Burp Suite 无缝集成，实时接收并分析 HTTP 流量，自动进行多维度漏洞检测，帮助安全测试人员高效发现 Web 应用风险。
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href={releasesUrl} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          📦 Releases 下载
+        </a>
+        <a href={githubRepo} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+          ⭐ GitHub
+        </a>
+        <a href="/#contact" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+          获取支持
+        </a>
+      </div>
+      <p class="text-sm text-muted-foreground mt-3">
+        使用提示：本工具仅限个人学习、研究与<strong class="text-foreground">合法授权</strong>的安全测试场景使用。
+      </p>
+    </div>
+  </div>
+
+  <!-- 核心特性 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">核心特性</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10 mb-4">
+              <svg class="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">被动扫描 + 智能调度</h3>
+            <p class="text-muted-foreground text-sm">基于指纹识别结果智能选择扫描引擎，减少无效扫描，提升整体命中率。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-500/10 mb-4">
+              <svg class="h-6 w-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">多引擎并行</h3>
+            <p class="text-muted-foreground text-sm">支持 SQLi/XSS/LFI/目录扫描/反序列化等多种检测能力，可按需启用或禁用。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500/10 mb-4">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">实时结果推送</h3>
+            <p class="text-muted-foreground text-sm">通过 WebSocket 实时展示流量与漏洞结果，支持漏洞去重与复测管理。</p>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-amber-500/10 mb-4">
+              <svg class="h-6 w-6 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Webhook 告警</h3>
+            <p class="text-muted-foreground text-sm">支持飞书/钉钉/企业微信/Slack 等平台推送高危告警，便于团队协作处置。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 扫描引擎 -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">扫描引擎</h2>
+        <div class="bg-card rounded-xl border border-border/50 overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-muted/40">
+                <tr>
+                  <th class="text-left font-semibold px-4 py-3">引擎</th>
+                  <th class="text-left font-semibold px-4 py-3">能力</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border/50">
+                <tr>
+                  <td class="px-4 py-3 font-medium">fingerprint</td>
+                  <td class="px-4 py-3 text-muted-foreground">指纹识别（1000+ 规则）</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">dirscan</td>
+                  <td class="px-4 py-3 text-muted-foreground">敏感路径扫描（内置字典）</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">shiro</td>
+                  <td class="px-4 py-3 text-muted-foreground">Apache Shiro 反序列化检测</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">spring / struts2</td>
+                  <td class="px-4 py-3 text-muted-foreground">Spring / Struts2 相关漏洞检测</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">sqli-fuzz / xss-fuzz / lfi-fuzz</td>
+                  <td class="px-4 py-3 text-muted-foreground">SQLi / XSS / LFI fuzz 检测</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">nuclei</td>
+                  <td class="px-4 py-3 text-muted-foreground">Nuclei 模板引擎（可扩展）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="text-xs text-muted-foreground mt-3">
+          说明：具体引擎/规则以项目仓库与 Releases 为准，可在 Web UI 中进行启用/禁用与参数调整。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 快速开始 -->
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">快速开始</h2>
+        <div class="space-y-6">
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <h3 class="font-semibold mb-2">1) 下载并启动</h3>
+            <p class="text-muted-foreground text-sm mb-4">从 Releases 下载对应平台可执行文件，启动后访问 <strong class="text-foreground">http://localhost:8080</strong>。</p>
+            <pre class="rounded-lg bg-muted/50 p-4 overflow-x-auto text-xs"><code># macOS Apple Silicon
+./floweye-darwin-arm64
+
+# macOS Intel
+./floweye-darwin-amd64
+
+# Linux
+./floweye-linux-amd64
+
+# Windows
+floweye-windows-amd64.exe</code></pre>
+          </div>
+          <div class="bg-card rounded-xl border border-border/50 p-6">
+            <h3 class="font-semibold mb-2">2) Burp Suite 集成</h3>
+            <p class="text-muted-foreground text-sm mb-4">
+              在 Burp Suite 中安装插件后，浏览目标站点即可让 FlowEye 自动接收流量并进行被动检测（请确保已获得授权）。
+            </p>
+            <ol class="list-decimal ml-5 space-y-2 text-sm text-muted-foreground">
+              <li>Extensions → Installed → Add</li>
+              <li>选择 `floweye-burp-plugin-1.0.0.jar`</li>
+              <li>确认插件加载成功后开始浏览目标</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合法使用声明 -->
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">合规与免责声明</h2>
+        <div class="bg-card rounded-xl border border-border/50 p-6 space-y-3">
+          <p class="text-muted-foreground text-sm">
+            FlowEye 仅供个人学习、研究以及<strong class="text-foreground">合法授权</strong>的安全测试使用。请在使用前确保已获得目标系统所有者的明确授权，并遵守当地法律法规。
+          </p>
+          <ul class="space-y-2 text-sm text-muted-foreground">
+            <li class="flex items-start gap-2"><span class="text-red-400">•</span> 禁止对未授权目标进行扫描测试</li>
+            <li class="flex items-start gap-2"><span class="text-red-400">•</span> 禁止用于任何违法违规活动</li>
+            <li class="flex items-start gap-2"><span class="text-amber-400">•</span> 工具误用、滥用造成的后果由使用者自行承担</li>
+          </ul>
+          <p class="text-xs text-muted-foreground">
+            如需商业授权或定制开发，请通过官网联系方式联系我们。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16" slot="cta">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">开始使用 FlowEye</h2>
+        <p class="text-muted-foreground mb-8">前往 Releases 下载最新版，或在 GitHub 查看项目与更新。</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href={releasesUrl} target="_blank" class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+            📦 下载
+          </a>
+          <a href={githubRepo} target="_blank" class="inline-flex h-12 items-center justify-center rounded-lg border border-border bg-background px-8 text-sm font-semibold transition-colors hover:bg-accent">
+            ⭐ GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ProductLayout>
+

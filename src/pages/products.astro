@@ -6,8 +6,29 @@ import GradientBackground from '../components/GradientBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import { downloads } from '../data/downloads';
 
+type ProductBadge = { text: string; color: string; pulse?: boolean };
+type ProductFeature = { text: string; color: string };
+type ProductAction = { text: string; href: string; external?: boolean };
+type ProductIcon =
+  | { type: 'image'; src: string }
+  | { type: 'video'; src: string }
+  | { type: 'svg'; svg: string };
+
+type Product = {
+  id: string;
+  title: string;
+  description: string;
+  badges: ProductBadge[];
+  features: ProductFeature[];
+  featureTitle: string;
+  features2?: ProductFeature[];
+  gradient: { from: string; to: string };
+  icon: ProductIcon;
+  actions: ProductAction[];
+};
+
 // 产品数据
-const products = [
+const products: Product[] = [
   {
     id: 'jackproxy',
     title: 'JackProxy',
@@ -77,6 +98,25 @@ const products = [
     gradient: { from: 'orange', to: 'red' },
     icon: { type: 'video', src: '/aisql-icon.mp4' },
     actions: [{ text: '📦 立即下载', href: downloads.aisql.url, external: true }]
+  },
+  {
+    id: 'floweye',
+    title: 'FlowEye',
+    description: '流量之眼：与 Burp Suite 集成的 Web 化被动漏洞扫描平台，实时接收并分析 HTTP 流量，自动进行多维度漏洞检测',
+    badges: [{ text: 'v0.1.0', color: 'green' }, { text: '开源', color: 'blue' }],
+    features: [
+      { text: '1000+ 指纹规则', color: 'blue' },
+      { text: '多引擎并行扫描', color: 'purple' },
+      { text: 'WebSocket 实时推送', color: 'green' },
+      { text: 'Webhook 告警', color: 'amber' }
+    ],
+    featureTitle: '核心特性',
+    gradient: { from: 'blue', to: 'purple' },
+    icon: { type: 'image', src: '/floweye-icon.png' },
+    actions: [
+      { text: '📦 Releases 下载', href: 'https://github.com/YingxueSec/Floweye-yyyxxx.cc/releases', external: true },
+      { text: '⭐ GitHub', href: 'https://github.com/YingxueSec/Floweye-yyyxxx.cc', external: true }
+    ]
   }
 ];
 ---
