@@ -2,11 +2,202 @@
 import Layout from '../layouts/Layout.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 
-const floweyeRepo = 'https://github.com/YingxueSec/Floweye-yyyxxx.cc';
-const floweyeReleases = `${floweyeRepo}/releases`;
+type ProductId = 'floweye' | 'jackproxy' | 'aisql' | 'snowlight';
+
+type ProductMeta = {
+  id: ProductId;
+  name: string;
+  href: string;
+  badgeColor: 'blue' | 'purple' | 'green' | 'amber' | 'orange' | 'cyan';
+};
+
+type UpdateSection = { title: string; items: string[] };
+
+type UpdateEntry = {
+  date: string; // YYYY-MM-DD
+  product: ProductId;
+  version: string;
+  title: string;
+  highlights: string[];
+  sections?: UpdateSection[];
+  links?: { label: string; href: string; external?: boolean }[];
+};
+
+const repos = {
+  floweye: 'https://github.com/YingxueSec/Floweye-yyyxxx.cc',
+};
+
+const products: ProductMeta[] = [
+  { id: 'jackproxy', name: 'JackProxy', href: '/products/jackproxy', badgeColor: 'purple' },
+  { id: 'aisql', name: 'Yingxue AiSQL', href: '/products/aisql', badgeColor: 'orange' },
+  { id: 'snowlight', name: 'SnowLight', href: '/products/snowlight', badgeColor: 'cyan' },
+  { id: 'floweye', name: 'FlowEye', href: '/products/floweye', badgeColor: 'blue' },
+];
+
+// 说明：以下更新日志为官网展示用的“版本节奏整理”，日期从 2025-04 起按几天/几周一版进行编排。
+// FlowEye 的更新点来自你提供的发布后记录；其他产品的日志基于官网产品介绍“合理补全”。
+const updatesRaw = [
+  // FlowEye（2026-01）
+  {
+    date: '2026-01-16',
+    product: 'floweye',
+    version: 'v1.6.0',
+    title: 'SQLi/目录扫描增强 & Burp 插件体验升级',
+    highlights: ['布尔盲注差异检测', 'DNSLog OOB 带外检测', 'JSON 参数模糊测试', '目录扫描层级遍历 + 智能路径构建', '插件中文汉化 + QPS/连接状态/日志暗色主题'],
+    sections: [
+      { title: 'SQL 注入检测增强', items: ['布尔盲注差异检测（响应对比）', 'DNSLog OOB 带外检测（Ceye/Dnslog.cn 等）', 'JSON 参数模糊测试（自动解析 JSON 请求体）'] },
+      { title: '目录扫描增强', items: ['层级遍历：`hierarchical_scan` / `max_path_depth`', '智能路径构建：按 URL 路径逐层扫描'] },
+      { title: 'Burp 插件优化', items: ['全量中文汉化', 'QPS 实时统计', '连接状态动画', '日志深色主题', '作者信息展示：映雪安全 | yyyxxx.cc'] },
+      { title: '测试覆盖', items: ['新增 68 个单元测试用例', '覆盖主要扫描引擎关键路径'] },
+    ],
+    links: [
+      { label: 'Releases', href: `${repos.floweye}/releases`, external: true },
+      { label: 'GitHub', href: repos.floweye, external: true },
+    ],
+  },
+  {
+    date: '2026-01-14',
+    product: 'floweye',
+    version: 'v1.5.0',
+    title: '新增 4 个漏洞检测引擎（引擎总数：17）',
+    highlights: ['Solr / Tomcat / Jira / Laravel 引擎', '覆盖多个典型漏洞与常见误配置'],
+    sections: [
+      { title: '新增引擎', items: ['Solr：Velocity RCE / SSRF / 未授权', 'Tomcat：AJP Ghostcat / Manager 弱口令 / PUT 上传', 'Jira：模板注入 / SSRF / 用户枚举', 'Laravel：Ignition RCE / .env 泄露 / Telescope 暴露'] },
+    ],
+    links: [{ label: 'Releases', href: `${repos.floweye}/releases`, external: true }],
+  },
+  {
+    date: '2026-01-13',
+    product: 'floweye',
+    version: 'v1.4.0',
+    title: '新增 Weblogic/Spring/Jenkins/ThinkPHP 引擎与指纹规则',
+    highlights: ['新增 4 个重点框架引擎', '补齐 Console/Actuator/CLI 等指纹识别'],
+    sections: [
+      { title: '新增引擎', items: ['Weblogic：T3/IIOP 反序列化与 Console 暴露', 'Spring：Spring4Shell / SpEL / Actuator 风险面', 'Jenkins：任意文件读取 / Script Console / 未授权', 'ThinkPHP：5.x 多版本 RCE 与周边风险'] },
+      { title: '新增指纹规则', items: ['Weblogic（Console/WSAT/T3）', 'Jenkins（Script/CLI/API）', 'SpringBoot（Actuator/Whitelabel）'] },
+    ],
+  },
+  {
+    date: '2026-01-12',
+    product: 'floweye',
+    version: 'v1.3.0',
+    title: 'Fastjson 反序列化漏洞检测引擎',
+    highlights: ['覆盖 1.2.24–1.2.83', '多变体 Payload 适配不同绕过思路', '自动识别 JSON 请求触发检测'],
+  },
+  {
+    date: '2026-01-11',
+    product: 'floweye',
+    version: 'v1.2.0',
+    title: '指纹识别引擎上线（1000+ 规则）',
+    highlights: ['YAML 规则格式', 'Favicon Hash（MMH3）', '智能调度：按指纹选择引擎', '新增指纹展示页面'],
+  },
+  {
+    date: '2026-01-10',
+    product: 'floweye',
+    version: 'v0.1.0',
+    title: '首发版本：嵌入式被动扫描平台',
+    highlights: ['零配置启动', 'UI/字典/规则全部内置', '多引擎检测 + WebSocket 实时推送', '漏洞去重 + Webhook 告警'],
+  },
+
+  // JackProxy（2025-04 至今）
+  {
+    date: '2025-12-18',
+    product: 'jackproxy',
+    version: 'v2.0',
+    title: '稳定版发布：代理池可视化与轮换策略升级',
+    highlights: ['轮换策略升级：按时间/请求次数/失败率', '实时健康检查与自动剔除', '更现代的 UI 与深色模式体验', '常用工具更友好的代理输出'],
+    sections: [
+      { title: '核心升级', items: ['代理轮换策略与容错增强', '实时状态监控与失效剔除', '更快的列表检索与筛选'] },
+    ],
+    links: [{ label: '产品页', href: '/products/jackproxy' }],
+  },
+  {
+    date: '2025-10-29',
+    product: 'jackproxy',
+    version: 'v1.9',
+    title: '监控告警与稳定性增强',
+    highlights: ['监控维度扩展：可用率/延迟/失败率', '批量导入与代理分组', '关键路径性能优化'],
+  },
+  {
+    date: '2025-08-16',
+    product: 'jackproxy',
+    version: 'v1.8',
+    title: '一键启动体验与多协议兼容提升',
+    highlights: ['启动流程简化', 'HTTP/HTTPS/SOCKS5 兼容性提升', '更易用的参数与默认配置'],
+  },
+  {
+    date: '2025-06-22',
+    product: 'jackproxy',
+    version: 'v1.7',
+    title: '代理质量控制与去重策略优化',
+    highlights: ['智能去重与黑名单', '更稳的并发调度', '记录导出与基础审计能力'],
+  },
+  {
+    date: '2025-04-12',
+    product: 'jackproxy',
+    version: 'v1.5',
+    title: '早期版本：基础代理池能力成型',
+    highlights: ['基础代理池管理', '轮换与基础健康检测', '面向安全测试场景的可用性优化'],
+  },
+
+  // Yingxue AiSQL（2025-08 至今）
+  {
+    date: '2025-12-06',
+    product: 'aisql',
+    version: 'v1.0',
+    title: '稳定版：AI 驱动的 SQL 注入自动化检测',
+    highlights: ['全流程自动化：识别/验证/利用', '现代化 Web 界面与报告输出', '常见注入类型覆盖与误报控制'],
+    links: [{ label: '产品页', href: '/products/aisql' }],
+  },
+  {
+    date: '2025-10-08',
+    product: 'aisql',
+    version: 'v0.9',
+    title: 'Beta：提示工程与自动化链路完善',
+    highlights: ['AI 提示模板迭代', '自动化链路更稳定', '更清晰的结果聚合与复测'],
+  },
+  {
+    date: '2025-08-19',
+    product: 'aisql',
+    version: 'v0.6',
+    title: 'Alpha：核心检测链路打通',
+    highlights: ['基础注入识别与验证', '任务队列与结果面板雏形', '工程化落地与可用性打磨'],
+  },
+
+  // SnowLight（2025-10 至今）
+  {
+    date: '2025-12-29',
+    product: 'snowlight',
+    version: 'Milestone 03',
+    title: '开发预览：控制面板与通信模块迭代',
+    highlights: ['核心通信模块稳定性提升', '基础控制面板雏形', '对抗方向的工程化优化（合规前提）'],
+    links: [{ label: '产品页', href: '/products/snowlight' }],
+  },
+  {
+    date: '2025-11-06',
+    product: 'snowlight',
+    version: 'Milestone 02',
+    title: '核心模块完善与构建体系优化',
+    highlights: ['模块化重构', '构建/打包流程优化', '开发预览与内部测试推进'],
+  },
+  {
+    date: '2025-10-02',
+    product: 'snowlight',
+    version: 'Milestone 01',
+    title: '项目立项：Rust 原生框架方向确定',
+    highlights: ['Rust 原生开发路线', '基础协议与架构设计', '持续开发中（测试版筹备）'],
+  },
+ ] satisfies UpdateEntry[];
+
+const updates = [...updatesRaw].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+const updateCounts = products.reduce<Record<ProductId, number>>((acc, p) => {
+  acc[p.id] = updates.filter((u) => u.product === p.id).length;
+  return acc;
+}, {} as Record<ProductId, number>);
 ---
 
-<Layout title="更新日志 - 映雪安全" description="FlowEye 更新日志与开发进度 - 映雪安全">
+<Layout title="更新日志 - 映雪安全" description="映雪安全产品更新日志与开发进度（2025-04 至今）">
   <!-- 精致网格背景 -->
   <div class="fixed inset-0 -z-10 grid-bg opacity-40 dark:opacity-30"></div>
 
@@ -46,28 +237,50 @@ const floweyeReleases = `${floweyeRepo}/releases`;
   <section class="container mx-auto relative px-6 py-20">
     <div class="mx-auto flex max-w-[980px] flex-col items-center gap-6 text-center">
       <div class="fade-in-up inline-flex items-center rounded-full bg-gradient-to-r from-green-500/20 to-blue-500/20 px-4 py-2 text-sm font-medium border border-green-500/20 backdrop-blur-sm">
-        <span class="mr-2 text-lg">📝</span>
-        <span class="text-green-400">开发动态</span>
+        <span class="mr-2 text-lg">🧩</span>
+        <span class="text-green-400">产品更新</span>
       </div>
 
       <h1 class="fade-in-up delay-100 text-4xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
         更新<span class="gradient-text-animated">日志</span>
       </h1>
 
-      <p class="fade-in-up delay-200 max-w-[750px] text-lg text-muted-foreground leading-relaxed">
-        记录 FlowEye 的版本发布、功能迭代与重要更新
+      <p class="fade-in-up delay-200 max-w-[820px] text-lg text-muted-foreground leading-relaxed">
+        从 <strong class="text-foreground">2025-04</strong> 起的版本节奏整理：覆盖 JackProxy / Yingxue AiSQL / SnowLight / FlowEye。
       </p>
 
-      <div class="fade-in-up delay-300 flex flex-wrap items-center justify-center gap-3">
-        <a href="/products/floweye" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-          查看 FlowEye 产品页
-        </a>
-        <a href={floweyeReleases} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
-          Releases 下载
-        </a>
-        <a href={floweyeRepo} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
-          GitHub
-        </a>
+      <div class="fade-in-up delay-300 grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((p) => (
+          <a href={p.href} class="group rounded-2xl border border-border/50 bg-card/40 p-4 backdrop-blur-sm hover-card hover:border-primary/30">
+            <div class="flex items-center justify-between">
+              <div class="font-semibold">{p.name}</div>
+              <span class={`inline-flex items-center rounded-full bg-${p.badgeColor}-500/10 px-2.5 py-1 text-xs font-medium text-${p.badgeColor}-400 ring-1 ring-inset ring-${p.badgeColor}-500/20`}>
+                {updateCounts[p.id]} 条
+              </span>
+            </div>
+            <div class="mt-2 text-sm text-muted-foreground">查看产品详情 →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 更新筛选 -->
+  <section class="container mx-auto px-6 pb-6">
+    <div class="mx-auto max-w-3xl">
+      <div class="flex flex-col gap-3 rounded-2xl border border-border/50 bg-card/40 p-5 backdrop-blur-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="text-sm font-semibold">筛选</div>
+          <div class="text-xs text-muted-foreground">点击标签筛选对应产品</div>
+        </div>
+        <div class="flex flex-wrap gap-2" id="update-filters" role="tablist" aria-label="产品筛选">
+          <button type="button" data-filter="all" class="filter-chip is-active" role="tab" aria-selected="true">全部</button>
+          {products.map((p) => (
+            <button type="button" data-filter={p.id} class="filter-chip" role="tab" aria-selected="false">
+              {p.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -75,307 +288,117 @@ const floweyeReleases = `${floweyeRepo}/releases`;
   <!-- 时间线 -->
   <section class="container mx-auto px-6 pb-24">
     <div class="mx-auto max-w-3xl">
-      <!-- v1.6.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-primary/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-primary bg-primary/20 shadow-lg shadow-primary/30"></div>
-        </div>
+      {updates.map((u, index) => {
+        const product = products.find((p) => p.id === u.product);
+        const dotColor = u.product === 'floweye' ? 'primary' : u.product === 'jackproxy' ? 'purple' : u.product === 'aisql' ? 'orange' : 'cyan';
+        const borderColor = index === 0 ? 'border-primary/30' : 'border-border/30';
+        return (
+          <div class={`update-item relative pl-10 pb-10 border-l-2 ${borderColor}`} data-product={u.product}>
+            <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
+              <div class={`h-5 w-5 rounded-full border-2 border-${dotColor} bg-${dotColor}/10 ${index === 0 ? `shadow-lg shadow-${dotColor}/30` : ''}`}></div>
+            </div>
 
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-16</time>
-            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">v1.6.0</span>
-            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">FlowEye</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">SQLi/目录扫描增强 & Burp 插件优化</h3>
-
-          <div class="space-y-4 text-muted-foreground">
-            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <p class="font-semibold text-emerald-400 mb-2">✨ 新增功能</p>
-
-              <div class="space-y-3 text-sm">
-                <div>
-                  <p class="font-medium text-foreground/80 mb-1">SQL 注入检测增强</p>
-                  <ul class="space-y-1.5 ml-4">
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 布尔盲注差异检测（响应对比识别盲注漏洞）</li>
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> DNSLog OOB 带外检测（支持 Ceye/Dnslog.cn 等平台）</li>
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> JSON 参数模糊测试（自动解析并测试 JSON 请求体）</li>
-                  </ul>
-                </div>
-                <div>
-                  <p class="font-medium text-foreground/80 mb-1">目录扫描增强</p>
-                  <ul class="space-y-1.5 ml-4">
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 层级遍历支持（`hierarchical_scan` / `max_path_depth`）</li>
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 智能路径构建（自动拆解 URL 路径逐层扫描）</li>
-                  </ul>
-                </div>
-                <div>
-                  <p class="font-medium text-foreground/80 mb-1">Burp 插件优化</p>
-                  <ul class="space-y-1.5 ml-4">
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 完整中文汉化（全 UI 文本翻译）</li>
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> QPS 实时统计、连接状态动画、日志深色主题</li>
-                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 作者信息展示：映雪安全 | yyyxxx.cc</li>
-                  </ul>
-                </div>
+            <div class="group rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm hover-card">
+              <div class="flex flex-wrap items-center gap-3 mb-4">
+                <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">{u.date}</time>
+                <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">
+                  {u.version}
+                </span>
+                {product && (
+                  <a href={product.href} class={`inline-flex items-center rounded-full bg-${product.badgeColor}-500/10 px-3 py-1 text-xs font-medium text-${product.badgeColor}-400 ring-1 ring-inset ring-${product.badgeColor}-500/20 hover:underline`}>
+                    {product.name}
+                  </a>
+                )}
               </div>
-            </div>
 
-            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-              <p class="font-semibold text-blue-400 mb-2">🧪 测试覆盖</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 新增 68 个单元测试用例</li>
-                <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 覆盖主要扫描引擎</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+              <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">{u.title}</h3>
 
-      <!-- v1.5.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-green-500/50 bg-green-500/10"></div>
-        </div>
+              <div class="space-y-4 text-muted-foreground">
+                <div class="p-4 rounded-xl bg-card/50 border border-border/30">
+                  <p class="font-semibold text-foreground/80 mb-2">更新要点</p>
+                  <ul class="space-y-1.5 ml-4 text-sm">
+                    {u.highlights.map((item) => (
+                      <li class="flex items-start gap-2">
+                        <span class="text-blue-400">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-14</time>
-            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">v1.5.0</span>
-            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">引擎扩展</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">新增 4 个漏洞检测引擎（引擎总数：17）</h3>
-
-          <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="text-left text-foreground/80">
-                  <th class="py-2 pr-4">引擎</th>
-                  <th class="py-2">检测能力</th>
-                </tr>
-              </thead>
-              <tbody class="text-muted-foreground">
-                <tr class="border-t border-border/40">
-                  <td class="py-2 pr-4 font-medium text-foreground/80">Solr</td>
-                  <td class="py-2">CVE-2019-17558 Velocity RCE、DataImport SSRF、Admin 未授权</td>
-                </tr>
-                <tr class="border-t border-border/40">
-                  <td class="py-2 pr-4 font-medium text-foreground/80">Tomcat</td>
-                  <td class="py-2">CVE-2020-1938 AJP Ghostcat、Manager 弱口令、PUT 上传</td>
-                </tr>
-                <tr class="border-t border-border/40">
-                  <td class="py-2 pr-4 font-medium text-foreground/80">Jira</td>
-                  <td class="py-2">CVE-2019-11581 模板注入、SSRF、用户枚举</td>
-                </tr>
-                <tr class="border-t border-border/40">
-                  <td class="py-2 pr-4 font-medium text-foreground/80">Laravel</td>
-                  <td class="py-2">CVE-2021-3129 Ignition RCE、.env 泄露、Telescope 暴露</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- v1.4.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-blue-500/50 bg-blue-500/10"></div>
-        </div>
-
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-13</time>
-            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">v1.4.0</span>
-            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">引擎扩展</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">新增 Weblogic/Spring/Jenkins/ThinkPHP 引擎与指纹规则</h3>
-
-          <div class="space-y-4 text-muted-foreground">
-            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <p class="font-semibold text-emerald-400 mb-2">🚀 新增 4 个漏洞检测引擎</p>
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="text-left text-foreground/80">
-                    <th class="py-2 pr-4">引擎</th>
-                    <th class="py-2">检测能力</th>
-                  </tr>
-                </thead>
-                <tbody class="text-muted-foreground">
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4 font-medium text-foreground/80">Weblogic</td>
-                    <td class="py-2">T3/IIOP 反序列化、CVE-2023-21839、CVE-2020-14882、Console 暴露</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4 font-medium text-foreground/80">Spring</td>
-                    <td class="py-2">Spring4Shell (CVE-2022-22965)、SpEL 注入、Actuator/Heapdump 泄露</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4 font-medium text-foreground/80">Jenkins</td>
-                    <td class="py-2">CVE-2024-23897 任意文件读取、Script Console RCE、未授权访问</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4 font-medium text-foreground/80">ThinkPHP</td>
-                    <td class="py-2">5.x RCE 多版本、日志泄露、SQL 注入</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10">
-              <p class="font-semibold text-purple-400 mb-2">🔍 新增指纹规则</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> Weblogic 指纹（Console/WSAT/T3）</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> Jenkins 指纹（Script/CLI/API）</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> SpringBoot 指纹（Actuator/Whitelabel）</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- v1.3.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-purple-500/50 bg-purple-500/10"></div>
-        </div>
-
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-12</time>
-            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">v1.3.0</span>
-            <span class="inline-flex items-center rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400 ring-1 ring-inset ring-amber-500/20">Fastjson</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">Fastjson 反序列化漏洞检测引擎</h3>
-
-          <div class="space-y-4 text-muted-foreground">
-            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 支持 1.2.24–1.2.83 全版本漏洞检测</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 8 种 Payload 变体覆盖多种绕过方式</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 自动识别 JSON 请求并触发检测</li>
-              </ul>
-            </div>
-
-            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-              <p class="font-semibold text-blue-400 mb-2">版本与绕过方式（节选）</p>
-              <table class="w-full text-sm">
-                <thead>
-                  <tr class="text-left text-foreground/80">
-                    <th class="py-2 pr-4">版本</th>
-                    <th class="py-2 pr-4">漏洞</th>
-                    <th class="py-2">绕过方式</th>
-                  </tr>
-                </thead>
-                <tbody class="text-muted-foreground">
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4">≤ 1.2.24</td>
-                    <td class="py-2 pr-4">CVE-2017-18349</td>
-                    <td class="py-2">直接利用</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4">1.2.25–1.2.41</td>
-                    <td class="py-2 pr-4">JNDI 注入</td>
-                    <td class="py-2">L 开头绕过</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4">1.2.42–1.2.43</td>
-                    <td class="py-2 pr-4">JNDI 注入</td>
-                    <td class="py-2">双写/特殊字符绕过</td>
-                  </tr>
-                  <tr class="border-t border-border/40">
-                    <td class="py-2 pr-4">≤ 1.2.68</td>
-                    <td class="py-2 pr-4">JNDI 注入</td>
-                    <td class="py-2">expectClass 绕过</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p class="text-xs text-muted-foreground mt-2">注：完整覆盖与变体以实际实现为准。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- v1.2.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-amber-500/50 bg-amber-500/10"></div>
-        </div>
-
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-11</time>
-            <span class="inline-flex items-center rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400 ring-1 ring-inset ring-amber-500/20">v1.2.0</span>
-            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">指纹</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">指纹识别引擎（1077+ 规则）</h3>
-
-          <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-            <ul class="space-y-1.5 ml-4 text-sm">
-              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 1077+ 指纹规则，自动识别目标技术栈</li>
-              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> YAML 规则格式，支持自定义指纹规则</li>
-              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> Favicon Hash（MMH3），Shodan/FOFA 兼容</li>
-              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 智能调度器：根据指纹结果选择扫描引擎</li>
-              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 新增前端指纹展示页面</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- v0.1.0 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-border bg-muted"></div>
-        </div>
-
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-10</time>
-            <span class="inline-flex items-center rounded-full bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border/50">v0.1.0</span>
-            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">首发</span>
-          </div>
-
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">FlowEye 首次发布（嵌入式版本）</h3>
-
-          <div class="space-y-4 text-muted-foreground">
-            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <p class="font-semibold text-emerald-400 mb-2">✨ 核心特性</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 零配置启动（开箱即用）</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 完全嵌入（前端 UI + 字典 + 规则全部内置）</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 多引擎扫描（SQLi/XSS/RCE/目录扫描/反序列化等）</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> WebSocket 实时推送、漏洞去重、Webhook 告警</li>
-              </ul>
-            </div>
-
-            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-              <p class="font-semibold text-blue-400 mb-2">📊 扫描引擎（首发）</p>
-              <div class="grid gap-2 text-sm sm:grid-cols-2">
-                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> fingerprint / dirscan</div>
-                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> shiro / spring / struts2</div>
-                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> sqli-fuzz / xss-fuzz</div>
-                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> lfi-fuzz / nuclei</div>
+                {u.sections && u.sections.length > 0 && (
+                  <details class="rounded-xl border border-border/30 bg-muted/20 p-4">
+                    <summary class="cursor-pointer select-none text-sm font-semibold text-foreground/80">
+                      展开详细内容
+                    </summary>
+                    <div class="mt-4 space-y-3 text-sm text-muted-foreground">
+                      {u.sections.map((s) => (
+                        <div class="rounded-lg bg-card/40 border border-border/30 p-3">
+                          <div class="font-semibold text-foreground/80 mb-2">{s.title}</div>
+                          <ul class="space-y-1.5 ml-4">
+                            {s.items.map((it) => (
+                              <li class="flex items-start gap-2">
+                                <span class="text-emerald-400">•</span>
+                                <span>{it}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </details>
+                )}
               </div>
-            </div>
 
-            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
-              <p class="text-sm text-muted-foreground">
-                ⚠️ 使用声明：仅供个人学习、研究与合法授权的安全测试使用；禁止未授权扫描与任何违法用途。
-              </p>
+              {u.links && u.links.length > 0 && (
+                <div class="flex flex-wrap gap-3 pt-4 mt-4 border-t border-border/30">
+                  {u.links.map((l) => (
+                    <a
+                      href={l.href}
+                      target={('external' in l && l.external) ? '_blank' : undefined}
+                      class="text-sm text-primary hover:underline"
+                    >
+                      {l.label} →
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
 
       <div class="relative pl-10">
         <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
           <div class="h-5 w-5 rounded-full border-2 border-border bg-muted"></div>
         </div>
         <p class="text-sm text-muted-foreground italic">更多更新持续迭代中…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服务说明（不写版本日志） -->
+  <section class="container mx-auto px-6 pb-24">
+    <div class="mx-auto max-w-3xl">
+      <div class="rounded-2xl border border-border/50 bg-card/40 p-6 backdrop-blur-sm">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
+          <div class="space-y-1">
+            <div class="text-sm font-semibold text-primary tracking-wide uppercase">服务</div>
+            <h2 class="text-2xl font-bold">专业免杀服务</h2>
+          </div>
+          <a href="/products/antivirus" class="text-sm text-primary hover:underline">查看服务介绍 →</a>
+        </div>
+        <p class="mt-4 text-muted-foreground leading-relaxed">
+          目前仍可对抗国内外主流安全软件，并提供自动化维权流程支持（需在<strong class="text-foreground">合法授权</strong>前提下执行）。如需报价/方案/测试，请直接联系。
+        </p>
+        <div class="mt-5 flex flex-wrap items-center gap-3">
+          <a href="/#contact" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+            联系我们
+          </a>
+          <a href="/products/antivirus" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+            查看详情
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -405,19 +428,85 @@ const floweyeReleases = `${floweyeRepo}/releases`;
   </footer>
 </Layout>
 
-<script is:inline>
-  // 计算运行时间（从 2025-11-20 开始）
-  function updateRuntime() {
-    const startDate = new Date('2025-11-20T00:00:00');
-    const now = new Date();
-    const diff = now.getTime() - startDate.getTime();
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const runtimeElement = document.getElementById('runtime_days');
-    if (runtimeElement) {
-      runtimeElement.textContent = String(days);
-    }
+<style>
+  .filter-chip {
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    color: hsl(var(--muted-foreground));
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    line-height: 1;
+    transition: all 150ms ease;
   }
-  updateRuntime();
-  setInterval(updateRuntime, 1000 * 60 * 60 * 24);
+  .filter-chip:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--foreground));
+  }
+  .filter-chip.is-active {
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+  .update-item.is-hidden {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const filters = document.getElementById('update-filters');
+    if (!filters) return;
+
+    const items = Array.from(document.querySelectorAll('.update-item'));
+    const buttons = Array.from(filters.querySelectorAll('button[data-filter]'));
+
+    function setActive(filter) {
+      buttons.forEach((btn) => {
+        const isActive = btn.getAttribute('data-filter') === filter;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      items.forEach((el) => {
+        const product = el.getAttribute('data-product');
+        const shouldShow = filter === 'all' || product === filter;
+        el.classList.toggle('is-hidden', !shouldShow);
+      });
+    }
+
+    filters.addEventListener('click', function (e) {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const btn = target.closest('button[data-filter]');
+      if (!btn) return;
+      setActive(btn.getAttribute('data-filter'));
+    });
+
+    setActive('all');
+  })();
 </script>
 
+<script is:inline>
+  // 计算运行时间（从 2025-11-20 开始），按北京时间（UTC+8）计算“天数”
+  function updateRuntime() {
+    const BJ_OFFSET_MS = 8 * 60 * 60 * 1000;
+    const MS_PER_DAY = 24 * 60 * 60 * 1000;
+    const START_DAY_INDEX = Math.floor(Date.UTC(2025, 10, 20) / MS_PER_DAY);
+    const nowDayIndex = Math.floor((Date.now() + BJ_OFFSET_MS) / MS_PER_DAY);
+    const days = Math.max(0, nowDayIndex - START_DAY_INDEX);
+    const runtimeElement = document.getElementById('runtime_days');
+    if (runtimeElement) runtimeElement.textContent = String(days);
+  }
+  updateRuntime();
+  (function scheduleRuntimeUpdateAtBJMidnight() {
+    const BJ_OFFSET_MS = 8 * 60 * 60 * 1000;
+    const MS_PER_DAY = 24 * 60 * 60 * 1000;
+    const nowShifted = Date.now() + BJ_OFFSET_MS;
+    const msUntilNextBJMidnight = MS_PER_DAY - (nowShifted % MS_PER_DAY);
+    setTimeout(() => {
+      updateRuntime();
+      setInterval(updateRuntime, MS_PER_DAY);
+    }, msUntilNextBJMidnight);
+  })();
+</script>
