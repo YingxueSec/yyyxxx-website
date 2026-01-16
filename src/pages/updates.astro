@@ -1,26 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
+
+const floweyeRepo = 'https://github.com/YingxueSec/Floweye-yyyxxx.cc';
+const floweyeReleases = `${floweyeRepo}/releases`;
 ---
 
-<Layout title="更新日志 - 映雪安全" description="映雪安全团队产品更新和开发进度">
+<Layout title="更新日志 - 映雪安全" description="FlowEye 更新日志与开发进度 - 映雪安全">
   <!-- 精致网格背景 -->
   <div class="fixed inset-0 -z-10 grid-bg opacity-40 dark:opacity-30"></div>
-  
+
   <!-- 高端渐变背景 - 深色模式 -->
   <div class="fixed inset-0 -z-10 overflow-hidden hidden dark:block">
     <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]"></div>
     <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-indigo-600/15 rounded-full blur-[100px]"></div>
     <div class="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px]"></div>
   </div>
-  
+
   <!-- 高端渐变背景 - 浅色模式 -->
   <div class="fixed inset-0 -z-10 overflow-hidden dark:hidden">
     <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-400/15 rounded-full blur-[120px]"></div>
     <div class="absolute top-1/3 right-0 w-[500px] h-[500px] bg-indigo-400/10 rounded-full blur-[100px]"></div>
     <div class="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-purple-400/8 rounded-full blur-[100px]"></div>
   </div>
-  
+
   <!-- 导航栏 -->
   <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/98 dark:bg-background/95 backdrop-blur-xl">
     <div class="container mx-auto flex h-16 max-w-screen-2xl items-center justify-between px-8 lg:px-12">
@@ -46,173 +49,334 @@ import ThemeToggle from '../components/ThemeToggle.astro';
         <span class="mr-2 text-lg">📝</span>
         <span class="text-green-400">开发动态</span>
       </div>
-      
+
       <h1 class="fade-in-up delay-100 text-4xl font-bold leading-tight tracking-tighter md:text-5xl lg:text-6xl">
         更新<span class="gradient-text-animated">日志</span>
       </h1>
-      
+
       <p class="fade-in-up delay-200 max-w-[750px] text-lg text-muted-foreground leading-relaxed">
-        记录我们的开发进度、新功能发布和重要更新
+        记录 FlowEye 的版本发布、功能迭代与重要更新
       </p>
+
+      <div class="fade-in-up delay-300 flex flex-wrap items-center justify-center gap-3">
+        <a href="/products/floweye" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+          查看 FlowEye 产品页
+        </a>
+        <a href={floweyeReleases} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+          Releases 下载
+        </a>
+        <a href={floweyeRepo} target="_blank" class="inline-flex h-10 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-medium transition-colors hover:bg-accent">
+          GitHub
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- 时间线 -->
   <section class="container mx-auto px-6 pb-24">
     <div class="mx-auto max-w-3xl">
-      
-      <!-- 更新条目 1 -->
+      <!-- v1.6.0 -->
       <div class="relative pl-10 pb-12 border-l-2 border-primary/30">
         <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
           <div class="h-5 w-5 rounded-full border-2 border-primary bg-primary/20 shadow-lg shadow-primary/30"></div>
         </div>
-        
+
         <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2025-11-19</time>
-            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">
-              v1.2.0
-            </span>
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-16</time>
+            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">v1.6.0</span>
+            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">FlowEye</span>
           </div>
-          
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">产品名称 1 - 重大更新</h3>
-          
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">SQLi/目录扫描增强 & Burp 插件优化</h3>
+
           <div class="space-y-4 text-muted-foreground">
             <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <p class="font-semibold text-emerald-400 mb-2">✨ 新功能</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 添加了新的扫描引擎，性能提升 50%</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 支持自定义规则配置</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 新增可视化报告导出功能</li>
-              </ul>
+              <p class="font-semibold text-emerald-400 mb-2">✨ 新增功能</p>
+
+              <div class="space-y-3 text-sm">
+                <div>
+                  <p class="font-medium text-foreground/80 mb-1">SQL 注入检测增强</p>
+                  <ul class="space-y-1.5 ml-4">
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 布尔盲注差异检测（响应对比识别盲注漏洞）</li>
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> DNSLog OOB 带外检测（支持 Ceye/Dnslog.cn 等平台）</li>
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> JSON 参数模糊测试（自动解析并测试 JSON 请求体）</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="font-medium text-foreground/80 mb-1">目录扫描增强</p>
+                  <ul class="space-y-1.5 ml-4">
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 层级遍历支持（`hierarchical_scan` / `max_path_depth`）</li>
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 智能路径构建（自动拆解 URL 路径逐层扫描）</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="font-medium text-foreground/80 mb-1">Burp 插件优化</p>
+                  <ul class="space-y-1.5 ml-4">
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 完整中文汉化（全 UI 文本翻译）</li>
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> QPS 实时统计、连接状态动画、日志深色主题</li>
+                    <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 作者信息展示：映雪安全 | yyyxxx.cc</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            
-            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
-              <p class="font-semibold text-amber-400 mb-2">🐛 修复</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-amber-400">•</span> 修复了在某些环境下的崩溃问题</li>
-                <li class="flex items-start gap-2"><span class="text-amber-400">•</span> 优化了内存使用</li>
-              </ul>
-            </div>
-            
+
             <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-              <p class="font-semibold text-blue-400 mb-2">📚 文档</p>
+              <p class="font-semibold text-blue-400 mb-2">🧪 测试覆盖</p>
               <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 更新了使用文档和 API 说明</li>
+                <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 新增 68 个单元测试用例</li>
+                <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 覆盖主要扫描引擎</li>
               </ul>
             </div>
-          </div>
-          
-          <div class="flex gap-4 pt-4 mt-4 border-t border-border/30">
-            <a href="#" class="text-sm text-primary hover:underline">查看详情 →</a>
-            <a href="#" class="text-sm text-muted-foreground hover:text-foreground transition-colors">下载</a>
           </div>
         </div>
       </div>
 
-      <!-- 更新条目 2 -->
+      <!-- v1.5.0 -->
+      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
+          <div class="h-5 w-5 rounded-full border-2 border-green-500/50 bg-green-500/10"></div>
+        </div>
+
+        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-14</time>
+            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">v1.5.0</span>
+            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">引擎扩展</span>
+          </div>
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">新增 4 个漏洞检测引擎（引擎总数：17）</h3>
+
+          <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-foreground/80">
+                  <th class="py-2 pr-4">引擎</th>
+                  <th class="py-2">检测能力</th>
+                </tr>
+              </thead>
+              <tbody class="text-muted-foreground">
+                <tr class="border-t border-border/40">
+                  <td class="py-2 pr-4 font-medium text-foreground/80">Solr</td>
+                  <td class="py-2">CVE-2019-17558 Velocity RCE、DataImport SSRF、Admin 未授权</td>
+                </tr>
+                <tr class="border-t border-border/40">
+                  <td class="py-2 pr-4 font-medium text-foreground/80">Tomcat</td>
+                  <td class="py-2">CVE-2020-1938 AJP Ghostcat、Manager 弱口令、PUT 上传</td>
+                </tr>
+                <tr class="border-t border-border/40">
+                  <td class="py-2 pr-4 font-medium text-foreground/80">Jira</td>
+                  <td class="py-2">CVE-2019-11581 模板注入、SSRF、用户枚举</td>
+                </tr>
+                <tr class="border-t border-border/40">
+                  <td class="py-2 pr-4 font-medium text-foreground/80">Laravel</td>
+                  <td class="py-2">CVE-2021-3129 Ignition RCE、.env 泄露、Telescope 暴露</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- v1.4.0 -->
       <div class="relative pl-10 pb-12 border-l-2 border-border/30">
         <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
           <div class="h-5 w-5 rounded-full border-2 border-blue-500/50 bg-blue-500/10"></div>
         </div>
-        
+
         <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2025-11-15</time>
-            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">
-              开发进度
-            </span>
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-13</time>
+            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">v1.4.0</span>
+            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">引擎扩展</span>
           </div>
-          
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">本周开发进度更新</h3>
-          
-          <div class="p-4 rounded-xl bg-card/50 border border-border/30">
-            <p class="text-muted-foreground mb-3">本周主要工作：</p>
-            <ul class="space-y-2 text-sm text-muted-foreground">
-              <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 完成了新版本核心功能开发</li>
-              <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 进行了大量测试和优化</li>
-              <li class="flex items-start gap-2"><span class="text-blue-400">•</span> 准备下周发布 beta 版本</li>
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">新增 Weblogic/Spring/Jenkins/ThinkPHP 引擎与指纹规则</h3>
+
+          <div class="space-y-4 text-muted-foreground">
+            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+              <p class="font-semibold text-emerald-400 mb-2">🚀 新增 4 个漏洞检测引擎</p>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="text-left text-foreground/80">
+                    <th class="py-2 pr-4">引擎</th>
+                    <th class="py-2">检测能力</th>
+                  </tr>
+                </thead>
+                <tbody class="text-muted-foreground">
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4 font-medium text-foreground/80">Weblogic</td>
+                    <td class="py-2">T3/IIOP 反序列化、CVE-2023-21839、CVE-2020-14882、Console 暴露</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4 font-medium text-foreground/80">Spring</td>
+                    <td class="py-2">Spring4Shell (CVE-2022-22965)、SpEL 注入、Actuator/Heapdump 泄露</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4 font-medium text-foreground/80">Jenkins</td>
+                    <td class="py-2">CVE-2024-23897 任意文件读取、Script Console RCE、未授权访问</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4 font-medium text-foreground/80">ThinkPHP</td>
+                    <td class="py-2">5.x RCE 多版本、日志泄露、SQL 注入</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10">
+              <p class="font-semibold text-purple-400 mb-2">🔍 新增指纹规则</p>
+              <ul class="space-y-1.5 ml-4 text-sm">
+                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> Weblogic 指纹（Console/WSAT/T3）</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> Jenkins 指纹（Script/CLI/API）</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> SpringBoot 指纹（Actuator/Whitelabel）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- v1.3.0 -->
+      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
+          <div class="h-5 w-5 rounded-full border-2 border-purple-500/50 bg-purple-500/10"></div>
+        </div>
+
+        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-12</time>
+            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">v1.3.0</span>
+            <span class="inline-flex items-center rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400 ring-1 ring-inset ring-amber-500/20">Fastjson</span>
+          </div>
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">Fastjson 反序列化漏洞检测引擎</h3>
+
+          <div class="space-y-4 text-muted-foreground">
+            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+              <ul class="space-y-1.5 ml-4 text-sm">
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 支持 1.2.24–1.2.83 全版本漏洞检测</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 8 种 Payload 变体覆盖多种绕过方式</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 自动识别 JSON 请求并触发检测</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
+              <p class="font-semibold text-blue-400 mb-2">版本与绕过方式（节选）</p>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="text-left text-foreground/80">
+                    <th class="py-2 pr-4">版本</th>
+                    <th class="py-2 pr-4">漏洞</th>
+                    <th class="py-2">绕过方式</th>
+                  </tr>
+                </thead>
+                <tbody class="text-muted-foreground">
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4">≤ 1.2.24</td>
+                    <td class="py-2 pr-4">CVE-2017-18349</td>
+                    <td class="py-2">直接利用</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4">1.2.25–1.2.41</td>
+                    <td class="py-2 pr-4">JNDI 注入</td>
+                    <td class="py-2">L 开头绕过</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4">1.2.42–1.2.43</td>
+                    <td class="py-2 pr-4">JNDI 注入</td>
+                    <td class="py-2">双写/特殊字符绕过</td>
+                  </tr>
+                  <tr class="border-t border-border/40">
+                    <td class="py-2 pr-4">≤ 1.2.68</td>
+                    <td class="py-2 pr-4">JNDI 注入</td>
+                    <td class="py-2">expectClass 绕过</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-xs text-muted-foreground mt-2">注：完整覆盖与变体以实际实现为准。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- v1.2.0 -->
+      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
+        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
+          <div class="h-5 w-5 rounded-full border-2 border-amber-500/50 bg-amber-500/10"></div>
+        </div>
+
+        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-11</time>
+            <span class="inline-flex items-center rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400 ring-1 ring-inset ring-amber-500/20">v1.2.0</span>
+            <span class="inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">指纹</span>
+          </div>
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">指纹识别引擎（1077+ 规则）</h3>
+
+          <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+            <ul class="space-y-1.5 ml-4 text-sm">
+              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 1077+ 指纹规则，自动识别目标技术栈</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> YAML 规则格式，支持自定义指纹规则</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> Favicon Hash（MMH3），Shodan/FOFA 兼容</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 智能调度器：根据指纹结果选择扫描引擎</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 新增前端指纹展示页面</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- 更新条目 3 -->
+      <!-- v0.1.0 -->
       <div class="relative pl-10 pb-12 border-l-2 border-border/30">
         <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-green-500/50 bg-green-500/10"></div>
+          <div class="h-5 w-5 rounded-full border-2 border-border bg-muted"></div>
         </div>
-        
+
         <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2025-11-10</time>
-            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">
-              v1.1.0
-            </span>
+            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2026-01-10</time>
+            <span class="inline-flex items-center rounded-full bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border/50">v0.1.0</span>
+            <span class="inline-flex items-center rounded-full bg-green-500/10 px-3 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20">首发</span>
           </div>
-          
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">产品名称 2 - 功能增强</h3>
-          
+
+          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">FlowEye 首次发布（嵌入式版本）</h3>
+
           <div class="space-y-4 text-muted-foreground">
             <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
-              <p class="font-semibold text-emerald-400 mb-2">✨ 新功能</p>
+              <p class="font-semibold text-emerald-400 mb-2">✨ 核心特性</p>
               <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 增加了批量处理功能</li>
-                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 支持多线程扫描</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 零配置启动（开箱即用）</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 完全嵌入（前端 UI + 字典 + 规则全部内置）</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> 多引擎扫描（SQLi/XSS/RCE/目录扫描/反序列化等）</li>
+                <li class="flex items-start gap-2"><span class="text-emerald-400">•</span> WebSocket 实时推送、漏洞去重、Webhook 告警</li>
               </ul>
             </div>
-            
-            <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10">
-              <p class="font-semibold text-purple-400 mb-2">🔧 改进</p>
-              <ul class="space-y-1.5 ml-4 text-sm">
-                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> 优化了用户界面</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400">•</span> 提升了整体性能</li>
-              </ul>
+
+            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
+              <p class="font-semibold text-blue-400 mb-2">📊 扫描引擎（首发）</p>
+              <div class="grid gap-2 text-sm sm:grid-cols-2">
+                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> fingerprint / dirscan</div>
+                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> shiro / spring / struts2</div>
+                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> sqli-fuzz / xss-fuzz</div>
+                <div class="flex items-center gap-2"><span class="text-blue-400">•</span> lfi-fuzz / nuclei</div>
+              </div>
             </div>
-          </div>
-          
-          <div class="flex gap-4 pt-4 mt-4 border-t border-border/30">
-            <a href="#" class="text-sm text-primary hover:underline">查看详情 →</a>
-            <a href="#" class="text-sm text-muted-foreground hover:text-foreground transition-colors">下载</a>
+
+            <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
+              <p class="text-sm text-muted-foreground">
+                ⚠️ 使用声明：仅供个人学习、研究与合法授权的安全测试使用；禁止未授权扫描与任何违法用途。
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 更新条目 4 -->
-      <div class="relative pl-10 pb-12 border-l-2 border-border/30">
-        <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-purple-500/50 bg-purple-500/10"></div>
-        </div>
-        
-        <div class="group p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover-card">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <time class="text-sm text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">2025-11-01</time>
-            <span class="inline-flex items-center rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">
-              公告
-            </span>
-          </div>
-          
-          <h3 class="text-xl font-bold mb-4 group-hover:text-primary transition-colors">映雪安全团队成立</h3>
-          
-          <div class="p-4 rounded-xl bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/10">
-            <p class="text-muted-foreground leading-relaxed mb-3">
-              我们很高兴地宣布映雪安全团队正式成立！我们致力于开发高质量的网络安全工具，帮助安全研究人员和企业更好地保护数字资产。
-            </p>
-            <p class="text-muted-foreground leading-relaxed">
-              未来我们将持续推出更多实用的安全产品，敬请期待！
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 结束标记 -->
       <div class="relative pl-10">
         <div class="absolute left-0 top-0 -translate-x-1/2 flex h-5 w-5 items-center justify-center">
-          <div class="h-5 w-5 rounded-full border-2 border-border bg-muted animate-pulse"></div>
+          <div class="h-5 w-5 rounded-full border-2 border-border bg-muted"></div>
         </div>
-        <p class="text-sm text-muted-foreground italic">更多更新即将到来...</p>
+        <p class="text-sm text-muted-foreground italic">更多更新持续迭代中…</p>
       </div>
-
     </div>
   </section>
 
@@ -225,11 +389,9 @@ import ThemeToggle from '../components/ThemeToggle.astro';
             <img src="/logo.png" alt="映雪安全" class="h-6 w-6 opacity-70" />
             <span class="text-sm font-medium text-foreground/70">映雪安全</span>
           </div>
-          <p class="text-xs text-muted-foreground">
-            © 2025 YingxueSec. All rights reserved.
-          </p>
+          <p class="text-xs text-muted-foreground">© 2025 YingxueSec. All rights reserved.</p>
         </div>
-        
+
         <div class="flex flex-wrap items-center justify-center gap-4 text-xs">
           <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50 border border-border/30">
             <svg class="h-3.5 w-3.5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,8 +417,7 @@ import ThemeToggle from '../components/ThemeToggle.astro';
       runtimeElement.textContent = String(days);
     }
   }
-  
   updateRuntime();
-  // 每天更新一次
   setInterval(updateRuntime, 1000 * 60 * 60 * 24);
 </script>
+
