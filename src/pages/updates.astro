@@ -39,6 +39,31 @@ const products: ProductMeta[] = [
 const updatesRaw = [
   // FlowEye（2026-01）
   {
+    date: '2026-01-27',
+    product: 'floweye',
+    version: 'v1.6.1',
+    title: '误报修复版本：更少噪音、更稳定的全量测试',
+    highlights: ['目录扫描默认忽略 403 误报', 'Spring4Shell 误报控制', 'ThinkPHP 测试稳定性提升', '`go test ./...` 全量通过'],
+    sections: [
+      {
+        title: '目录扫描（信息泄露/敏感路径）误报',
+        items: ['默认不再把 `403 Forbidden` 当作“敏感路径存在”来展示（403 通常代表被 WAF/鉴权拦截）', '如需保留 403 命中：在配置里显式加入 `engines.dirscan.include_status: ...,403`'],
+      },
+      {
+        title: 'Spring4Shell RCE (CVE-2022-22965) 误报',
+        items: ['跳过明显静态资源（如 `.txt`）', '提高 Spring 相关证据门槛（响应头/体出现 Spring 绑定/错误特征才继续）', '通过 `invalid` / `verify` 差异校验，降低对无关 URL 的误报'],
+      },
+      {
+        title: '测试稳定性',
+        items: ['ThinkPHP 引擎未初始化时不执行扫描，避免测试用例触发网络请求导致超时', '`go test ./...` 全量通过'],
+      },
+    ],
+    links: [
+      { label: 'Releases', href: `${repos.floweye}/releases`, external: true },
+      { label: 'GitHub', href: repos.floweye, external: true },
+    ],
+  },
+  {
     date: '2026-01-16',
     product: 'floweye',
     version: 'v1.6.0',
