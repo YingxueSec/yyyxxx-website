@@ -25,4 +25,4 @@ pnpm-debug.log*
 .idea/
 
 # content directory (private product docs)
-content/
+/content/

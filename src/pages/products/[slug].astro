@@ -1,0 +1,174 @@
+---
+import { getCollection } from 'astro:content';
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import DownloadCTA from '../../components/DownloadCTA.astro';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await product.render();
+---
+
+<ProductLayout title={`${product.data.title} - 映雪安全`} description={product.data.description} color1={product.data.gradientFrom} color2={product.data.gradientTo}>
+  <div class="relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-8 backdrop-blur-xl" slot="header">
+    <div class={`pointer-events-none absolute -top-20 -right-20 h-52 w-52 rounded-full bg-${product.data.gradientFrom}-500/10 blur-[60px]`}></div>
+    <div class={`pointer-events-none absolute -bottom-20 -left-20 h-52 w-52 rounded-full bg-${product.data.gradientTo}-500/10 blur-[60px]`}></div>
+    <div class="relative flex flex-col md:flex-row gap-8 items-start">
+      <div class="flex-shrink-0">
+        {product.data.iconType === 'image' ? (
+          <img src={product.data.icon} alt={product.data.title} class="w-32 h-32 rounded-2xl object-cover shadow-xl ring-1 ring-border/60" />
+        ) : (
+          <video src={product.data.icon} autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" class="w-32 h-32 rounded-2xl object-cover shadow-xl ring-1 ring-border/60 product-video"></video>
+        )}
+      </div>
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-3 flex-wrap">
+          <h1 class="text-3xl font-bold">{product.data.title}</h1>
+          {product.data.badges.map((badge) => (
+            <span class={`inline-flex items-center rounded-full bg-${badge.color}-500/10 px-3 py-1 text-xs font-medium text-${badge.color}-500 ring-1 ring-inset ring-${badge.color}-500/20 ${badge.pulse ? 'animate-pulse' : ''}`}>
+              {badge.text}
+            </span>
+          ))}
+        </div>
+        <p class="text-lg text-muted-foreground mb-6">{product.data.description}</p>
+        <div class="flex flex-wrap gap-3">
+          {product.data.downloadKey && <DownloadCTA product={product.data.downloadKey} label="📦 立即下载" />}
+          {product.data.actions.map((action) => (
+            <a href={action.href} target={action.external ? '_blank' : undefined} class={`inline-flex h-10 items-center justify-center rounded-lg px-6 text-sm font-medium transition-colors ${action.variant === 'primary' ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'border border-border bg-background/80 hover:bg-accent'}`}>
+              {action.text}
+            </a>
+          ))}
+        </div>
+        <div class="mt-6 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-lg border border-border/40 bg-background/40 p-3">
+            <p class="text-xs text-muted-foreground">特性数量</p>
+            <p class="text-lg font-semibold">{product.data.features.length}</p>
+          </div>
+          <div class="rounded-lg border border-border/40 bg-background/40 p-3">
+            <p class="text-xs text-muted-foreground">产品状态</p>
+            <p class="text-lg font-semibold">{product.data.badges[0]?.text ?? '持续迭代'}</p>
+          </div>
+          <div class="rounded-lg border border-border/40 bg-background/40 p-3">
+            <p class="text-xs text-muted-foreground">支持渠道</p>
+            <p class="text-lg font-semibold">官网 / 社区</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 bg-muted/30 dark:bg-muted/10">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8">{product.data.featureTitle}</h2>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {product.data.features.map((feature) => (
+            <div class="group bg-card/80 rounded-xl border border-border/50 p-5 flex items-start gap-3 hover:border-primary/30 transition-colors">
+              <div class={`mt-0.5 flex h-8 w-8 items-center justify-center rounded bg-${feature.color}-500/10`}>
+                <svg class={`h-4 w-4 text-${feature.color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="font-medium leading-6">{feature.text}</p>
+                <p class="text-sm text-muted-foreground mt-1">围绕该能力持续迭代优化，确保上线可用性。</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {product.data.features2 && (
+          <div class="mt-8">
+            <h3 class="text-xl font-semibold mb-4">{product.data.features2Title ?? '更多特性'}</h3>
+            <div class="grid gap-4 md:grid-cols-2">
+              {product.data.features2.map((feature) => (
+                <div class="bg-card/80 rounded-xl border border-border/50 p-5 flex items-center gap-3">
+                  <div class={`flex h-8 w-8 items-center justify-center rounded bg-${feature.color}-500/10`}>
+                    <svg class={`h-4 w-4 text-${feature.color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <span class="font-medium">{feature.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-card/90 rounded-xl border border-border/50 p-6 md:p-8 shadow-sm">
+        <article class="product-content">
+          <Content />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-muted/30 dark:bg-muted/10" slot="cta">
+    <div class="container mx-auto px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/10 via-blue-500/10 to-purple-500/10 p-10">
+          <div class="absolute inset-0 opacity-40 grid-bg"></div>
+          <div class="relative">
+            <h2 class="text-2xl font-bold mb-4">{product.data.ctaTitle ?? `了解 ${product.data.title}`}</h2>
+            <p class="text-muted-foreground mb-8">{product.data.ctaDescription ?? '加入技术交流群，获取更多产品信息和支持'}</p>
+            <a href={product.data.ctaHref ?? '/#contact'} class="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+              {product.data.ctaLabel ?? '联系我们'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .product-content :global(h2) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .product-content :global(h3) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .product-content :global(p) {
+    color: hsl(var(--muted-foreground));
+    line-height: 1.75;
+    margin-bottom: 0.9rem;
+  }
+  .product-content :global(ul) {
+    list-style: disc;
+    margin-left: 1.25rem;
+    margin-bottom: 0.9rem;
+  }
+  .product-content :global(li) {
+    color: hsl(var(--muted-foreground));
+    margin-bottom: 0.45rem;
+  }
+  .product-content :global(a) {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .product-content :global(code) {
+    background: hsl(var(--muted));
+    border-radius: 0.25rem;
+    padding: 0.1rem 0.3rem;
+  }
+</style>

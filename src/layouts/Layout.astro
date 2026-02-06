@@ -4,9 +4,19 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "映雪安全 - 专业的网络安全服务提供商" } = Astro.props;
+const {
+  title,
+  description = "映雪安全 - 专业的网络安全服务提供商",
+  image = '/logo.png',
+  noindex = false
+} = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://yyyxxx.cc');
+const canonical = new URL(`${Astro.url.pathname}${Astro.url.search}`, siteUrl).toString();
+const ogImage = new URL(image, siteUrl).toString();
 ---
 
 <!doctype html>
@@ -15,7 +25,19 @@ const { title, description = "映雪安全 - 专业的网络安全服务提供�
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="映雪安全" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/png" href="/logo.png" />
     <!-- Cloudflare Web Analytics -->
     <script is:inline defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "af7e9f1306984c4c8d4b53d0f15bf449"}'></script>

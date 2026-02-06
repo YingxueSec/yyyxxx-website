@@ -1,124 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import GradientBackground from '../components/GradientBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import { downloads } from '../data/downloads';
 
-type ProductBadge = { text: string; color: string; pulse?: boolean };
-type ProductFeature = { text: string; color: string };
-type ProductAction = { text: string; href: string; external?: boolean };
-type ProductIcon =
-  | { type: 'image'; src: string }
-  | { type: 'video'; src: string }
-  | { type: 'svg'; svg: string };
-
-type Product = {
-  id: string;
-  title: string;
-  description: string;
-  badges: ProductBadge[];
-  features: ProductFeature[];
-  featureTitle: string;
-  features2?: ProductFeature[];
-  gradient: { from: string; to: string };
-  icon: ProductIcon;
-  actions: ProductAction[];
-};
-
-// 产品数据
-const products: Product[] = [
-  {
-    id: 'jackproxy',
-    title: 'JackProxy',
-    description: '专业轮转代理池管理工具，50万+代理IP服务，为渗透测试、攻防对抗、SRC挖掘提供稳定高效的代理解决方案',
-    badges: [{ text: 'v2.0', color: 'green' }, { text: '稳定版', color: 'purple' }],
-    features: [
-      { text: '智能代理轮换', color: 'blue' },
-      { text: '实时状态监控', color: 'green' },
-      { text: '一键操作体验', color: 'purple' },
-      { text: '美观沉浸式UI', color: 'amber' }
-    ],
-    featureTitle: '核心特性',
-    gradient: { from: 'blue', to: 'purple' },
-    icon: { type: 'video', src: '/jackproxy-icon.mp4' },
-    actions: [{ text: '🎬 演示视频', href: 'https://www.bilibili.com/video/BV1gJ7DzWE9f', external: true }]
-  },
-  {
-    id: 'antivirus',
-    title: '专业免杀服务',
-    description: '一线大厂攻防实战经验总结，专业的反杀软对抗服务。一马通杀国内所有主流杀软，采用白加黑技术，经过大量实战验证，确保木马对各类杀软均可有效免杀。',
-    badges: [{ text: '定制服务', color: 'red' }, { text: '实战验证', color: 'green' }],
-    features: [
-      { text: '360安全卫士', color: 'green' },
-      { text: '腾讯电脑管家', color: 'blue' },
-      { text: '火绒安全', color: 'orange' },
-      { text: 'Windows Defender', color: 'cyan' },
-      { text: '金山毒霸', color: 'yellow' },
-      { text: '天融信EDR/亿格云', color: 'purple' }
-    ],
-    featureTitle: '支持杀软',
-    features2: [
-      { text: '全自动权限维持', color: 'cyan' },
-      { text: '反微步沙箱检测', color: 'pink' },
-      { text: '白加黑技术方案', color: 'indigo' },
-      { text: '16种钓鱼教学资料', color: 'teal' }
-    ],
-    gradient: { from: 'red', to: 'pink' },
-    icon: { type: 'video', src: '/antivirus-icon.mp4' },
-    actions: [{ text: '🎬 效果演示', href: 'https://www.bilibili.com/video/BV1dM17Y8EXc', external: true }]
-  },
-  {
-    id: 'snowlight',
-    title: 'SnowLight',
-    description: '原生免杀360的Rust C2框架，纯自研项目，持续开发中...',
-    badges: [{ text: '开发中', color: 'amber', pulse: true }],
-    features: [
-      { text: 'Rust原生开发', color: 'cyan' },
-      { text: '原生免杀360', color: 'blue' }
-    ],
-    featureTitle: '计划特性',
-    gradient: { from: 'cyan', to: 'blue' },
-    icon: { type: 'video', src: '/snowlight-icon.mp4' },
-    actions: [{ text: '🎬 开发预览', href: 'https://www.bilibili.com/video/BV1K5xNzzE1x', external: true }]
-  },
-  {
-    id: 'aisql',
-    title: 'Yingxue AiSQL',
-    description: 'AI 驱动的 SQL 注入自动化检测与利用工具，集成传统漏洞检测技术与 AI 智能利用能力',
-    badges: [{ text: 'v1.0', color: 'green' }, { text: '稳定版', color: 'purple' }],
-    features: [
-      { text: 'AI 智能利用', color: 'orange' },
-      { text: '全流程自动化', color: 'red' },
-      { text: '多种注入类型', color: 'amber' },
-      { text: '现代化 Web 界面', color: 'purple' }
-    ],
-    featureTitle: '核心特性',
-    gradient: { from: 'orange', to: 'red' },
-    icon: { type: 'video', src: '/aisql-icon.mp4' },
-    actions: [{ text: '📦 立即下载', href: downloads.aisql.url, external: true }]
-  },
-  {
-    id: 'floweye',
-    title: 'FlowEye',
-    description: '流量之眼：与 Burp Suite 集成的 Web 化被动漏洞扫描平台，实时接收并分析 HTTP 流量，自动进行多维度漏洞检测',
-    badges: [{ text: 'v1.6.1', color: 'green' }, { text: '开源', color: 'blue' }],
-    features: [
-      { text: '1000+ 指纹规则', color: 'blue' },
-      { text: '多引擎并行扫描', color: 'purple' },
-      { text: 'WebSocket 实时推送', color: 'green' },
-      { text: 'Webhook 告警', color: 'amber' }
-    ],
-    featureTitle: '核心特性',
-    gradient: { from: 'blue', to: 'purple' },
-    icon: { type: 'image', src: '/floweye-icon.png' },
-    actions: [
-      { text: '📦 Releases 下载', href: 'https://github.com/YingxueSec/Floweye-yyyxxx.cc/releases', external: true },
-      { text: '⭐ GitHub', href: 'https://github.com/YingxueSec/Floweye-yyyxxx.cc', external: true }
-    ]
-  }
-];
+const products = (await getCollection('products')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="产品 - 映雪安全" description="映雪安全团队开发的安全工具和产品">
@@ -151,27 +39,23 @@ const products: Product[] = [
     <div class="mx-auto max-w-6xl space-y-8">
       {products.map((product) => (
         <div class="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xl transition-all hover-card">
-          <div class={`absolute inset-0 bg-gradient-to-br from-${product.gradient.from}-500/5 via-transparent to-${product.gradient.to}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
-          <div class={`absolute top-0 right-0 w-64 h-64 bg-${product.gradient.from}-500/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2`}></div>
+          <div class={`absolute inset-0 bg-gradient-to-br from-${product.data.gradientFrom}-500/5 via-transparent to-${product.data.gradientTo}-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700`}></div>
+          <div class={`absolute top-0 right-0 w-64 h-64 bg-${product.data.gradientFrom}-500/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2`}></div>
           
           <div class="relative grid gap-8 p-8 md:p-10 md:grid-cols-[180px_1fr]">
             <div class="flex items-center justify-center">
-              {product.icon.type === 'image' ? (
-                <img src={product.icon.src} alt={product.title} class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105" />
-              ) : product.icon.type === 'video' ? (
-                <video src={product.icon.src} autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105 object-cover product-video" />
+              {product.data.iconType === 'image' ? (
+                <img src={product.data.icon} alt={product.data.title} class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105" />
               ) : (
-                <div class={`h-40 w-40 rounded-2xl bg-gradient-to-br from-${product.gradient.from}-500 to-${product.gradient.to}-500 shadow-xl flex items-center justify-center transition-transform group-hover:scale-105`}>
-                  <Fragment set:html={product.icon.svg} />
-                </div>
+                <video src={product.data.icon} autoplay loop muted playsinline webkit-playsinline="true" x5-playsinline="true" x5-video-player-type="h5" class="h-40 w-40 rounded-2xl shadow-xl transition-transform group-hover:scale-105 object-cover product-video" />
               )}
             </div>
             
             <div class="space-y-5">
               <div>
-                <a href={`/products/${product.id}`} class="hover:underline"><h3 class="text-2xl font-bold group-hover:text-primary transition-colors">{product.title}</h3></a>
+                <a href={`/products/${product.slug}`} class="hover:underline"><h3 class="text-2xl font-bold group-hover:text-primary transition-colors">{product.data.title}</h3></a>
                 <div class="mt-3 flex items-center gap-2">
-                  {product.badges.map((badge) => (
+                  {product.data.badges.map((badge) => (
                     <span class={`inline-flex items-center rounded-full bg-${badge.color}-500/10 px-3 py-1 text-xs font-medium text-${badge.color}-400 ring-1 ring-inset ring-${badge.color}-500/20 ${badge.pulse ? 'animate-pulse' : ''}`}>
                       {badge.text}
                     </span>
@@ -179,12 +63,12 @@ const products: Product[] = [
                 </div>
               </div>
               
-              <p class="text-muted-foreground leading-relaxed">{product.description}</p>
+              <p class="text-muted-foreground leading-relaxed">{product.data.description}</p>
               
               <div class="space-y-3">
-                <h4 class="font-semibold text-foreground/90">{product.featureTitle}</h4>
+                <h4 class="font-semibold text-foreground/90">{product.data.featureTitle}</h4>
                 <ul class="grid gap-2 text-sm sm:grid-cols-2">
-                  {product.features.map((feature) => (
+                  {product.data.features.map((feature) => (
                     <li class="flex items-center gap-3 p-2.5 rounded-lg bg-card/50 border border-border/30">
                       <div class={`flex h-6 w-6 items-center justify-center rounded bg-${feature.color}-500/10`}>
                         <svg class={`h-3.5 w-3.5 text-${feature.color}-400`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,11 +81,11 @@ const products: Product[] = [
                 </ul>
               </div>
 
-              {product.features2 && (
+              {product.data.features2 && (
                 <div class="space-y-3">
-                  <h4 class="font-semibold text-foreground/90">服务特性</h4>
+                  <h4 class="font-semibold text-foreground/90">{product.data.features2Title ?? '服务特性'}</h4>
                   <ul class="grid gap-2 text-sm sm:grid-cols-2">
-                    {product.features2.map((feature) => (
+                    {product.data.features2.map((feature) => (
                       <li class="flex items-center gap-3 p-2.5 rounded-lg bg-card/50 border border-border/30">
                         <div class={`flex h-6 w-6 items-center justify-center rounded bg-${feature.color}-500/10`}>
                           <svg class={`h-3.5 w-3.5 text-${feature.color}-400`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,11 +100,11 @@ const products: Product[] = [
               )}
               
               <div class="flex items-center gap-4 pt-4">
-                <a href={`/products/${product.id}`} class="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105">
+                <a href={`/products/${product.slug}`} class="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105">
                   查看详情
                 </a>
-                {product.actions.map((action) => (
-                  <a href={action.href} target={action.external ? "_blank" : undefined} class="inline-flex h-9 items-center justify-center rounded-lg border border-border bg-background px-4 text-sm font-medium transition-colors hover:bg-accent">
+                {product.data.actions.map((action) => (
+                  <a href={action.href} target={action.external ? "_blank" : undefined} class={`inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium transition-colors ${action.variant === 'primary' ? 'bg-primary text-primary-foreground hover:bg-primary/90' : 'border border-border bg-background hover:bg-accent'}`}>
                     {action.text}
                   </a>
                 ))}
