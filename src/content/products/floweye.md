@@ -8,7 +8,7 @@ icon: /floweye-icon.png
 gradientFrom: blue
 gradientTo: purple
 badges:
-  - text: v1.6.1
+  - text: v1.6.2
     color: green
   - text: 开源
     color: blue

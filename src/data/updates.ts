@@ -32,6 +32,67 @@ export const products: ProductMeta[] = [
 
 const updatesRaw = [
   {
+    date: '2026-02-10',
+    product: 'floweye',
+    version: 'v1.6.2',
+    title: '稳定性与准确性修复：DNSLog 兼容增强，Spring/DirScan 误报收敛',
+    highlights: ['DNSLog 配置兼容性增强（ceye/dnslog.cn）', 'Spring SpEL 双 payload 差异验证，降低误报', 'DirScan 路径拼接与 baseline 策略修复', '新增相关单元测试，`go test ./...` 与 `npm run build` 通过'],
+    sections: [
+      {
+        title: 'DNSLog 配置兼容性增强',
+        items: [
+          '修复 `ceye.io` 被识别为不支持的问题，`ceye.io` / `ceye` 统一识别为 `ceye`',
+          '修复 `dnslog.cn` 被错误要求必须填写 API Key 的问题，当前 API Key 为可选（仅 Domain 即可测试）',
+          '统一前后端校验逻辑，避免“前端通过、后端报错”与“前端拦截过严”',
+          '新增 provider 规范化存储：`ceye.io` -> `ceye`，`dnslog` -> `dnslog.cn`',
+          '设置页文案同步优化，明确不同平台下 API Key 的必填/可选规则',
+        ],
+      },
+      {
+        title: 'Spring SpEL 误报修复',
+        items: [
+          '修复页面仅包含数字或普通回显内容即被判定为 SpEL 注入的问题',
+          '检测逻辑升级为双 payload 差异验证：`7*7` 与 `8*8` 对比，并同时校验与 baseline 差异',
+          '排除 payload 原样回显场景，减少误报',
+          'URL 参数注入改为基于 query 解析，不再使用粗暴字符串替换',
+        ],
+      },
+      {
+        title: 'DirScan 敏感路径批量误报修复',
+        items: [
+          '修复 URL 拼接 `//` 问题，避免触发 Spring Firewall 拒绝页',
+          'baseline 缓存粒度由 host 调整为 baseURL，减少分层路径扫描时的基线误匹配',
+          '增加对 Spring Whitelabel + `potentially malicious String //` 拒绝页的噪声过滤',
+          '修复 `/nacos/v1/auth//...` 等场景下的批量误报',
+        ],
+      },
+      {
+        title: '测试与兼容性',
+        items: [
+          '新增并补充 DNSLog、Spring、DirScan 相关单元测试',
+          '`go test ./...` 全量通过，`npm run build` 通过',
+          '兼容增强版本，无需手工迁移；历史 DNSLog provider 会在加载/保存时自动规范化',
+        ],
+      },
+      {
+        title: '发布资产',
+        items: [
+          '`floweye-darwin-amd64`',
+          '`floweye-darwin-arm64`',
+          '`floweye-linux-amd64`',
+          '`floweye-windows-amd64.exe`',
+          '`floweye-burp-plugin-1.0.0.jar`',
+          '`config.example.yaml`',
+          '镜像仓库同步附加：`floweye-windows-x86_64.exe`（与 amd64 同架构，命名适配）',
+        ],
+      },
+    ],
+    links: [
+      { label: 'Releases', href: `${repos.floweye}/releases`, external: true },
+      { label: 'GitHub', href: repos.floweye, external: true },
+    ],
+  },
+  {
     date: '2026-01-27',
     product: 'floweye',
     version: 'v1.6.1',
