@@ -1,0 +1,716 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const pageConfig = {
+  partnerName: '小雨',
+  fromName: '宇宇',
+  togetherSince: '2024-05-20',
+  letterTitle: '给你的一封小信',
+  letterBody:
+    '谢谢你把平凡的每一天都点亮。你笑起来的时候，我会觉得整个世界都在放晴。以后也想继续和你一起看电影、散步、吃夜宵，把每个小日子过成值得纪念的大日子。',
+  memories: [
+    {
+      title: '第一次见面',
+      time: '2024.05',
+      note: '那天你笑着说“你好”，我心里就已经偷偷按下了收藏键。'
+    },
+    {
+      title: '一起看夜景',
+      time: '2024.09',
+      note: '风有点凉，但你把手塞到我掌心的那一秒，世界很暖。'
+    },
+    {
+      title: '今年想实现',
+      time: '2026',
+      note: '一起去海边看日出，顺便把我们合照拍到 999 张。'
+    }
+  ]
+};
+
+const pageTitle = `给${pageConfig.partnerName}的小宇宙`;
+const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专属页面，含互动小游戏与纪念时刻。`;
+---
+
+<Layout title={pageTitle} description={pageDescription} noindex={true}>
+  <main
+    class="love-root"
+    data-since={pageConfig.togetherSince}
+    data-partner={pageConfig.partnerName}
+    data-from={pageConfig.fromName}
+    data-letter-title={pageConfig.letterTitle}
+    data-letter-body={pageConfig.letterBody}
+  >
+    <div class="floating-hearts" aria-hidden="true"></div>
+
+    <section class="hero panel">
+      <p class="eyebrow">/loveyuyyuyu/</p>
+      <h1 class="title">给 <span>{pageConfig.partnerName}</span> 的小宇宙</h1>
+      <p class="subtitle">你负责可爱，我负责把每个普通日子都过成节日。</p>
+
+      <div class="timer-box" aria-live="polite">
+        <p>我们已经并肩走过</p>
+        <p id="together-counter" class="counter">加载中...</p>
+      </div>
+
+      <div class="hero-actions">
+        <button id="open-letter" class="btn solid" type="button">展开小信封</button>
+        <a class="btn ghost" href="#mini-game">开始爱心接接乐</a>
+      </div>
+    </section>
+
+    <section id="letter-card" class="panel letter-card" hidden>
+      <h2 id="letter-title">{pageConfig.letterTitle}</h2>
+      <p id="letter-body">{pageConfig.letterBody}</p>
+    </section>
+
+    <section class="panel memories">
+      <h2>我们的小瞬间</h2>
+      <div class="memory-grid">
+        {pageConfig.memories.map((item, idx) => (
+          <article class="memory-item" data-index={idx}>
+            <p class="memory-time">{item.time}</p>
+            <h3>{item.title}</h3>
+            <p>{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="mini-game" class="panel game-panel">
+      <div>
+        <h2>爱心接接乐</h2>
+        <p>移动底部小篮子接住掉落的爱心，30 秒结束。鼠标和触摸都支持。</p>
+      </div>
+
+      <div class="game-status">
+        <p>得分：<strong id="game-score">0</strong></p>
+        <p>剩余：<strong id="game-time">30</strong>s</p>
+      </div>
+
+      <canvas id="heart-game" width="360" height="500" aria-label="爱心接接乐游戏画布"></canvas>
+
+      <div class="game-actions">
+        <button id="game-start" class="btn solid" type="button">开始游戏</button>
+        <p id="game-result" class="game-result">准备好就开始吧。</p>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('.love-root');
+      if (!root) return;
+
+      const counterEl = document.getElementById('together-counter');
+      const letterCard = document.getElementById('letter-card');
+      const openLetterBtn = document.getElementById('open-letter');
+      const memories = Array.from(document.querySelectorAll('.memory-item'));
+      const heartLayer = document.querySelector('.floating-hearts');
+
+      const sinceRaw = root.getAttribute('data-since') || '2024-05-20';
+      const sinceDate = new Date(sinceRaw + 'T00:00:00+08:00');
+
+      const pad = (num) => String(num).padStart(2, '0');
+      const updateCounter = () => {
+        const now = new Date();
+        const diff = Math.max(0, now.getTime() - sinceDate.getTime());
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        if (counterEl) {
+          counterEl.textContent = `${days} 天 ${pad(hours)} 小时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
+        }
+      };
+
+      updateCounter();
+      window.setInterval(updateCounter, 1000);
+
+      const burstHearts = (x, y, count = 14) => {
+        if (!heartLayer) return;
+
+        for (let i = 0; i < count; i += 1) {
+          const heart = document.createElement('span');
+          heart.className = 'burst-heart';
+          const angle = (Math.PI * 2 * i) / count;
+          const distance = 30 + Math.random() * 80;
+          heart.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
+          heart.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
+          heart.style.left = `${x}px`;
+          heart.style.top = `${y}px`;
+          heart.textContent = Math.random() > 0.5 ? '❤' : '💗';
+          heartLayer.appendChild(heart);
+          window.setTimeout(() => heart.remove(), 1300);
+        }
+      };
+
+      if (openLetterBtn && letterCard) {
+        openLetterBtn.addEventListener('click', (event) => {
+          const willOpen = letterCard.hasAttribute('hidden');
+
+          if (willOpen) {
+            letterCard.removeAttribute('hidden');
+            letterCard.classList.add('show');
+            openLetterBtn.textContent = '收起小信封';
+
+            const rect = event.currentTarget.getBoundingClientRect();
+            burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
+          } else {
+            letterCard.setAttribute('hidden', '');
+            letterCard.classList.remove('show');
+            openLetterBtn.textContent = '展开小信封';
+          }
+        });
+      }
+
+      memories.forEach((card, idx) => {
+        card.style.setProperty('--delay', `${idx * 120}ms`);
+        card.addEventListener('click', (event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
+          card.classList.add('pop');
+          window.setTimeout(() => card.classList.remove('pop'), 260);
+        });
+      });
+
+      if (heartLayer) {
+        for (let i = 0; i < 26; i += 1) {
+          const floatHeart = document.createElement('span');
+          floatHeart.className = 'float-heart';
+          floatHeart.textContent = Math.random() > 0.5 ? '❤' : '♡';
+          floatHeart.style.left = `${Math.random() * 100}%`;
+          floatHeart.style.animationDelay = `${Math.random() * 8}s`;
+          floatHeart.style.animationDuration = `${10 + Math.random() * 12}s`;
+          heartLayer.appendChild(floatHeart);
+        }
+      }
+
+      const canvas = document.getElementById('heart-game');
+      const scoreEl = document.getElementById('game-score');
+      const timeEl = document.getElementById('game-time');
+      const startBtn = document.getElementById('game-start');
+      const resultEl = document.getElementById('game-result');
+
+      if (!(canvas instanceof HTMLCanvasElement)) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const state = {
+        running: false,
+        score: 0,
+        timeLeft: 30,
+        basketX: 140,
+        basketW: 86,
+        basketH: 22,
+        hearts: [],
+        spawnClock: 0,
+        secondClock: 0,
+        lastTs: performance.now(),
+        rafId: 0
+      };
+
+      const palette = ['#ff6b8a', '#ff8fab', '#ff4d6d', '#ffc2d1'];
+
+      const drawHeart = (x, y, size, color) => {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(size / 20, size / 20);
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(10, 18);
+        ctx.bezierCurveTo(10, 18, 1, 12, 1, 7.5);
+        ctx.bezierCurveTo(1, 4, 3.5, 1, 7, 1);
+        ctx.bezierCurveTo(9, 1, 10, 2.2, 10, 2.2);
+        ctx.bezierCurveTo(10, 2.2, 11, 1, 13, 1);
+        ctx.bezierCurveTo(16.5, 1, 19, 4, 19, 7.5);
+        ctx.bezierCurveTo(19, 12, 10, 18, 10, 18);
+        ctx.fill();
+        ctx.restore();
+      };
+
+      const resetGame = () => {
+        state.score = 0;
+        state.timeLeft = 30;
+        state.hearts = [];
+        state.spawnClock = 0;
+        state.secondClock = 0;
+        state.basketX = (canvas.width - state.basketW) / 2;
+        if (scoreEl) scoreEl.textContent = '0';
+        if (timeEl) timeEl.textContent = '30';
+      };
+
+      const spawnHeart = () => {
+        const size = 18 + Math.random() * 18;
+        state.hearts.push({
+          x: Math.random() * (canvas.width - size),
+          y: -size,
+          size,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          speed: 80 + Math.random() * 110 + state.score * 2,
+          wobble: Math.random() * 6,
+          wobbleRate: 2 + Math.random() * 3
+        });
+      };
+
+      const finishGame = () => {
+        state.running = false;
+
+        let message = '你的可爱值已经满分，继续冲一次？';
+        if (state.score < 10) message = '你是慢热型甜妹，再来一局我相信你会更高分。';
+        if (state.score >= 18) message = '太强了！你把爱心全都稳稳接住了。';
+
+        if (resultEl) resultEl.textContent = `${message} 本局得分 ${state.score}。`;
+        if (startBtn) startBtn.textContent = '再玩一局';
+      };
+
+      const drawScene = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const grd = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        grd.addColorStop(0, '#fff5f8');
+        grd.addColorStop(1, '#ffe1ea');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#ffd6e1';
+        ctx.fillRect(0, canvas.height - 70, canvas.width, 70);
+
+        for (const heart of state.hearts) {
+          drawHeart(heart.x, heart.y, heart.size, heart.color);
+        }
+
+        const basketY = canvas.height - state.basketH - 22;
+        const basketGradient = ctx.createLinearGradient(state.basketX, basketY, state.basketX, basketY + state.basketH);
+        basketGradient.addColorStop(0, '#ff7aa2');
+        basketGradient.addColorStop(1, '#ff4d6d');
+        ctx.fillStyle = basketGradient;
+        ctx.beginPath();
+        ctx.roundRect(state.basketX, basketY, state.basketW, state.basketH, 12);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '14px "Noto Serif SC", serif';
+        ctx.fillText('接住我 ❤', state.basketX + 12, basketY + 15);
+      };
+
+      const update = (dt) => {
+        if (!state.running) {
+          drawScene();
+          return;
+        }
+
+        state.spawnClock += dt;
+        state.secondClock += dt;
+
+        const spawnEvery = Math.max(0.26, 0.72 - state.score * 0.01);
+        if (state.spawnClock >= spawnEvery) {
+          state.spawnClock = 0;
+          spawnHeart();
+        }
+
+        const basketY = canvas.height - state.basketH - 22;
+
+        state.hearts = state.hearts.filter((heart) => {
+          heart.wobble += heart.wobbleRate * dt;
+          heart.x += Math.sin(heart.wobble) * 28 * dt;
+          heart.x = Math.max(0, Math.min(canvas.width - heart.size, heart.x));
+          heart.y += heart.speed * dt;
+
+          const hitX = heart.x + heart.size > state.basketX && heart.x < state.basketX + state.basketW;
+          const hitY = heart.y + heart.size >= basketY && heart.y <= basketY + state.basketH;
+
+          if (hitX && hitY) {
+            state.score += 1;
+            if (scoreEl) scoreEl.textContent = String(state.score);
+            return false;
+          }
+
+          return heart.y < canvas.height + 26;
+        });
+
+        if (state.secondClock >= 1) {
+          state.secondClock = 0;
+          state.timeLeft -= 1;
+          if (timeEl) timeEl.textContent = String(Math.max(state.timeLeft, 0));
+          if (state.timeLeft <= 0) finishGame();
+        }
+
+        drawScene();
+      };
+
+      const loop = (ts) => {
+        const dt = Math.min(0.033, (ts - state.lastTs) / 1000);
+        state.lastTs = ts;
+        update(dt);
+        state.rafId = window.requestAnimationFrame(loop);
+      };
+
+      const moveBasket = (clientX) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = ((clientX - rect.left) / rect.width) * canvas.width;
+        state.basketX = Math.max(0, Math.min(canvas.width - state.basketW, x - state.basketW / 2));
+      };
+
+      canvas.addEventListener('mousemove', (event) => moveBasket(event.clientX));
+      canvas.addEventListener('touchmove', (event) => {
+        if (!event.touches[0]) return;
+        moveBasket(event.touches[0].clientX);
+      }, { passive: true });
+
+      if (startBtn) {
+        startBtn.addEventListener('click', () => {
+          resetGame();
+          state.running = true;
+          if (resultEl) resultEl.textContent = '加油，接住更多爱心！';
+          startBtn.textContent = '游戏进行中';
+        });
+      }
+
+      resetGame();
+      drawScene();
+      state.rafId = window.requestAnimationFrame(loop);
+      window.addEventListener('beforeunload', () => window.cancelAnimationFrame(state.rafId));
+    })();
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Zhi+Mang+Xing&display=swap');
+
+    .love-root {
+      --bg-1: #fff7f2;
+      --bg-2: #ffe2ea;
+      --ink: #59283c;
+      --rose: #ff4d6d;
+      --rose-soft: #ff8fab;
+      --cream: #fffaf5;
+      min-height: 100vh;
+      padding: 2.2rem 1rem 4rem;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.75), transparent 45%),
+        radial-gradient(circle at 90% 0%, rgba(255, 143, 171, 0.2), transparent 40%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      color: var(--ink);
+      font-family: 'Noto Serif SC', 'STSong', serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .float-heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 77, 109, 0.24);
+      font-size: 1rem;
+      animation-name: drift-up;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes drift-up {
+      from {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.9;
+      }
+
+      to {
+        transform: translateY(-115vh) translateX(10px) rotate(18deg);
+        opacity: 0;
+      }
+    }
+
+    .panel {
+      width: min(920px, 100%);
+      margin: 0 auto 1rem;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 164, 188, 0.55);
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(173, 45, 74, 0.12);
+      padding: 1.4rem;
+    }
+
+    .hero {
+      padding-top: 1.8rem;
+      text-align: center;
+      animation: rise-in 0.7s ease both;
+    }
+
+    .eyebrow {
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      color: rgba(89, 40, 60, 0.75);
+      margin-bottom: 0.4rem;
+    }
+
+    .title {
+      margin: 0;
+      font-size: clamp(2.2rem, 5.7vw, 3.8rem);
+      line-height: 1.1;
+      color: #7d1f3e;
+    }
+
+    .title span {
+      font-family: 'Zhi Mang Xing', 'KaiTi', cursive;
+      font-size: 1.18em;
+      color: var(--rose);
+      text-shadow: 0 6px 16px rgba(255, 77, 109, 0.25);
+    }
+
+    .subtitle {
+      margin: 0.85rem auto 0;
+      max-width: 42ch;
+      font-size: 1.05rem;
+      color: rgba(89, 40, 60, 0.85);
+    }
+
+    .timer-box {
+      margin: 1.25rem auto 0;
+      width: fit-content;
+      min-width: min(100%, 500px);
+      padding: 0.85rem 1.1rem;
+      border-radius: 16px;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(255, 228, 236, 0.95));
+      border: 1px solid rgba(255, 143, 171, 0.42);
+    }
+
+    .timer-box p {
+      margin: 0;
+    }
+
+    .counter {
+      margin-top: 0.4rem;
+      font-size: clamp(1.1rem, 3.8vw, 1.5rem);
+      font-weight: 700;
+      color: #892443;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.3rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 0.98rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.solid {
+      background: linear-gradient(120deg, var(--rose), #ff7aa2);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(255, 77, 109, 0.28);
+    }
+
+    .btn.ghost {
+      color: #7b2542;
+      border-color: rgba(255, 77, 109, 0.45);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .letter-card {
+      transform-origin: top center;
+      animation: fold-in 0.45s ease both;
+    }
+
+    .letter-card h2 {
+      margin: 0;
+      color: #8f2b4d;
+    }
+
+    .letter-card p {
+      margin: 0.8rem 0 0;
+      line-height: 1.9;
+      color: rgba(89, 40, 60, 0.95);
+    }
+
+    .memories h2,
+    .game-panel h2 {
+      margin: 0;
+      font-size: 1.45rem;
+      color: #842543;
+    }
+
+    .memory-grid {
+      margin-top: 0.9rem;
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    .memory-item {
+      background: var(--cream);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 143, 171, 0.45);
+      padding: 0.9rem;
+      cursor: pointer;
+      animation: rise-in 0.6s ease both;
+      animation-delay: var(--delay, 0ms);
+    }
+
+    .memory-time {
+      margin: 0;
+      font-size: 0.82rem;
+      color: rgba(89, 40, 60, 0.62);
+    }
+
+    .memory-item h3 {
+      margin: 0.28rem 0 0;
+      font-size: 1.08rem;
+    }
+
+    .memory-item p {
+      margin: 0.45rem 0 0;
+      color: rgba(89, 40, 60, 0.92);
+      line-height: 1.72;
+    }
+
+    .memory-item.pop {
+      transform: scale(1.02);
+    }
+
+    .game-panel {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .game-panel > p {
+      margin: 0.4rem 0 0;
+    }
+
+    .game-status {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 1rem;
+      color: rgba(89, 40, 60, 0.85);
+    }
+
+    .game-status p {
+      margin: 0;
+    }
+
+    #heart-game {
+      width: min(100%, 360px);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 143, 171, 0.55);
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+      touch-action: pan-y;
+    }
+
+    .game-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .game-result {
+      margin: 0;
+      color: rgba(89, 40, 60, 0.9);
+    }
+
+    .burst-heart {
+      position: fixed;
+      transform: translate(-50%, -50%);
+      animation: burst 1.2s ease forwards;
+      font-size: 1rem;
+      color: var(--rose);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes burst {
+      from {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.1;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fold-in {
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scaleY(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .panel {
+        padding: 1.05rem;
+        border-radius: 18px;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .game-actions {
+        align-items: stretch;
+      }
+
+      .game-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</Layout>
