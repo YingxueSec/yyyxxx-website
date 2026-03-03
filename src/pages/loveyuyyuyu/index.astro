@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 const pageConfig = {
   diaryTitle: '温柔小🐿&暴躁小🐒的恋爱日记📒',
   introQuote: '世间所有的相遇，都是久别重逢。',
+  togetherSince: '2024-05-01',
   introSummary: '从 2024 年 5 月到 2026 年，下面每一页都是真实发生过的我们。',
   chapters: [
     {
@@ -14,7 +15,7 @@ const pageConfig = {
         '五月的风里裹着一场小雨，你买了两杯霸王茶姬，站在那里等我。',
         '出租车上我问你紧张吗，你说不紧张。可是我紧张得不行，心跳快得像要溢出来。',
         '去泰华城吃了饭，一起看了《维和特工队》，灯光暗下来的时候，好像整个世界只剩我们两个人。',
-        '临走你说要送我东西，结果又没给我。哼，欠我的，记着呢。'
+        '临走你说要送我东西，结果又没给我。哼，欠我的，记着呢 🫣'
       ]
     },
     {
@@ -24,7 +25,7 @@ const pageConfig = {
       paragraphs: [
         '你在国开行下班早了些，我们临时起意去撸串。',
         '烟火气弥漫的小桌前，忽然觉得，我们之间的距离好像近了好多。',
-        '那天的串很香，但更让人心动的，是那份说走就走的默契。'
+        '那天的串很香，但更让人心动的，是那份说走就走的默契 😄'
       ]
     },
     {
@@ -35,7 +36,7 @@ const pageConfig = {
         '你来北京了。',
         '地铁站人来人往，可我一眼就看到了你。',
         '什么话都没说，只是紧紧地抱了抱。',
-        '那一刻，所有的等待都有了意义。'
+        '那一刻，所有的等待都有了意义 🤗'
       ]
     },
     {
@@ -45,7 +46,7 @@ const pageConfig = {
       paragraphs: [
         '你开始教我做菜，认认真真地传授“小宋师傅心经”。',
         '先放油，然后放肉，炒熟放葱姜蒜，闻到香味，放菜品，然后放生抽酱油醋，菜品熟了就出锅。',
-        '简单的几句话，却是你把生活的温柔，一点一点揉进了烟火里。'
+        '简单的几句话，却是你把生活的温柔，一点一点揉进了烟火里 🥘'
       ],
       quoteIndex: 1
     },
@@ -66,7 +67,7 @@ const pageConfig = {
       paragraphs: [
         '新年的第一天，我们做了好多好吃的。',
         '满满一桌子菜，我拍了照发到同事群里炫耀：“看！这是我们的元旦！”',
-        '哈哈哈，就是想让全世界都知道我有多幸福。'
+        '哈哈哈，就是想让全世界都知道我有多幸福 ✨'
       ]
     },
     {
@@ -76,7 +77,7 @@ const pageConfig = {
       paragraphs: [
         '在一起后的第一个生日，你为我张罗了一桌好菜，还有蛋糕。',
         '烛光摇曳的时候，我许了一个愿，关于你，关于我们。',
-        '这是我收到过最温暖的生日礼物，不是蛋糕，是你在身边。'
+        '这是我收到过最温暖的生日礼物，不是蛋糕，是你在身边 🎁'
       ]
     },
     {
@@ -86,7 +87,7 @@ const pageConfig = {
       paragraphs: [
         '这一年我们吵过、闹过、哭过、笑过。',
         '分分合合之间，却也更加笃定：兜兜转转，还是你。',
-        '很充实，很真实。'
+        '很充实，很真实，嘿嘿嘿 💕'
       ]
     },
     {
@@ -96,7 +97,7 @@ const pageConfig = {
       paragraphs: [
         '今年生日去了海底捞，提着蛋糕去，提着蛋糕回。',
         '火锅的热气蒸腾，模糊了你的脸，却模糊不了我心里的甜。',
-        '又长大了一岁，而身边还是你，真好。'
+        '又长大了一岁，而身边还是你，真好 🫶'
       ]
     }
   ],
@@ -108,7 +109,7 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
 ---
 
 <Layout title={pageTitle} description={pageDescription} noindex={true}>
-  <main class="love-root" data-astro-cid-sntj2j5j>
+  <main class="love-root" data-since={pageConfig.togetherSince}>
     <div class="progress-track" aria-hidden="true">
       <span id="scroll-progress"></span>
     </div>
@@ -134,6 +135,20 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
         <span>2024 → 2026</span>
       </div>
 
+      <div class="together-panel" aria-live="polite">
+        <p class="together-label">在一起时间从 2024年5月1日 开始</p>
+        <p id="together-counter" class="together-counter">加载中...</p>
+        <p id="next-anniversary" class="next-anniversary">计算中...</p>
+      </div>
+
+      <nav class="chapter-nav" aria-label="章节速览">
+        {pageConfig.chapters.map((chapter, idx) => (
+          <a href={`#chapter-${idx + 1}`} class="chapter-link">
+            {chapter.icon} {chapter.date}
+          </a>
+        ))}
+      </nav>
+
       <div class="hero-actions">
         <button id="burst-btn" class="btn solid" type="button">点亮这一页</button>
         <a class="btn ghost" href="#timeline">查看时间线</a>
@@ -144,7 +159,7 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
       <h2>恋爱时间线</h2>
       <ol class="diary-list">
         {pageConfig.chapters.map((chapter, idx) => (
-          <li class="diary-item" data-index={idx}>
+          <li class="diary-item" data-index={idx} id={`chapter-${idx + 1}`}>
             <p class="diary-head">
               <span class="date-chip">{chapter.icon} {chapter.date}</span>
             </p>
@@ -198,6 +213,10 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
       const burstBtn = document.getElementById('burst-btn');
       const diaryCards = Array.from(document.querySelectorAll('.diary-item'));
       const scrollProgress = document.getElementById('scroll-progress');
+      const togetherCounter = document.getElementById('together-counter');
+      const nextAnniversary = document.getElementById('next-anniversary');
+      const sinceRaw = root.getAttribute('data-since') || '2024-05-01';
+      const togetherSince = new Date(`${sinceRaw}T00:00:00+08:00`);
 
       const revealAll = () => revealEls.forEach((el, idx) => {
         window.setTimeout(() => el.classList.add('is-visible'), idx * 100);
@@ -216,6 +235,33 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
       } else {
         revealAll();
       }
+
+      const pad = (num) => String(num).padStart(2, '0');
+      const updateTogether = () => {
+        const now = new Date();
+        const diff = Math.max(0, now.getTime() - togetherSince.getTime());
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        if (togetherCounter) {
+          togetherCounter.textContent = `${days} 天 ${pad(hours)} 小时 ${pad(minutes)} 分 ${pad(seconds)} 秒`;
+        }
+
+        const nextYear = (now.getMonth() > 4 || (now.getMonth() === 4 && now.getDate() > 1))
+          ? now.getFullYear() + 1
+          : now.getFullYear();
+        const nextDate = new Date(`${nextYear}-05-01T00:00:00+08:00`);
+        const leftDays = Math.ceil((nextDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+        if (nextAnniversary) {
+          nextAnniversary.textContent = `距离 ${nextYear} 年 5 月 1 日纪念日还有 ${Math.max(leftDays, 0)} 天`;
+        }
+      };
+
+      updateTogether();
+      window.setInterval(updateTogether, 1000);
 
       const burstHearts = (x, y, count = 14) => {
         if (!heartLayer) return;
@@ -765,6 +811,63 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
       color: #7b2542;
     }
 
+    .together-panel {
+      margin: 1rem auto 0;
+      padding: 0.85rem 1rem;
+      width: min(100%, 620px);
+      border-radius: 16px;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.94), rgba(255, 236, 243, 0.94));
+      border: 1px solid rgba(255, 124, 160, 0.38);
+      box-shadow: 0 10px 20px rgba(255, 110, 150, 0.12);
+    }
+
+    .together-label {
+      margin: 0;
+      font-size: 0.92rem;
+      color: rgba(89, 40, 60, 0.85);
+    }
+
+    .together-counter {
+      margin: 0.3rem 0 0;
+      font-size: clamp(1.1rem, 3.8vw, 1.45rem);
+      font-weight: 700;
+      color: #8f2648;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 12px rgba(255, 122, 162, 0.16);
+    }
+
+    .next-anniversary {
+      margin: 0.35rem 0 0;
+      font-size: 0.88rem;
+      color: rgba(89, 40, 60, 0.74);
+    }
+
+    .chapter-nav {
+      margin: 0.9rem auto 0;
+      display: flex;
+      gap: 0.45rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: min(100%, 840px);
+    }
+
+    .chapter-link {
+      text-decoration: none;
+      font-size: 0.82rem;
+      color: #7a2441;
+      border: 1px solid rgba(255, 124, 160, 0.35);
+      border-radius: 999px;
+      padding: 0.28rem 0.62rem;
+      background: rgba(255, 255, 255, 0.8);
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .chapter-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 77, 109, 0.55);
+      background: rgba(255, 241, 247, 0.95);
+    }
+
     .hero-actions {
       display: flex;
       justify-content: center;
@@ -1079,6 +1182,13 @@ const pageDescription = '给晓玉的真实恋爱时间线，记录温柔小🐿
       .panel {
         padding: 1.05rem;
         border-radius: 18px;
+      }
+
+      .chapter-nav {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
       }
 
       .btn,
