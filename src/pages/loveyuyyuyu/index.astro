@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 const pageConfig = {
-  partnerName: '小雨',
+  partnerName: '晓玉',
   fromName: '宇宇',
   togetherSince: '2024-05-20',
   letterTitle: '给你的一封小信',
@@ -40,12 +40,27 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
     data-letter-title={pageConfig.letterTitle}
     data-letter-body={pageConfig.letterBody}
   >
+    <div class="aurora" aria-hidden="true">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="blob b3"></span>
+    </div>
+    <div class="cursor-glow" aria-hidden="true"></div>
     <div class="floating-hearts" aria-hidden="true"></div>
+    <div class="sparkle-rain" aria-hidden="true"></div>
 
-    <section class="hero panel">
-      <p class="eyebrow">/loveyuyyuyu/</p>
+    <section class="hero panel reveal">
+      <p class="eyebrow">/loveyuyyuyu/ · for {pageConfig.partnerName}</p>
       <h1 class="title">给 <span>{pageConfig.partnerName}</span> 的小宇宙</h1>
       <p class="subtitle">你负责可爱，我负责把每个普通日子都过成节日。</p>
+
+      <div class="love-beat" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
       <div class="timer-box" aria-live="polite">
         <p>我们已经并肩走过</p>
@@ -58,12 +73,12 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       </div>
     </section>
 
-    <section id="letter-card" class="panel letter-card" hidden>
+    <section id="letter-card" class="panel letter-card reveal" hidden>
       <h2 id="letter-title">{pageConfig.letterTitle}</h2>
-      <p id="letter-body">{pageConfig.letterBody}</p>
+      <p id="letter-body" data-raw={pageConfig.letterBody}>{pageConfig.letterBody}</p>
     </section>
 
-    <section class="panel memories">
+    <section class="panel memories reveal">
       <h2>我们的小瞬间</h2>
       <div class="memory-grid">
         {pageConfig.memories.map((item, idx) => (
@@ -76,7 +91,13 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       </div>
     </section>
 
-    <section id="mini-game" class="panel game-panel">
+    <section class="panel capsule reveal">
+      <h2>今日甜度扭蛋</h2>
+      <p id="capsule-result" class="capsule-result">点一下，抽一条今天的专属情话。</p>
+      <button id="capsule-btn" class="btn solid" type="button">抽一条</button>
+    </section>
+
+    <section id="mini-game" class="panel game-panel reveal">
       <div>
         <h2>爱心接接乐</h2>
         <p>移动底部小篮子接住掉落的爱心，30 秒结束。鼠标和触摸都支持。</p>
@@ -103,12 +124,20 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
 
       const counterEl = document.getElementById('together-counter');
       const letterCard = document.getElementById('letter-card');
+      const letterBody = document.getElementById('letter-body');
       const openLetterBtn = document.getElementById('open-letter');
       const memories = Array.from(document.querySelectorAll('.memory-item'));
       const heartLayer = document.querySelector('.floating-hearts');
+      const sparkleLayer = document.querySelector('.sparkle-rain');
+      const cursorGlow = document.querySelector('.cursor-glow');
+      const capsuleBtn = document.getElementById('capsule-btn');
+      const capsuleResult = document.getElementById('capsule-result');
+      const revealEls = Array.from(document.querySelectorAll('.reveal'));
 
+      const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const sinceRaw = root.getAttribute('data-since') || '2024-05-20';
       const sinceDate = new Date(sinceRaw + 'T00:00:00+08:00');
+      const letterRaw = letterBody?.getAttribute('data-raw') || letterBody?.textContent || '';
 
       const pad = (num) => String(num).padStart(2, '0');
       const updateCounter = () => {
@@ -128,6 +157,50 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       updateCounter();
       window.setInterval(updateCounter, 1000);
 
+      const revealAll = () => revealEls.forEach((el, idx) => {
+        window.setTimeout(() => el.classList.add('is-visible'), idx * 90);
+      });
+
+      if (!prefersReduce && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealAll();
+      }
+
+      let typingTimer = 0;
+      const typeLetter = () => {
+        if (!letterBody) return;
+        if (prefersReduce) {
+          letterBody.textContent = letterRaw;
+          return;
+        }
+        if (typingTimer) {
+          window.clearTimeout(typingTimer);
+          typingTimer = 0;
+        }
+
+        let cursor = 0;
+        letterBody.textContent = '';
+
+        const step = () => {
+          cursor += 1 + Math.floor(Math.random() * 2);
+          letterBody.textContent = letterRaw.slice(0, cursor);
+          if (cursor < letterRaw.length) {
+            typingTimer = window.setTimeout(step, 22 + Math.random() * 48);
+          }
+        };
+
+        step();
+      };
+
       const burstHearts = (x, y, count = 14) => {
         if (!heartLayer) return;
 
@@ -135,7 +208,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
           const heart = document.createElement('span');
           heart.className = 'burst-heart';
           const angle = (Math.PI * 2 * i) / count;
-          const distance = 30 + Math.random() * 80;
+          const distance = 26 + Math.random() * 88;
           heart.style.setProperty('--tx', `${Math.cos(angle) * distance}px`);
           heart.style.setProperty('--ty', `${Math.sin(angle) * distance}px`);
           heart.style.left = `${x}px`;
@@ -143,6 +216,22 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
           heart.textContent = Math.random() > 0.5 ? '❤' : '💗';
           heartLayer.appendChild(heart);
           window.setTimeout(() => heart.remove(), 1300);
+        }
+      };
+
+      const emitGameSpark = (x, y, count = 8) => {
+        if (!heartLayer) return;
+
+        for (let i = 0; i < count; i += 1) {
+          const spark = document.createElement('span');
+          spark.className = 'game-spark';
+          spark.style.left = `${x}px`;
+          spark.style.top = `${y}px`;
+          spark.style.setProperty('--vx', `${(Math.random() - 0.5) * 120}px`);
+          spark.style.setProperty('--vy', `${-30 - Math.random() * 90}px`);
+          spark.style.setProperty('--scale', `${0.6 + Math.random() * 0.8}`);
+          heartLayer.appendChild(spark);
+          window.setTimeout(() => spark.remove(), 800);
         }
       };
 
@@ -154,6 +243,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
             letterCard.removeAttribute('hidden');
             letterCard.classList.add('show');
             openLetterBtn.textContent = '收起小信封';
+            typeLetter();
 
             const rect = event.currentTarget.getBoundingClientRect();
             burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
@@ -161,12 +251,28 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
             letterCard.setAttribute('hidden', '');
             letterCard.classList.remove('show');
             openLetterBtn.textContent = '展开小信封';
+            if (letterBody) letterBody.textContent = letterRaw;
           }
         });
       }
 
       memories.forEach((card, idx) => {
-        card.style.setProperty('--delay', `${idx * 120}ms`);
+        card.style.setProperty('--delay', `${idx * 110}ms`);
+
+        card.addEventListener('pointermove', (event) => {
+          if (prefersReduce) return;
+          const rect = card.getBoundingClientRect();
+          const px = ((event.clientX - rect.left) / rect.width) - 0.5;
+          const py = ((event.clientY - rect.top) / rect.height) - 0.5;
+          card.style.setProperty('--rx', `${(-py * 7).toFixed(2)}deg`);
+          card.style.setProperty('--ry', `${(px * 9).toFixed(2)}deg`);
+        });
+
+        card.addEventListener('pointerleave', () => {
+          card.style.setProperty('--rx', '0deg');
+          card.style.setProperty('--ry', '0deg');
+        });
+
         card.addEventListener('click', (event) => {
           const rect = event.currentTarget.getBoundingClientRect();
           burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 10);
@@ -176,15 +282,64 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       });
 
       if (heartLayer) {
-        for (let i = 0; i < 26; i += 1) {
+        const heartCount = window.innerWidth < 600 ? 18 : 34;
+        for (let i = 0; i < heartCount; i += 1) {
           const floatHeart = document.createElement('span');
           floatHeart.className = 'float-heart';
           floatHeart.textContent = Math.random() > 0.5 ? '❤' : '♡';
           floatHeart.style.left = `${Math.random() * 100}%`;
-          floatHeart.style.animationDelay = `${Math.random() * 8}s`;
-          floatHeart.style.animationDuration = `${10 + Math.random() * 12}s`;
+          floatHeart.style.animationDelay = `${Math.random() * 10}s`;
+          floatHeart.style.animationDuration = `${9 + Math.random() * 12}s`;
           heartLayer.appendChild(floatHeart);
         }
+      }
+
+      if (sparkleLayer && !prefersReduce) {
+        const sparkleCount = window.innerWidth < 600 ? 24 : 45;
+        for (let i = 0; i < sparkleCount; i += 1) {
+          const star = document.createElement('span');
+          star.className = 'star';
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.animationDelay = `${Math.random() * 6}s`;
+          star.style.animationDuration = `${2.2 + Math.random() * 3.8}s`;
+          sparkleLayer.appendChild(star);
+        }
+      }
+
+      const capsuleLines = [
+        '今天也想把“我喜欢你”说上 100 遍。',
+        '你一个眼神，就能把我一天的坏情绪清空。',
+        '和你分享琐碎日常，是我最上头的浪漫。',
+        '如果快乐有名字，那一定有你。',
+        '今天也请继续做我的宇宙第一可爱。',
+        '你出现以后，连风都在给我递糖。'
+      ];
+
+      if (capsuleBtn && capsuleResult) {
+        capsuleBtn.addEventListener('click', (event) => {
+          const line = capsuleLines[Math.floor(Math.random() * capsuleLines.length)];
+          capsuleResult.textContent = line;
+          capsuleResult.classList.remove('flash');
+          void capsuleResult.offsetWidth;
+          capsuleResult.classList.add('flash');
+
+          const rect = event.currentTarget.getBoundingClientRect();
+          burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+        });
+      }
+
+      if (cursorGlow && !prefersReduce) {
+        window.addEventListener('pointermove', (event) => {
+          cursorGlow.style.left = `${event.clientX}px`;
+          cursorGlow.style.top = `${event.clientY}px`;
+          cursorGlow.style.opacity = '1';
+        });
+
+        window.addEventListener('pointerdown', () => {
+          cursorGlow.classList.add('active');
+          window.setTimeout(() => cursorGlow.classList.remove('active'), 180);
+        });
       }
 
       const canvas = document.getElementById('heart-game');
@@ -304,7 +459,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
         state.spawnClock += dt;
         state.secondClock += dt;
 
-        const spawnEvery = Math.max(0.26, 0.72 - state.score * 0.01);
+        const spawnEvery = Math.max(0.24, 0.7 - state.score * 0.01);
         if (state.spawnClock >= spawnEvery) {
           state.spawnClock = 0;
           spawnHeart();
@@ -324,6 +479,14 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
           if (hitX && hitY) {
             state.score += 1;
             if (scoreEl) scoreEl.textContent = String(state.score);
+
+            const rect = canvas.getBoundingClientRect();
+            emitGameSpark(
+              rect.left + (heart.x + heart.size / 2) / canvas.width * rect.width,
+              rect.top + (heart.y + heart.size / 2) / canvas.height * rect.height,
+              7
+            );
+
             return false;
           }
 
@@ -361,6 +524,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
 
       if (startBtn) {
         startBtn.addEventListener('click', () => {
+          if (state.running) return;
           resetGame();
           state.running = true;
           if (resultEl) resultEl.textContent = '加油，接住更多爱心！';
@@ -389,15 +553,85 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       padding: 2.2rem 1rem 4rem;
       background:
         radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.75), transparent 45%),
-        radial-gradient(circle at 90% 0%, rgba(255, 143, 171, 0.2), transparent 40%),
+        radial-gradient(circle at 90% 0%, rgba(255, 143, 171, 0.24), transparent 40%),
         linear-gradient(160deg, var(--bg-1), var(--bg-2));
       color: var(--ink);
       font-family: 'Noto Serif SC', 'STSong', serif;
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
-    .floating-hearts {
+    .aurora {
+      position: fixed;
+      inset: -20vh -12vw;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(28px);
+      opacity: 0.6;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      animation: blob-float 18s ease-in-out infinite;
+    }
+
+    .blob.b1 {
+      width: 44vw;
+      height: 44vw;
+      min-width: 220px;
+      min-height: 220px;
+      background: radial-gradient(circle, rgba(255, 130, 176, 0.48), transparent 66%);
+      left: 0;
+      top: 4%;
+    }
+
+    .blob.b2 {
+      width: 48vw;
+      height: 48vw;
+      min-width: 260px;
+      min-height: 260px;
+      background: radial-gradient(circle, rgba(255, 190, 214, 0.52), transparent 72%);
+      right: 4%;
+      top: 0;
+      animation-delay: -6s;
+    }
+
+    .blob.b3 {
+      width: 52vw;
+      height: 52vw;
+      min-width: 280px;
+      min-height: 280px;
+      background: radial-gradient(circle, rgba(255, 107, 138, 0.35), transparent 68%);
+      left: 28%;
+      bottom: -10%;
+      animation-delay: -12s;
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      pointer-events: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255, 103, 145, 0.3), rgba(255, 103, 145, 0.08) 45%, transparent 70%);
+      filter: blur(8px);
+      opacity: 0;
+      z-index: 0;
+      transition: transform 0.15s ease, opacity 0.25s ease;
+    }
+
+    .cursor-glow.active {
+      transform: translate(-50%, -50%) scale(0.86);
+    }
+
+    .floating-hearts,
+    .sparkle-rain {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -415,20 +649,20 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       animation-iteration-count: infinite;
     }
 
-    @keyframes drift-up {
-      from {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      animation: twinkle ease-in-out infinite;
+    }
 
-      20% {
-        opacity: 0.9;
-      }
-
-      to {
-        transform: translateY(-115vh) translateX(10px) rotate(18deg);
-        opacity: 0;
-      }
+    .star:nth-child(3n) {
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 220, 230, 0.9);
     }
 
     .panel {
@@ -436,18 +670,41 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       margin: 0 auto 1rem;
       position: relative;
       z-index: 1;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 164, 188, 0.55);
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 164, 188, 0.58);
       border-radius: 24px;
-      box-shadow: 0 12px 30px rgba(173, 45, 74, 0.12);
+      box-shadow: 0 14px 34px rgba(173, 45, 74, 0.13);
       padding: 1.4rem;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -140%;
+      width: 120%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 124, 160, 0.7), transparent);
+      animation: panel-scan 7s linear infinite;
+      pointer-events: none;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     .hero {
       padding-top: 1.8rem;
       text-align: center;
-      animation: rise-in 0.7s ease both;
     }
 
     .eyebrow {
@@ -460,15 +717,17 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
     .title {
       margin: 0;
       font-size: clamp(2.2rem, 5.7vw, 3.8rem);
-      line-height: 1.1;
+      line-height: 1.08;
       color: #7d1f3e;
     }
 
     .title span {
+      display: inline-block;
       font-family: 'Zhi Mang Xing', 'KaiTi', cursive;
       font-size: 1.18em;
       color: var(--rose);
       text-shadow: 0 6px 16px rgba(255, 77, 109, 0.25);
+      animation: float-name 4.6s ease-in-out infinite;
     }
 
     .subtitle {
@@ -478,6 +737,27 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       color: rgba(89, 40, 60, 0.85);
     }
 
+    .love-beat {
+      margin: 1rem auto 0;
+      display: flex;
+      width: fit-content;
+      gap: 0.24rem;
+      align-items: flex-end;
+    }
+
+    .love-beat span {
+      width: 4px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ff9ebb, #ff5075);
+      animation: beat 1.2s ease-in-out infinite;
+    }
+
+    .love-beat span:nth-child(2) { animation-delay: 0.08s; }
+    .love-beat span:nth-child(3) { animation-delay: 0.16s; }
+    .love-beat span:nth-child(4) { animation-delay: 0.24s; }
+    .love-beat span:nth-child(5) { animation-delay: 0.32s; }
+
     .timer-box {
       margin: 1.25rem auto 0;
       width: fit-content;
@@ -486,6 +766,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       border-radius: 16px;
       background: linear-gradient(120deg, rgba(255, 255, 255, 0.95), rgba(255, 228, 236, 0.95));
       border: 1px solid rgba(255, 143, 171, 0.42);
+      box-shadow: 0 8px 18px rgba(255, 103, 145, 0.12);
     }
 
     .timer-box p {
@@ -498,6 +779,7 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       font-weight: 700;
       color: #892443;
       letter-spacing: 0.02em;
+      text-shadow: 0 2px 12px rgba(255, 122, 162, 0.16);
     }
 
     .hero-actions {
@@ -519,17 +801,33 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       font-size: 0.98rem;
       text-decoration: none;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      left: -120%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transition: left 0.45s ease;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .btn:hover::after {
+      left: 120%;
     }
 
     .btn.solid {
       background: linear-gradient(120deg, var(--rose), #ff7aa2);
       color: #fff;
-      box-shadow: 0 12px 24px rgba(255, 77, 109, 0.28);
+      box-shadow: 0 12px 24px rgba(255, 77, 109, 0.3);
+      animation: pulse-btn 3.1s ease-in-out infinite;
     }
 
     .btn.ghost {
@@ -541,6 +839,8 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
     .letter-card {
       transform-origin: top center;
       animation: fold-in 0.45s ease both;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.93), rgba(255, 245, 248, 0.9));
     }
 
     .letter-card h2 {
@@ -552,10 +852,12 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       margin: 0.8rem 0 0;
       line-height: 1.9;
       color: rgba(89, 40, 60, 0.95);
+      min-height: 6.2em;
     }
 
     .memories h2,
-    .game-panel h2 {
+    .game-panel h2,
+    .capsule h2 {
       margin: 0;
       font-size: 1.45rem;
       color: #842543;
@@ -569,13 +871,23 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
     }
 
     .memory-item {
+      --rx: 0deg;
+      --ry: 0deg;
       background: var(--cream);
       border-radius: 16px;
       border: 1px solid rgba(255, 143, 171, 0.45);
       padding: 0.9rem;
       cursor: pointer;
-      animation: rise-in 0.6s ease both;
+      animation: rise-in 0.62s ease both;
       animation-delay: var(--delay, 0ms);
+      transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 6px 14px rgba(173, 45, 74, 0.08);
+    }
+
+    .memory-item:hover {
+      border-color: rgba(255, 107, 147, 0.62);
+      box-shadow: 0 10px 24px rgba(173, 45, 74, 0.18);
     }
 
     .memory-time {
@@ -596,16 +908,34 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
     }
 
     .memory-item.pop {
-      transform: scale(1.02);
+      transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.03);
+    }
+
+    .capsule {
+      display: grid;
+      gap: 0.8rem;
+      place-items: start;
+    }
+
+    .capsule-result {
+      margin: 0;
+      min-height: 2.6em;
+      line-height: 1.8;
+      color: rgba(89, 40, 60, 0.95);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px dashed rgba(255, 143, 171, 0.52);
+      border-radius: 12px;
+      padding: 0.6rem 0.75rem;
+      width: 100%;
+    }
+
+    .capsule-result.flash {
+      animation: capsule-flash 0.45s ease;
     }
 
     .game-panel {
       display: grid;
       gap: 0.8rem;
-    }
-
-    .game-panel > p {
-      margin: 0.4rem 0 0;
     }
 
     .game-status {
@@ -624,8 +954,11 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       width: min(100%, 360px);
       border-radius: 14px;
       border: 1px solid rgba(255, 143, 171, 0.55);
-      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+      box-shadow:
+        inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+        0 12px 24px rgba(255, 95, 139, 0.2);
       touch-action: pan-y;
+      animation: canvas-breath 3.6s ease-in-out infinite;
     }
 
     .game-actions {
@@ -650,6 +983,104 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       z-index: 10;
     }
 
+    .game-spark {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0%, #ffd3e3 68%, #ff7aa2 100%);
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(var(--scale));
+      animation: spark-fly 0.8s ease-out forwards;
+      z-index: 9;
+    }
+
+    @keyframes drift-up {
+      from {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.9;
+      }
+
+      to {
+        transform: translateY(-115vh) translateX(10px) rotate(18deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.3);
+      }
+    }
+
+    @keyframes blob-float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      30% {
+        transform: translate3d(2vw, -2vh, 0) scale(1.05);
+      }
+
+      60% {
+        transform: translate3d(-3vw, 3vh, 0) scale(0.98);
+      }
+    }
+
+    @keyframes panel-scan {
+      from { left: -140%; }
+      to { left: 140%; }
+    }
+
+    @keyframes float-name {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes beat {
+      0%, 100% { height: 10px; }
+      50% { height: 24px; }
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { box-shadow: 0 12px 24px rgba(255, 77, 109, 0.3); }
+      50% { box-shadow: 0 14px 30px rgba(255, 77, 109, 0.42); }
+    }
+
+    @keyframes capsule-flash {
+      from {
+        transform: scale(0.98);
+        filter: brightness(1.1);
+      }
+      to {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+    }
+
+    @keyframes canvas-breath {
+      0%, 100% {
+        box-shadow:
+          inset 0 0 0 2px rgba(255, 255, 255, 0.3),
+          0 12px 24px rgba(255, 95, 139, 0.16);
+      }
+      50% {
+        box-shadow:
+          inset 0 0 0 2px rgba(255, 255, 255, 0.35),
+          0 15px 28px rgba(255, 95, 139, 0.28);
+      }
+    }
+
     @keyframes burst {
       from {
         transform: translate(-50%, -50%) scale(0.5);
@@ -663,6 +1094,18 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
       to {
         transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2);
         opacity: 0;
+      }
+    }
+
+    @keyframes spark-fly {
+      from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(var(--scale));
+      }
+
+      to {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--vx)), calc(-50% + var(--vy))) scale(0.1);
       }
     }
 
@@ -710,6 +1153,28 @@ const pageDescription = `在 /loveyuyyuyu/ 给 ${pageConfig.partnerName} 的专�
 
       .game-actions .btn {
         width: 100%;
+      }
+
+      .cursor-glow {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob,
+      .float-heart,
+      .star,
+      .panel::before,
+      .title span,
+      .btn.solid,
+      #heart-game,
+      .love-beat span {
+        animation: none !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
