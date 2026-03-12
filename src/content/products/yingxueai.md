@@ -1,7 +1,7 @@
 ---
 title: 映雪AI
-description: 面向开发者的 AI 编程套餐，支持 Codex、OpenClaw、Codex CLI 与 OpenAI Responses API，覆盖试用、主力开发到团队协作场景
-summary: 面向开发者的 AI 编程套餐，适合写代码、改 Bug、项目开发、课程作业与自动化工作流
+description: 纯官方原生 1:1 AI 编程套餐，不掺水分，支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
+summary: 纯官方原生 1:1 AI 编程套餐，支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
 order: 15
 iconType: image
 icon: /logo.png
@@ -16,26 +16,16 @@ badges:
     color: green
 featureTitle: 套餐亮点
 features:
-  - text: 支持 Codex / OpenClaw / Codex CLI
+  - text: 纯官方原生 1:1
     color: pink
-  - text: 支持 OpenAI Responses API
+  - text: 不掺水分
     color: indigo
-  - text: 覆盖试用到团队协作场景
+  - text: 支持龙虾 OpenClaw
     color: blue
-  - text: 适合写代码、改 Bug、项目开发
+  - text: 支持 Codex / Codex CLI
     color: green
-  - text: 支持多任务与 Agent 工作流
+  - text: 支持 OpenAI Responses API
     color: amber
-features2Title: 适用人群
-features2:
-  - text: 新手体验与短期试用
-    color: pink
-  - text: 学生与个人开发者
-    color: blue
-  - text: 高频编码用户
-    color: amber
-  - text: 小团队与自动化协作
-    color: indigo
 actions:
   - text: 立即加群咨询
     href: https://qm.qq.com/q/HASkWRLpw6
@@ -52,16 +42,16 @@ ctaLabel: 立即加入 QQ 群
 
 ## 产品简介
 
-映雪AI是面向开发者的 AI 编程套餐服务，重点解决“能不能稳定用、怎么选套餐、适不适合长期编码”这三个实际问题。  
-支持 Codex、OpenClaw、Codex CLI 与 OpenAI Responses API，适合日常写代码、修 Bug、课程项目、脚本开发和自动化工作流。
+映雪AI是面向开发者的 AI 编程套餐服务，主打纯官方原生 1:1，不掺水分。  
+支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API，适合日常编码、改 Bug、项目开发和自动化工作流。
 
 ## 核心卖点
 
 - 中国大陆可用，开箱即用
-- 支持多种开发客户端和工作流
+- 纯官方原生 1:1，不掺水分
+- 支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
 - 包日卡与包月方案并存，方便试用和长期使用
-- 从入门体验到高频开发，按需求自由选择
-- 学生、个人开发者、小团队都能找到合适方案
+- 从短期试用到长期高频使用，按需求自由选择
 
 ## 套餐方案
 
@@ -69,77 +59,71 @@ ctaLabel: 立即加入 QQ 群
   <div class="rounded-xl border border-border/60 bg-background/70 p-5">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">体验日卡</h3>
-      <span class="rounded-full bg-pink-500/10 px-3 py-1 text-xs font-medium text-pink-500">新手试用</span>
+      <span class="rounded-full bg-pink-500/10 px-3 py-1 text-xs font-medium text-pink-500">官方原生 1:1</span>
     </div>
     <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥5<span class="text-base font-medium text-muted-foreground"> / 天</span></p>
     <ul class="mb-0 mt-4">
       <li>每日限额 <code>$80</code></li>
       <li>并发 <code>5</code></li>
-      <li>适合先试用、短期赶作业、临时体验</li>
+      <li>支持龙虾 <code>OpenClaw</code></li>
+      <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Lite</h3>
-      <span class="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500">入门首选</span>
+      <span class="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500">官方原生 1:1</span>
     </div>
     <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥39<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
     <ul class="mb-0 mt-4">
       <li>每日限额 <code>$40</code></li>
       <li>并发 <code>8</code></li>
-      <li>适合体验、学习、轻度使用</li>
-      <li>适合刚接触 AI 编程的用户</li>
+      <li>支持龙虾 <code>OpenClaw</code></li>
+      <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
     </ul>
   </div>
   <div class="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-pink-500/10 p-5 shadow-sm">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Pro</h3>
-      <span class="rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">最受欢迎</span>
+      <span class="rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">官方原生 1:1</span>
     </div>
     <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥79<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
     <ul class="mb-0 mt-4">
       <li>每日限额 <code>$100</code></li>
       <li>并发 <code>15</code></li>
-      <li>适合大多数学生和个人开发者</li>
-      <li>适合日常写代码、问答、改 Bug、项目辅助</li>
-      <li>主推档，普通用户优先推荐</li>
+      <li>支持龙虾 <code>OpenClaw</code></li>
+      <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Max</h3>
-      <span class="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-500">高频开发</span>
+      <span class="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-500">官方原生 1:1</span>
     </div>
     <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥139<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
     <ul class="mb-0 mt-4">
       <li>每日限额 <code>$200</code></li>
       <li>并发 <code>25</code></li>
-      <li>适合高频编码、课程项目、长期使用</li>
-      <li>适合重度 OpenClaw / Codex 用户</li>
+      <li>支持龙虾 <code>OpenClaw</code></li>
+      <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5 md:col-span-2">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Ultra</h3>
-      <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-500">团队协作</span>
+      <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-500">官方原生 1:1</span>
     </div>
     <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥229<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
     <ul class="mb-0 mt-4 grid gap-2 md:grid-cols-2">
       <li>每日限额 <code>$350</code></li>
       <li>并发 <code>30</code></li>
-      <li>适合重度用户、小团队、多任务协作</li>
-      <li>适合 Agent、自动化工作流、团队开发场景</li>
+      <li>支持龙虾 <code>OpenClaw</code></li>
+      <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
     </ul>
   </div>
 </div>
 
-## 小白怎么选
-
-- 普通用户：优先选 `Codex Lite` 或 `Codex Pro`
-- 高频用户：优先选 `Codex Max`
-- 团队或 Agent 场景：优先选 `Codex Ultra`
-
-### 名词解释
+## 规格说明
 
 - `每日限额`：每天可用的总额度，越高代表越能长时间高频使用
 - `并发`：同一时间能同时跑多少个请求或任务，越高越适合多开、多窗口、Agent 工作流
@@ -148,7 +132,7 @@ ctaLabel: 立即加入 QQ 群
 
 - 所有套餐均采用公平使用原则
 - 在极端高频、异常占用或资源紧张时，系统可能触发限速、排队或调度保护
-- 如果你不确定怎么选，普通用户优先推荐 `Codex Pro`
+- 所有套餐均为纯官方原生 1:1，不掺水分
 
 ## QQ 群与咨询方式
 
