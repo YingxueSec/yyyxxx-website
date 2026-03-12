@@ -1,7 +1,7 @@
 ---
 title: 映雪AI
-description: 纯官方原生 1:1 AI 编程套餐，不掺水分，支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
-summary: 纯官方原生 1:1 AI 编程套餐，支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
+description: 纯官方原生 1:1 AI 编程套餐，不掺水分，支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 及 OpenAI 全系模型
+summary: 纯官方原生 1:1 AI 编程套餐，支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 及 OpenAI 全系模型
 order: 15
 iconType: image
 icon: /logo.png
@@ -24,7 +24,7 @@ features:
     color: blue
   - text: 支持 Codex / Codex CLI
     color: green
-  - text: 支持 OpenAI Responses API
+  - text: 支持 OpenAI 全系模型
     color: amber
 actions:
   - text: 立即加群咨询
@@ -43,13 +43,13 @@ ctaLabel: 立即加入 QQ 群
 ## 产品简介
 
 映雪AI是面向开发者的 AI 编程套餐服务，主打纯官方原生 1:1，不掺水分。  
-支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API，适合日常编码、改 Bug、项目开发和自动化工作流。
+支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 以及 OpenAI 全系模型，适合日常编码、改 Bug、项目开发和自动化工作流。
 
 ## 核心卖点
 
 - 中国大陆可用，开箱即用
 - 纯官方原生 1:1，不掺水分
-- 支持 Codex、龙虾 OpenClaw、Codex CLI 与 OpenAI Responses API
+- 支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 与 OpenAI 全系模型
 - 包日卡与包月方案并存，方便试用和长期使用
 - 从短期试用到长期高频使用，按需求自由选择
 
@@ -67,6 +67,7 @@ ctaLabel: 立即加入 QQ 群
       <li>并发 <code>5</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
       <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
+      <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5">
@@ -80,6 +81,7 @@ ctaLabel: 立即加入 QQ 群
       <li>并发 <code>8</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
       <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
+      <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
   <div class="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-pink-500/10 p-5 shadow-sm">
@@ -93,6 +95,7 @@ ctaLabel: 立即加入 QQ 群
       <li>并发 <code>15</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
       <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
+      <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5">
@@ -106,6 +109,7 @@ ctaLabel: 立即加入 QQ 群
       <li>并发 <code>25</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
       <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
+      <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
   <div class="rounded-xl border border-border/60 bg-background/70 p-5 md:col-span-2">
@@ -119,9 +123,20 @@ ctaLabel: 立即加入 QQ 群
       <li>并发 <code>30</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
       <li>支持 <code>Codex</code> / <code>Codex CLI</code> / <code>OpenAI Responses API</code></li>
+      <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
 </div>
+
+## 当前官方公开模型范围
+
+- GPT-5 主线：`GPT-5.2`、`GPT-5.2-pro`、`GPT-5.1`、`GPT-5`、`GPT-5 mini`、`GPT-5 nano`
+- Codex 主线：`GPT-5.2-Codex`、`GPT-5.1-Codex`、`GPT-5-Codex`
+- 通用模型：`GPT-4.1`、`GPT-4o`、`GPT-4o mini`
+- 图像模型：`GPT Image 1.5`
+- 兼容旧模型：`GPT-3.5 Turbo` 等官方公开型号
+
+以上型号依据 OpenAI 官方模型文档当前公开信息整理。公开型号会持续迭代，以官方最新发布为准。
 
 ## 规格说明
 
