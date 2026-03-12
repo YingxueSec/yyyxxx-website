@@ -87,12 +87,26 @@ import ThemeToggle from '../components/ThemeToggle.astro';
       <!-- 标题区域 -->
       <div class="mx-auto max-w-2xl text-center mb-16">
         <p class="text-sm font-semibold text-primary tracking-wide uppercase mb-3">核心产品</p>
-        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">企业级安全工具</h2>
-        <p class="mt-4 text-muted-foreground">专为安全专业人员打造的高效工具套件</p>
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">产品与服务</h2>
+        <p class="mt-4 text-muted-foreground">覆盖安全工具、AI 编程服务与开发者工作流支持</p>
       </div>
       
       <!-- 产品卡片 -->
-      <div class="mx-auto max-w-6xl grid gap-8 lg:grid-cols-2 xl:grid-cols-4">
+      <div class="mx-auto max-w-7xl grid gap-8 md:grid-cols-2 xl:grid-cols-5">
+        <!-- 映雪AI -->
+        <div class="group relative bg-card rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+          <div class="flex items-center justify-between mb-6">
+            <img src="/logo.png" alt="映雪AI" class="h-12 w-12 rounded-lg object-cover bg-white p-1" />
+            <span class="inline-flex items-center rounded-full bg-pink-500/10 px-2.5 py-1 text-xs font-medium text-pink-600 dark:text-pink-400">新业务</span>
+          </div>
+          <a href="/products/yingxueai" class="hover:text-primary transition-colors"><h3 class="text-xl font-semibold mb-2">映雪AI</h3></a>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-6">面向开发者的 AI 编程套餐，支持 Codex、OpenClaw、Codex CLI 与 OpenAI Responses API</p>
+          <div class="flex items-center justify-between pt-4 border-t border-border/50">
+            <span class="text-xs text-muted-foreground">主推服务</span>
+            <a href="/products/yingxueai" class="text-sm font-medium text-primary hover:underline">了解更多 →</a>
+          </div>
+        </div>
+
         <!-- JackProxy -->
         <div class="group relative bg-card rounded-xl border border-border/50 p-8 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
           <div class="flex items-center justify-between mb-6">
