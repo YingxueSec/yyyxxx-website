@@ -171,4 +171,93 @@ const { Content } = await product.render();
     border-radius: 0.25rem;
     padding: 0.1rem 0.3rem;
   }
+  .product-content :global(.yxai-highlight-grid) {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0 0 1.2rem;
+  }
+  @media (min-width: 768px) {
+    .product-content :global(.yxai-highlight-grid) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .product-content :global(.yxai-highlight-card) {
+    border: 1px solid hsl(var(--border));
+    background: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.55));
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 10px 30px -24px hsl(var(--primary) / 0.45);
+  }
+  .product-content :global(.yxai-highlight-card p) {
+    margin: 0.35rem 0 0;
+    line-height: 1.7;
+  }
+  .product-content :global(.yxai-highlight-title) {
+    font-size: 1rem;
+    font-weight: 700;
+    color: hsl(var(--foreground));
+  }
+  .product-content :global(.yxai-plan-card) {
+    border: 1px solid hsl(var(--border));
+    background: linear-gradient(180deg, hsl(var(--background) / 0.98), hsl(var(--muted) / 0.5));
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 14px 36px -28px hsl(var(--primary) / 0.35);
+  }
+  .product-content :global(.yxai-plan-card-featured) {
+    border-color: hsl(var(--primary) / 0.4);
+    background: linear-gradient(180deg, hsl(var(--primary) / 0.08), hsl(var(--background) / 0.98));
+    box-shadow: 0 22px 44px -28px hsl(var(--primary) / 0.5);
+  }
+  .product-content :global(.yxai-plan-tag) {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+  }
+  .product-content :global(.yxai-plan-tag-featured) {
+    color: hsl(var(--primary));
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary) / 0.22);
+  }
+  .product-content :global(.yxai-price) {
+    margin: 0.7rem 0 0;
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 800;
+    color: hsl(var(--foreground));
+  }
+  .product-content :global(.yxai-price span) {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+  }
+  .product-content :global(.yxai-plan-list) {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .product-content :global(.yxai-plan-list li) {
+    margin: 0;
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.75rem;
+    background: hsl(var(--background) / 0.85);
+    border: 1px solid hsl(var(--border) / 0.9);
+    line-height: 1.55;
+  }
+  .product-content :global(.yxai-plan-list-wide) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (max-width: 767px) {
+    .product-content :global(.yxai-plan-list-wide) {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

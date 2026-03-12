@@ -45,24 +45,31 @@ ctaLabel: 立即加入 QQ 群
 映雪AI是面向开发者的 AI 编程套餐服务，主打纯官方原生 1:1，不掺水分。  
 支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 以及 OpenAI 全系模型，适合日常编码、改 Bug、项目开发和自动化工作流。
 
-## 核心卖点
-
-- 中国大陆可用，开箱即用
-- 纯官方原生 1:1，不掺水分
-- 支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API 与 OpenAI 全系模型
-- 包日卡与包月方案并存，方便试用和长期使用
-- 从短期试用到长期高频使用，按需求自由选择
+<div class="yxai-highlight-grid">
+  <div class="yxai-highlight-card">
+    <div class="yxai-highlight-title">纯官方原生 1:1</div>
+    <p>不掺水分，按官方原生能力提供服务。</p>
+  </div>
+  <div class="yxai-highlight-card">
+    <div class="yxai-highlight-title">全栈兼容</div>
+    <p>支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API。</p>
+  </div>
+  <div class="yxai-highlight-card">
+    <div class="yxai-highlight-title">开箱即用</div>
+    <p>中国大陆可用，适合直接接入日常编码与自动化工作流。</p>
+  </div>
+</div>
 
 ## 套餐方案
 
 <div class="grid gap-4 md:grid-cols-2">
-  <div class="rounded-xl border border-border/60 bg-background/70 p-5">
+  <div class="yxai-plan-card">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">体验日卡</h3>
-      <span class="rounded-full bg-pink-500/10 px-3 py-1 text-xs font-medium text-pink-500">官方原生 1:1</span>
+      <span class="yxai-plan-tag">官方原生 1:1</span>
     </div>
-    <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥5<span class="text-base font-medium text-muted-foreground"> / 天</span></p>
-    <ul class="mb-0 mt-4">
+    <p class="yxai-price">¥5<span> / 天</span></p>
+    <ul class="yxai-plan-list">
       <li>每日限额 <code>$80</code></li>
       <li>并发 <code>5</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
@@ -70,13 +77,13 @@ ctaLabel: 立即加入 QQ 群
       <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
-  <div class="rounded-xl border border-border/60 bg-background/70 p-5">
+  <div class="yxai-plan-card">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Lite</h3>
-      <span class="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-500">官方原生 1:1</span>
+      <span class="yxai-plan-tag">官方原生 1:1</span>
     </div>
-    <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥39<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
-    <ul class="mb-0 mt-4">
+    <p class="yxai-price">¥39<span> / 月</span></p>
+    <ul class="yxai-plan-list">
       <li>每日限额 <code>$40</code></li>
       <li>并发 <code>8</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
@@ -84,13 +91,13 @@ ctaLabel: 立即加入 QQ 群
       <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
-  <div class="rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-pink-500/10 p-5 shadow-sm">
+  <div class="yxai-plan-card yxai-plan-card-featured">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Pro</h3>
-      <span class="rounded-full bg-primary/15 px-3 py-1 text-xs font-medium text-primary">官方原生 1:1</span>
+      <span class="yxai-plan-tag yxai-plan-tag-featured">主推</span>
     </div>
-    <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥79<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
-    <ul class="mb-0 mt-4">
+    <p class="yxai-price">¥79<span> / 月</span></p>
+    <ul class="yxai-plan-list">
       <li>每日限额 <code>$100</code></li>
       <li>并发 <code>15</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
@@ -98,13 +105,13 @@ ctaLabel: 立即加入 QQ 群
       <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
-  <div class="rounded-xl border border-border/60 bg-background/70 p-5">
+  <div class="yxai-plan-card">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Max</h3>
-      <span class="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-500">官方原生 1:1</span>
+      <span class="yxai-plan-tag">官方原生 1:1</span>
     </div>
-    <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥139<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
-    <ul class="mb-0 mt-4">
+    <p class="yxai-price">¥139<span> / 月</span></p>
+    <ul class="yxai-plan-list">
       <li>每日限额 <code>$200</code></li>
       <li>并发 <code>25</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
@@ -112,13 +119,13 @@ ctaLabel: 立即加入 QQ 群
       <li>支持 OpenAI 全系模型</li>
     </ul>
   </div>
-  <div class="rounded-xl border border-border/60 bg-background/70 p-5 md:col-span-2">
+  <div class="yxai-plan-card md:col-span-2">
     <div class="flex items-center justify-between gap-3">
       <h3 class="m-0 text-lg font-semibold">Codex Ultra</h3>
-      <span class="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-500">官方原生 1:1</span>
+      <span class="yxai-plan-tag">官方原生 1:1</span>
     </div>
-    <p class="mt-3 mb-2 text-3xl font-bold text-foreground">¥229<span class="text-base font-medium text-muted-foreground"> / 月</span></p>
-    <ul class="mb-0 mt-4 grid gap-2 md:grid-cols-2">
+    <p class="yxai-price">¥229<span> / 月</span></p>
+    <ul class="yxai-plan-list yxai-plan-list-wide">
       <li>每日限额 <code>$350</code></li>
       <li>并发 <code>30</code></li>
       <li>支持龙虾 <code>OpenClaw</code></li>
@@ -127,16 +134,6 @@ ctaLabel: 立即加入 QQ 群
     </ul>
   </div>
 </div>
-
-## 当前官方公开模型范围
-
-- GPT-5 主线：`GPT-5.2`、`GPT-5.2-pro`、`GPT-5.1`、`GPT-5`、`GPT-5 mini`、`GPT-5 nano`
-- Codex 主线：`GPT-5.2-Codex`、`GPT-5.1-Codex`、`GPT-5-Codex`
-- 通用模型：`GPT-4.1`、`GPT-4o`、`GPT-4o mini`
-- 图像模型：`GPT Image 1.5`
-- 兼容旧模型：`GPT-3.5 Turbo` 等官方公开型号
-
-以上型号依据 OpenAI 官方模型文档当前公开信息整理。公开型号会持续迭代，以官方最新发布为准。
 
 ## 规格说明
 
