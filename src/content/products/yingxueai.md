@@ -18,14 +18,22 @@ featureTitle: 套餐亮点
 features:
   - text: 纯官方原生 1:1
     color: pink
+    desc: 按官方原生能力提供服务，不做缩水阉割，不掺水分。
   - text: 不掺水分
     color: indigo
+    desc: 套餐能力透明清晰，按页面标注提供，不玩模糊描述。
+  - text: 国内直连，高速稳定
+    color: cyan
+    desc: Jackproxy 提供美国 1000+ 住宅代理线路持续服务，兼顾速度与稳定性。
   - text: 支持龙虾 OpenClaw
     color: blue
+    desc: 可直接接入龙虾 OpenClaw 工作流，减少额外适配成本。
   - text: 支持 Codex / Codex CLI
     color: green
+    desc: 覆盖常见 AI 编程客户端与命令行工作流，开通后即可上手。
   - text: 支持 OpenAI 全系模型
     color: amber
+    desc: 支持 OpenAI 全系公开模型能力，适合日常编码与自动化调用。
 actions:
   - text: 立即加群咨询
     href: https://qm.qq.com/q/HASkWRLpw6
@@ -55,8 +63,12 @@ ctaLabel: 立即加入 QQ 群
     <p>支持 Codex、龙虾 OpenClaw、Codex CLI、OpenAI Responses API。</p>
   </div>
   <div class="yxai-highlight-card">
+    <div class="yxai-highlight-title">国内直连，高速稳定</div>
+    <p>Jackproxy 提供美国 1000+ 住宅代理线路持续服务，保障长期可用性。</p>
+  </div>
+  <div class="yxai-highlight-card">
     <div class="yxai-highlight-title">开箱即用</div>
-    <p>中国大陆可用，适合直接接入日常编码与自动化工作流。</p>
+    <p>中国大陆可用，适合直接接入日常编码、项目开发与自动化工作流。</p>
   </div>
 </div>
 

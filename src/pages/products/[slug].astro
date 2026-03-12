@@ -69,15 +69,15 @@ const { Content } = await product.render();
         <h2 class="text-2xl font-bold mb-8">{product.data.featureTitle}</h2>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {product.data.features.map((feature) => (
-            <div class="group bg-card/80 rounded-xl border border-border/50 p-5 flex items-start gap-3 hover:border-primary/30 transition-colors">
-              <div class={`mt-0.5 flex h-8 w-8 items-center justify-center rounded bg-${feature.color}-500/10`}>
+            <div class="group yx-product-feature-card bg-card/80 rounded-xl border border-border/50 p-5 flex items-start gap-3 hover:border-primary/30 transition-all">
+              <div class={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-${feature.color}-500/10 ring-1 ring-inset ring-${feature.color}-500/10`}>
                 <svg class={`h-4 w-4 text-${feature.color}-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
               </div>
-              <div>
-                <p class="font-medium leading-6">{feature.text}</p>
-                <p class="text-sm text-muted-foreground mt-1">围绕该能力持续迭代优化，确保上线可用性。</p>
+              <div class="min-w-0">
+                <p class="font-semibold text-foreground leading-6">{feature.text}</p>
+                <p class="text-sm text-muted-foreground mt-1.5">{feature.desc ?? '围绕该能力持续迭代优化，确保上线可用性。'}</p>
               </div>
             </div>
           ))}
@@ -178,7 +178,7 @@ const { Content } = await product.render();
   }
   @media (min-width: 768px) {
     .product-content :global(.yxai-highlight-grid) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .product-content :global(.yxai-highlight-card) {
@@ -196,6 +196,17 @@ const { Content } = await product.render();
     font-size: 1rem;
     font-weight: 700;
     color: hsl(var(--foreground));
+  }
+  .yx-product-feature-card {
+    min-height: 10.5rem;
+    background:
+      linear-gradient(180deg, hsl(var(--background) / 0.95), hsl(var(--muted) / 0.5)),
+      linear-gradient(135deg, hsl(var(--primary) / 0.04), transparent 55%);
+    box-shadow: 0 20px 40px -32px hsl(var(--foreground) / 0.2);
+  }
+  .yx-product-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 44px -28px hsl(var(--primary) / 0.18);
   }
   .product-content :global(.yxai-plan-card) {
     border: 1px solid hsl(var(--border));

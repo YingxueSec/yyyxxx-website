@@ -9,6 +9,7 @@ const badge = z.object({
 const feature = z.object({
   text: z.string(),
   color: z.enum(['blue', 'purple', 'green', 'amber', 'orange', 'cyan', 'red', 'pink', 'teal', 'indigo', 'yellow']),
+  desc: z.string().optional(),
 });
 
 const action = z.object({
